@@ -1,0 +1,286 @@
+/* Estilos base */
+* {
+  margin: 0rem;
+  padding: 0rem;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
+  list-style: none;
+}
+body {
+  background-color: #f2f2f2;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+a {
+  display: block;
+}
+main {
+  max-width: 55rem;
+  margin: 0rem auto;
+  padding: 2rem 0rem;
+}
+
+/* CLASSES */
+.titulo-h3 {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* CABEÇALHO*/
+#curriculo {
+  max-width: 55rem;
+  margin: 0rem auto;
+  background-color: #ffffff;
+  padding: 2rem 3rem;
+  box-shadow: 0rem 0rem 0.2rem #ffffff;
+}
+#header-section {
+  display: flex;
+  gap: 6rem;
+  padding-top: 1.8rem;
+  margin-top: 0.2rem;
+  align-items: center;
+}
+#header-section div {
+  width: 8rem;
+  height: 8rem;
+  border: #374237 solid 0.2rem;
+  border-radius: 50%;
+  background-image: url("../img/foto-perfil.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+#header h1 {
+  background-color: #22b922;
+  color: #000;
+  box-shadow: 0rem 0rem 0.2rem #387738;
+  padding: 0.5rem 0rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: 500;
+}
+#informaçoes {
+  line-height: 1.8rem;
+}
+#informaçoes section {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+#informaçoes section h2 {
+  font-size: 1.2rem;
+  color: #387738;
+  text-transform: uppercase;
+  font-weight: lighter;
+}
+
+.header-section-endereço {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.8rem;
+}
+.header-section-endereço h2 {
+  font-size: 1.2rem;
+  color: #387738;
+  text-transform: uppercase;
+  font-weight: lighter;
+}
+#informaçoes section a {
+  text-decoration: underline;
+  color: #001742;
+  border-radius: 0.4rem;
+}
+#informaçoes section a:hover {
+  color: #0070d8;
+}
+
+/* CONTEÚDO PRINCIPAL */
+.conteudo {
+  display: grid;
+  gap: 3rem;
+}
+.conteudo-item {
+  display: grid;
+  gap: 1rem;
+}
+/* OBJETIVOS */
+.conteudo-section h2 {
+  display: grid;
+  font-weight: lighter;
+  font-size: 1.4rem;
+}
+.conteudo-section {
+  display: flex;
+  align-items: center;
+}
+.detalhe {
+  content: "";
+  height: 0.2rem;
+  width: 100%;
+  background-color: #22b922;
+  margin-left: 1.5rem;
+}
+.tecnologias {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+.tecnologias-item {
+  font-weight: 700;
+}
+
+/* FORMAÇÕES */
+.formaçoes {
+  display: grid;
+  gap: 1rem;
+}
+.formaçoes-item {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+/* INFORMAÇÕES */
+.informaçoes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  position: relative;
+}
+.informaçoes::before {
+  content: " ";
+  width: 3px;
+  height: 100%;
+  left: 50%;
+  position: absolute;
+  background-color: #22b922;
+}
+.informaçoes-section {
+  display: grid;
+  padding: 2rem 1rem;
+  gap: 0.2rem;
+  position: relative;
+}
+.informaçoes-section::before {
+  content: " ";
+  height: 3px;
+  width: 100%;
+  position: absolute;
+  background-color: #22b922;
+  top: 0rem;
+}
+.section-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pontos {
+  display: inline-block;
+  content: "";
+  height: 0.6rem;
+  width: 0.6rem;
+  background-color: #22b922;
+  border-radius: 50%;
+}
+.idiomas {
+  padding: 2rem 0rem;
+}
+.section-item-idiomas {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.informaçoes-h2 {
+  display: block;
+  font-size: 1.2rem;
+}
+.informaçoes-h3 {
+  display: block;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+/* EXPERIÊNCIA PROFISSIONAL */
+.informaçoes-experiencia {
+  display: grid;
+  position: relative;
+  padding-top: 1rem;
+}
+.informaçoes-experiencia::before {
+  content: " ";
+  height: 3px;
+  width: 96.6%;
+  position: absolute;
+  background-color: #22b922;
+  top: 0rem;
+}
+.experiencia-item {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem 0rem;
+}
+/* RESPONSIVO */
+@media (max-width: 900px) {
+  .informaçoes {
+    grid-template-columns: 1fr;
+  }
+  .informaçoes::before {
+    content: none;
+  }
+  .informaçoes-section {
+    padding: 1.5rem 0rem;
+  }
+  #curriculo {
+    padding: 2rem 0.8rem;
+  }
+  #nome {
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+  }
+  #header-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    justify-items: center;
+    padding-top: 1rem;
+  }
+  .conteudo {
+    gap: 1.5rem;
+  }
+  .informaçoes-h2 {
+    font-size: 1.4rem;
+  }
+  .header-section-endereço {
+    flex-wrap: wrap;
+  }
+  #informaçoes section {
+    gap: 0.2rem;
+  }
+  #informaçoes section h2 {
+    font-size: 1rem;
+  }
+  .tecnologias {
+    display: grid;
+  }
+  .section-item-idiomas {
+    display: grid;
+    font-size: 1.2rem;
+  }
+  .section-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+  .points {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}

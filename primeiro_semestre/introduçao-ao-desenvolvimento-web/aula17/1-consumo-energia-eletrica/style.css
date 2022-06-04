@@ -1,0 +1,3 @@
+input[class^='form'] {
+  max-width: 10rem;
+}

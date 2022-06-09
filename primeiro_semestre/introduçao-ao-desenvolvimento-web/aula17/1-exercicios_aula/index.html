@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercicios aula</title>
+  <!-- JavaScript -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Css -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="">
+  <header class="container-fluid bg-warning p-4">
+    <h1 class="text-center">
+      Introdução ao JavaScript
+    </h1>
+  </header>
+  <!-- Elabore uma página que contenha os scripts usando as funções prompt e alert que : -->
+  <section class="largura container-fluid border p-4">
+    <h2 class="mb-4">
+      1 - Elabore uma página que contenha os scripts usando as funções prompt e alert.
+    </h2>
+    <button id="ativaPrompt" class="rounded btn-primary">Prompt</button>
+    <button id="ativaAlert" class="rounded btn-warning">Alert</button>
+  </section>
+  <!-- Leia um valor e imprima os resultados: “É maior que 10” ou “Não é maior que 10” ou ainda “É igual a 10” -->
+  <section class="largura container-fluid border p-4">
+    <h2 class="mb-4">
+      2 - Leia um valor e imprima os resultados: “É maior que 10” ou “Não é maior que 10” ou ainda “É igual a 10”.
+    </h2>
+    <div>
+      <label for="valor">Digite um valor</label>
+      <input type="number" name="valor" id="valor">
+      <button id="verificar" class="rounded btn-secondary">Verificar</button>
+    </div>
+    <p id="mostraResultado" class="mt-2"></p>
+  </section>
+  <!-- Some dois valores lidos e imprima o resultado
+ -->
+  <section class="largura container-fluid border p-4">
+    <h2 class="mb-4">
+      3 - Some dois valores lidos e imprima o resultado.
+    </h2>
+    <div class="mb-1">
+      <label for="numero1">1º Número</label>
+      <input id="numero1" name="numero1" type="number">
+    </div>
+    <div>
+      <label for="numero2">2º Número</label>
+      <input id="numero2" name="numero2" type="number">
+      <button id="somar" class="rounded btn-secondary">Somar</button>
+    </div>
+    <p id="resultado" class="mt-2"></p>
+
+  </section>
+  <!-- Leia 2 valores e a operação a ser realizada (+, -, * ou /) e imprima o resultado (use um switch) -->
+  <section class="largura container-fluid border p-4">
+    <h2 class="mb-4">
+      4 - Leia 2 valores e a operação a ser realizada (+, -, * ou /) e imprima o resultado (use um switch)
+    </h2>
+    <form action="#">
+      <div class="mb-1">
+        <label for="valor1">1º Valor</label>
+        <input type="number" name="valor1" id="valor1">
+      </div>
+      <div class="mb-1">
+        <label for="valor1">2º Valor</label>
+        <input type="number" name="valor2" id="valor2">
+      </div>
+      <select name="operacao" id="operacao" class="p-1">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+      </select>
+    </form>
+    <div class="pt-2">
+      <button id="calcular" class="rounded btn-secondary">Calcular</button>
+      <p id="resultadoCalcular" class="pt-2"></p>
+    </div>
+  </section>
+  <!-- Calcular conta de consumo de energia elétrica -->
+  <section class="largura container-fluid border p-4">
+    <h2>
+      5 - Calcular conta de consumo de energia elétrica
+    </h2>
+    <form action="#">
+      <div class="mb-2">
+        <label for="quantidadeKwh">Quantidade de Kwh</label>
+        <input type="number" name="quantidadeKwh" id="quantidadeKwh">
+      </div>
+      <div class="mb-2">
+        <label for="valorKwh">Valor unitário do Kwh</label>
+        <input type="number" name="valorKwh" id="valorKwh">
+      </div>
+    </form>
+    <div class="d-flex">
+      <button id="calcularContaLuz" class="rounded btn-success" onclick="calculaValor()">Calcular</button>
+      <p id="valorDaConta" class="p-2 pt-0 pb-0"></p>
+    </div>
+  </section>
+  <!-- Mostre na tela o maior número entre números digitados -->
+  <section class="largura container-fluid border p-4">
+    <h2>
+      6 - Mostre na tela o maior número entre números digitados
+    </h2>
+    <form action="#">
+      <div>
+        <label for="numeros">Digite alguns números inteiros</label>
+        <input type="text" name="numeros" id="numeros" placeholder="Ex: 1,3,15,4,5,16">
+      </div>
+    </form>
+    <button class="btn-primary rounded mt-2" onclick="verificaNumero()">Maior número</button>
+    <p id="maiorNumero" class="mt-3"></p>
+  </section>
+  <!-- maior ou menor de idade -->
+  <section class="largura container-fluid border p-4">
+    <h2>
+      7 - Maior ou menor de idade
+    </h2>
+    <form action="#">
+      <div>
+        <label for="idades">Digite algumas idades</label>
+        <input type="text" name="idades" id="idades" placeholder="Ex: 1,3,15,4,5,16">
+      </div>
+    </form>
+    <button class="btn-danger rounded mt-2" onclick="verificaIdade()">Verificar</button>
+    <p id="mostraIdade" class="mt-3"></p>
+  </section>
+  <footer class="container-fluid bg-dark p-2">
+    <p class="text-white text-center">
+      Copyright©Ygor Evaldt
+    </p>
+  </footer>
+
+  <!-- JS -->
+  <script src="assets/src/script.js"></script>
+</body>
+
+</html>

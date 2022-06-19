@@ -1,5 +1,5 @@
 /*
-2 - Escreve um programa que sorteio, aleatoriamente, 10 números e armazene estes em um vetor.
+2 - Escreve um programa que sorteia, aleatoriamente, 10 números e armazene estes em um vetor.
 Em seguida, o usuário digita um número e seu programa em C deve acusar se o número digitado está no vetor ou não. Se estiver, diga a posição que está.
 */
 

@@ -15,17 +15,28 @@ int main() {
   UINT CPAGE_UTF8 = 65001;
   SetConsoleOutputCP(CPAGE_UTF8);
 
-  float vetor[TAM_VETOR] = {};
   int i;
-  int aux;
-  float numTemp;
+  int x;
+  int v1[TAM_VETOR] = {};
+  int v2[TAM_VETOR] = {};
 
-  printf("Digite %d números diferentres para criar um vetor de %d posições: \n", TAM_VETOR, TAM_VETOR);
-  for(i = 0; i < TAM_VETOR; i++) {
-    printf("%dº Número: ", i+1);
-    scanf("%f%*c", &vetor[i]);
-
-    // Exercicio incompleto
+  for(i = 0; i < TAM_VETOR; i++){
+    printf("Insira um valor: ");
+    scanf("%d%*c", &v1[i]);
+    for(x = 0; x < TAM_VETOR; x++){
+      if(v2[x] == v1[i]){
+        printf("Número repetido.\n");
+        printf("Por favor, digite outro numero: ");
+        scanf("%d%*c", &v1[i]);
+      }
+      v2[x] = v1[i];
+    }
   }
+
+  printf("Valores presentes no vetor: ");
+  for(i = 0; i < TAM_VETOR; i++){
+    printf("%d ", v1[i]);
+  }
+
   return 0;
 }

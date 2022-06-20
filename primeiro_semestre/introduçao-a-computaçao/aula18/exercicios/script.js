@@ -10,18 +10,17 @@ function converteNumero() {
   let aux = 0;
   let resultado = 0;
   let potencia = 1;
+  
 
   for(let i = limiteLaco; i >= 0; i--){
     // BINARIO
     if (baseInicio == 2) { 
       if (aux == 0) {
         resultado += (parseInt(algorismos[i]) * (baseInicio * 1));
-        console.log(resultado);
       }
       if (aux > 0) {
         potencia *= 2;
         resultado += (parseInt(algorismos[i]) * (baseInicio * potencia));
-        console.log(resultado);
       }
       aux++;
     };
@@ -29,25 +28,39 @@ function converteNumero() {
     if (baseInicio == 8) { 
       if (aux == 0) {
         resultado += (parseInt(algorismos[i]) * (baseInicio * 1));
-        console.log(resultado);
       }
       if (aux > 0) {
         potencia *= 8;
         resultado += (parseInt(algorismos[i]) * (baseInicio * potencia));
-        console.log(resultado);
       }
       aux++;
     };
-    // EXADECIMAL
+    // HEXADECIMAL
     if (baseInicio == 16) { 
+      if(algorismos[i] == 'A' || algorismos[i] == 'a') {
+        algorismos[i] = 10;
+      }
+      else if (algorismos[i] == 'B' || algorismos[i] == 'b'){
+        algorismos[i] = 11;
+      }
+      else if (algorismos[i] == 'C' || algorismos[i] == 'c'){
+        algorismos[i] = 12;
+      }
+      else if (algorismos[i] == 'D' || algorismos[i] == 'd'){
+        algorismos[i] = 13;
+      }
+      else if (algorismos[i] == 'E' || algorismos[i] == 'e'){
+        algorismos[i] = 14;
+      }
+      else if (algorismos[i] == 'F' || algorismos[i] == 'f'){
+        algorismos[i] = 15;
+      }
       if (aux == 0) {
         resultado += (parseInt(algorismos[i]) * (baseInicio * 1));
-        console.log(resultado);
       }
       if (aux > 0) {
         potencia *= 16;
         resultado += (parseInt(algorismos[i]) * (baseInicio * potencia));
-        console.log(resultado);
       }
       aux++;
     };

@@ -268,17 +268,13 @@ function converteNumero(){
     resultadoDaConversao.innerHTML = `<strong>Resultado: </strong><span class="text-secondary">${hexadecimalParaBinario(numero)}<span class="small">(${baseFinal})</span></span>`;
   }
 
-  //  Hexadecimal para octal
-  function hexadecimalPraOctal(numero) {
-    let resultado = hexadecimalParaDecimal(numero);
-    let resultadoFinal = decimalParaBinario(resultado, baseFinal);
-    return resultadoFinal;
-  }
-  if (baseInicial == 16 && baseFinal == 8) {
-    if (numero.length === 0) {
-      resultadoDaConversao.innerHTML = `<strong>Resultado: </strong><span class = "text-danger">ERRO! O número a ser convertido não foi encontrado.</span>`;
-      return;
-    }
-    resultadoDaConversao.innerHTML = `<strong>Resultado: </strong><span class="text-secondary">${hexadecimalPraOctal(numero)}<span class="small">(${baseFinal})</span></span>`;
-  }
+  // function hexaToOcta(numero) {
+  //   let valor = numero.split("");
+  //   let limiteDoLaco = valor.length - 1;
+  //   for(i = limiteDoLaco; i >= 0; i--) {
+  //     console.log(valor[i]);
+  //   }
+  // }
+  // hexaToOcta(numero);
+
 }

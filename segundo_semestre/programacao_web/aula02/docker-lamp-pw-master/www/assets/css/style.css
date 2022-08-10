@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box !important;
+}
+
+img {
+  max-height: 200px !important;
+}
+
+h1, figure, legend, p {
+  padding-bottom: 20px;
+}
+
+.nav-link:hover {
+  color: #ffffff !important;
+}
+
+.col-lg-2 {
+  background-color: #f1f1f1;
+}
+
+.col-lg-2 nav ul li {
+  background-color: #f1f1f1;
+  border: none;
+}
+
+.col-lg-2 nav ul li a {
+  color: #000000;
+  text-decoration: none;
+}

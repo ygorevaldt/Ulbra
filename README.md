@@ -5,4 +5,4 @@ Seja Bem Vindo !!
 Aqui você vai encontrar a minha solução para todos os exercícios e projetos propostos nas aulas da minha graduação. 
 
 Para acessar os arquivos basta entrar nas pastas referentes ao semestre que quer visualizar e escolher a disciplina. 
-Dentro da pasta da disciplina você vai encontrar uma pasta para cada aula do curso e a solução dos exercícios. 
+Dentro da pasta da disciplina você vai encontrar uma pasta para cada aula do curso e a solução dos exercícios..

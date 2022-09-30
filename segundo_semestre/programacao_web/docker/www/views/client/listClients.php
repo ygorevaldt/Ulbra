@@ -15,7 +15,7 @@
     ?>
       <tr>
         <td>
-          <?= $client['idClient'] ?>
+          <?= $client['id_client'] ?>
         </td>
         <td>
           <?= $client['name'] ?>

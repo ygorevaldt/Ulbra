@@ -28,13 +28,16 @@
     </h1>
     <a class="text-primary" href="?controller=main&action=logout">Sair</a>
   </header>
-  <main class="container-fluid d-md-flex">
-    <nav class="p-3 col-md-3">
-      <h2>Menu</h2>
+  <main class="container-fluid d-md-flex px-0">
+    <nav class="p-3 col-md-2" style="background-color: grey;">
+      <h2 class="text-white">Menu</h2>
       <ul class="nav flex-column">
+        <li class=" nav-item">
+          <a class="nav-link text-white" href="?controller=site&action=home">Início</a>
+        </li>
         <li class="nav-item">
-          <a class="nav-link" href="?controller=main&action=index">Home</a>
+          <a class="nav-link text-white" href="?controller=client&action=listClients">Clientes</a>
         </li>
       </ul>
     </nav>
-    <section class="p-3 col-md-9">
+    <section class="p-3 col-md-10">

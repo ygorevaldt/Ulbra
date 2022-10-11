@@ -20,6 +20,9 @@ if (!isset($_GET['controller'])) {
           case 'logout':
             $MainController->logout();
             break;
+          case 'index':
+            $MainController->index();
+            break;
         }
       }
       break;
@@ -66,6 +69,21 @@ if (!isset($_GET['controller'])) {
             break;
           case 'detailsClient':
             $ClientController->detailsClient($_GET['id']);
+            break;
+          case 'newClient':
+            $ClientController->newClient();
+            break;
+          case 'insertClient':
+            $ClientController->insertClient();
+            break;
+          case 'updateClient':
+            $ClientController->updateClient($_GET['id']);
+            break;
+          case 'updateClientAction':
+            $ClientController->updateClientAction($_GET['id']);
+            break;
+          case 'deleteClient':
+            $ClientController->deleteClient($_GET['id']);
             break;
           default:
             break;

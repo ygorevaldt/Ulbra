@@ -17,28 +17,30 @@
       <td>
         <?= $client['id_client'] ?>
       </td>
-
       <td>
         <?= $client['name'] ?>
       </td>
-
       <td>
         <?= $client['email'] ?>
       </td>
-
       <td>
         <?= $client['phone'] ?>
       </td>
-
       <td>
         <?= $client['address'] ?>
       </td>
-
       <td>
-        <a href="?controller=client&action=detailsClient&id=<?= $client['id_client'] ?>">Detalhes</a>
+        <a class="btn btn-small btn-primary" href="?controller=client&action=detailsClient&id=<?= $client['id_client'] ?>">Detalhes</a>
+      </td>
+      <td>
+        <a class="btn btn-small btn-secondary" href="?controller=client&action=updateClient&id=<?= $client['id_client'] ?>">Editar</a>
+      </td>
+      <td>
+        <a class="btn btn-small btn-danger" href="?controller=client&action=deleteClient&id=<?= $client['id_client'] ?>">Excluir</a>
       </td>
     </tr>
   <?php
   }
   ?>
 </table>
+<a class="btn btn-small btn-success" href="?controller=client&action=newClient">Adicionar cliente</a>

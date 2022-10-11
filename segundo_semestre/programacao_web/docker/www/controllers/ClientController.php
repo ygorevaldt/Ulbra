@@ -2,6 +2,15 @@
 
 class ClientController
 {
+
+  var $ClientModel;
+
+  public function __construct()
+  {
+    require_once("models/ClientModel.php");
+    $this->ClientModel = new ClientModel();
+  }
+
   public function index()
   {
   }
@@ -22,7 +31,6 @@ class ClientController
       $accept = "Não aceito";
       $acceptView = "Termo não aceito";
     }
-
     $arrayClient = [
       'name' => $_POST['name'],
       'email' => $_POST['email'],
@@ -31,27 +39,18 @@ class ClientController
       'accept' => $accept,
       'acceptView' => $acceptView
     ];
-
-    require_once
-
-
-      require_once("views/templates/header.php");
+    require_once("views/templates/header.php");
     require_once("views/client/registerView.php");
     require_once("views/templates/footer.php");
   }
 
   public function listClients()
   {
-    require_once("models/clientModel.php");
-    $ClientModel = new ClientModel();
-    $result = $ClientModel->listClients();
-
+    $result = $this->ClientModel->listClients();
     $arrayClients = array();
-
     while ($line = $result->fetch_assoc()) {
       array_push($arrayClients, $line);
     }
-
     require_once("views/templates/header.php");
     require_once("views/client/listClients.php");
     require_once("views/templates/footer.php");

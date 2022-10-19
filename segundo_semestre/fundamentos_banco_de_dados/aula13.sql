@@ -13,8 +13,8 @@ CREATE TABLE produtos
   codigo_categoria INT NOT NULL,
   CONSTRAINT produto_tem_categoria
     FOREIGN KEY codigo_categoria REFERENCES categorias(codigo)
-    ON DELETE cascade
-    ON UPDATE restrict
+    ON DELETE restrict
+    ON UPDATE cascade
 );
 
 CREATE TABLE fornecedores
@@ -25,7 +25,8 @@ CREATE TABLE fornecedores
 
 CREATE TABLE pedidos
 (
-  quantidade INT AUTO_INCREMENT PRIMARY KEY,
+  codigo INT AUTO_INCREMENT PRIMARY KEY
+  quantidade DECIMAL(12,3) NOT NULL,
   data_pedido DATE NOT NULL,
   codigo_produto INT NOT NULL,
   CONSTRAINT pedido_tem_produtos

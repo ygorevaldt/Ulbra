@@ -36,6 +36,7 @@ CREATE TABLE pedidos
 
 CREATE TABLE pedido_itens
 (
+  id INT NOT NULL PK,
   codigo_pedido INT NOT NULL,
   valor_unitario DECIMAL(12,2) NOT NULL,
   quantidade DECIMAL(12,3) NOT NULL DEFAULT 0,

@@ -9,10 +9,10 @@ CREATE TABLE produtos
   codigo INT AUTO_INCREMENT PRIMARY KEY,
   descricao VARCHAR(100),
   data_cadastro DATE NOT NULL,
-  valor_unitario DECIMAL(12,2) NOT NULL,
+  valor_unitario DECIMAL(12,2) NOT NULL DEFAULT 0,
   codigo_categoria INT NOT NULL,
   CONSTRAINT produto_tem_categoria
-    FOREIGN KEY codigo_categoria REFERENCES categorias(codigo)
+    FOREIGN KEY (codigo_categoria) REFERENCES categorias(codigo)
     ON DELETE restrict
     ON UPDATE cascade
 );
@@ -26,31 +26,26 @@ CREATE TABLE fornecedores
 CREATE TABLE pedidos
 (
   codigo INT AUTO_INCREMENT PRIMARY KEY
-  quantidade DECIMAL(12,3) NOT NULL,
   data_pedido DATE NOT NULL,
-  codigo_produto INT NOT NULL,
-  CONSTRAINT pedido_tem_produtos
-    FOREIGN KEY codigo_pedido REFERENCES produtos(codigo)
-    ON DELETE restrict
-    ON UPDATE cascade,
   codigo_fornecedor INT NOT NULL,
   CONSTRAINT pedido_por_fornecedor
-    FOREIGN KEY codigo_fornecedor REFERENCES fornecedores(codigo)
+    FOREIGN KEY (codigo_fornecedor) REFERENCES fornecedores(codigo)
     ON DELETE restrict
     ON UPDATE cascade
 );
 
-CREATE TABLE pedido_produtos
+CREATE TABLE pedido_itens
 (
   codigo_pedido INT NOT NULL,
   valor_unitario DECIMAL(12,2) NOT NULL,
-  CONSTRAINT produtos_por_pedido
-    FOREIGN KEY codigo_pedido REFERENCES pedidos(codigo)
+  quantidade DECIMAL(12,3) NOT NULL DEFAULT 0,
+  CONSTRAINT pedidos_itens_fk_pedidos
+    FOREIGN KEY (codigo_pedido) REFERENCES pedidos(codigo)
     ON DELETE restrict
     ON UPDATE cascade,
   codigo_produto INT NOT NULL,
   CONSTRAINT pedido_tem_muitos_produtos
-    FOREIGN KEY codigo_produto REFERENCES produtos(codigo)
+    FOREIGN KEY (codigo_produto) REFERENCES produtos(codigo)
     ON DELETE restrict
     ON UPDATE cascade
 );
@@ -79,5 +74,5 @@ ALTER TABLE pedidos
 ADD numero_pedido CHAR(50 NOT NULL);
 
 -- Exercicio 10
-INSERT INTO fornecedores (nome) VALUES ("Ygor cansado");
-INSERT INTO fornecedores (nome) VALUES ("Alessandra dormiu");
+INSERT INTO fornecedores (nome) VALUES ("value2");
+INSERT INTO fornecedores (nome) VALUES ("value2");

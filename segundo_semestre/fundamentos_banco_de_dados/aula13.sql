@@ -1,15 +1,15 @@
 CREATE TABLE categorias
 (
   codigo INT AUTO_INCREMENT PRIMARY KEY,
-  nome CHAR(50) NOT NULL UNIQUE
+  nome VARCHAR(50) NOT NULL UNIQUE
 );
 
 CREATE TABLE produtos
 (
   codigo INT AUTO_INCREMENT PRIMARY KEY,
-  descricao TEXT(200),
+  descricao VARCHAR(100),
   data_cadastro DATE NOT NULL,
-  valor_unitario FLOAT NOT NULL,
+  valor_unitario DECIMAL(12,2) NOT NULL,
   codigo_categoria INT NOT NULL,
   CONSTRAINT produto_tem_categoria
     FOREIGN KEY codigo_categoria REFERENCES categorias(codigo)
@@ -20,13 +20,12 @@ CREATE TABLE produtos
 CREATE TABLE fornecedores
 (
   codigo INT AUTO_INCREMENT PRIMARY KEY,
-  nome CHAR(50) NOT NULL UNIQUE
+  nome VARCHAR(50) NOT NULL UNIQUE
 );
 
 CREATE TABLE pedidos
 (
   quantidade INT AUTO_INCREMENT PRIMARY KEY,
-  valor_unitario FLOAT NOT NULL,
   data_pedido DATE NOT NULL,
   codigo_produto INT NOT NULL,
   CONSTRAINT pedido_tem_produtos
@@ -43,6 +42,7 @@ CREATE TABLE pedidos
 CREATE TABLE pedido_produtos
 (
   codigo_pedido INT NOT NULL,
+  valor_unitario DECIMAL(12,2) NOT NULL,
   CONSTRAINT produtos_por_pedido
     FOREIGN KEY codigo_pedido REFERENCES pedidos(codigo)
     ON DELETE restrict
@@ -66,7 +66,7 @@ DROP COLUMN data_cadastro;
 
 -- Exercicio 07
 ALTER TABLE fornecedores
-ALTER COLUMN nome CHAR(80);
+ALTER COLUMN nome VARCHAR(80);
 
 -- Exercicio 08
 DROP TABLE fornecedores;

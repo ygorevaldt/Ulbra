@@ -31,13 +31,20 @@
   <main class="container-fluid d-md-flex px-0">
     <nav class="p-3 col-md-2" style="background-color: grey;">
       <h2 class="text-white">Menu</h2>
-      <ul class="nav flex-column">
-        <li class=" nav-item">
-          <a class="nav-link text-white" href="?controller=site&action=home">Início</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="?controller=client&action=listClients">Clientes</a>
-        </li>
-      </ul>
+      <section class="d-flex flex-column justify-content-between">
+        <ul class="nav flex-column">
+          <li class=" nav-item">
+            <a class="nav-link text-white" href="?controller=site&action=home">Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="?controller=client&action=listClients">Clientes</a>
+          </li>
+        </ul>
+        <ul class="nav flex-column">
+          <li class="nav-iten">
+            <a class="nav-link text-white" href="../index.php">Site</a>
+          </li>
+        </ul>
+      </section>
     </nav>
     <section class="p-3 col-md-10">

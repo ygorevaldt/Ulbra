@@ -3,36 +3,40 @@
 
 <head>
   <title>Exemplo Login</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+  <!-- MDB -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.css" rel="stylesheet" />
+  <!-- MDB -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"></script>
 
+  <style>
+  #tela-login {
+    max-width: 400px;
+  }
+  </style>
 </head>
 
 <body>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-4 p-5">
-        <h1>Login no sistema</h1>
-        <form action="?controller=user&action=validateLogin" method=POST name="formulario" id="formulario" class="pt-5">
-          <div class="form-group">
-            <label>Login</label>
-            <input type="text" class="form-control" name="userName" placeholder="Digite o usuário">
-          </div>
-          <div class="form-group">
-            <label>Senha</label>
-            <input type="password" class="form-control" name="password" placeholder="Digite sua senha">
-          </div>
-          <div class="d-flex justify-content-end">
-            <input role="button" class="login btn btn-primary btn-sm" type="submit" name="Enviar" value="Fazer Login">
-          </div>
-        </form>
-      </div>
-      <div class="col-md-4"></div>
-    </div>
+  <div id="tela-login" class="container pt-5">
+    <h1 class="py-4 text-center fs-3">Login no sistema</h1>
+    <section class="container card">
+      <form action="?controller=user&action=validateLogin" method=POST name="formulario" id="formulario" class="py-4 px-2">
+        <div class="form-group">
+          <label>Login</label>
+          <input type="text" class="form-control" name="userName" placeholder="Digite o usuário">
+        </div>
+        <div class="form-group pt-2">
+          <label>Senha</label>
+          <input type="password" class="form-control" name="password" placeholder="Digite sua senha">
+        </div>
+        <div class="d-flex justify-content-end pt-3">
+          <input role="button" class="login btn btn-primary btn-sm" type="submit" name="Enviar" value="Fazer Login">
+        </div>
+      </form>
+    </section>
   </div>
 </body>
 

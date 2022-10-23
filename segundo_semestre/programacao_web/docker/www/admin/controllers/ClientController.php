@@ -2,7 +2,6 @@
 
 class ClientController
 {
-  var $ClientModel;
 
   public function __construct()
   {

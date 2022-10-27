@@ -17,6 +17,7 @@ CREATE TABLE carros
   marca VARCHAR(50) NOT NULL,
   ano INT NOT NULL,
   placa VARCHAR(10) UNIQUE NOT NULL,
+  valor DECIMAL(12,2) NOT NULL,
   modelo VARCHAR(40) NOT NULL
 );
 
@@ -25,7 +26,6 @@ CREATE TABLE aluguel
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   data_aluguel DATE NOT NULL,
   data_devolucao DATE NOT NULL,
-  valor FLOAT NOT NULL,
   id_pessoa INT NOT NULL,
   id_carro INT NOT NULL,
   CONSTRAINT pessoas_fk_aluguel
@@ -37,3 +37,12 @@ CREATE TABLE aluguel
       ON UPDATE cascade
       ON DELETE restrict
 );
+
+-- Quais carros foram locados no mês de setembro de 2021?
+SELECT * FROM aluguel WHERE data_aluguel >= '2021-09-01' AND data_aluguel <= '2021-09-30';
+
+-- Quais clientes tem silva no nome
+SELECT * FROM pessoas WHERE nome LIKE '%Silva%';
+
+-- Faça uma atualização para acrescentar 20% nos valores dos aluguéis
+UPDATE aluguel SET valor = valor + valor * 20 / 100 WHERE valor > 0;

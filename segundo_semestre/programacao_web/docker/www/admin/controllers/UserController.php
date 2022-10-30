@@ -14,7 +14,6 @@ class UserController
     $userName = $_POST['userName'];
     $password = $_POST['password'];
 
-
     $result = $this->UserModel->consultUser($userName);
 
     if ($line = $result->fetch_assoc()) {

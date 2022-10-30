@@ -7,7 +7,7 @@ class ClientController
   public function __construct()
   {
     require_once('models/ClientModel.php');
-    $result->ClientModel = new ClientModel();
+    $this->ClientModel = new ClientModel();
   }
 
   public function listClients()
@@ -17,7 +17,7 @@ class ClientController
     while ($line = $result->fetch_assoc()) {
       array_push($arrayClients, $line);
     }
-    header('Content-type: application/json');
+    header('Content-Type: application/json');
     echo json_encode($arrayClients);
   }
 
@@ -25,10 +25,10 @@ class ClientController
   {
     $result = $this->ClientModel->consultClient($id_client);
     if ($arrayClient = $result->fetch_assoc()) {
-      header('Content-type: application/json');
+      header('Content-Type: application/json');
       echo json_encode($arrayClient);
     } else {
-      header('Content-type: application/json');
+      header('Content-Type: application/json');
       echo '{
         "error":"1",
         "message":"Cliente não encontrado"
@@ -38,10 +38,13 @@ class ClientController
 
   public function insertClient()
   {
+    if (!isset($_POST)) {
+      $client = json_encode($_POST);
+    }
     $client = json_decode(file_get_contents("php://input"));
     $arrayClient = (array) $client;
     $this->ClientModel->insertClient($arrayClient);
-    header('Content-type: application/json');
+    header('Content-Type: application/json');
     echo '{
         "success":"1",
         "message":"Cliente inserido"
@@ -53,7 +56,7 @@ class ClientController
     $client = json_decode(file_get_contents("php://input"));
     $arrayClient = (array) $client;
     $this->ClientModel->updateClient($id_client, $arrayClient);
-    header('Content-type: application/json');
+    header('Content-Type: application/json');
     echo '{
         "success":"2",
         "message":"Cliente alterado"
@@ -63,7 +66,7 @@ class ClientController
   public function deleteClient($id_client)
   {
     $this->ClientModel->deleteClient($id_client);
-    header('Content-type: application/json');
+    header('Content-Type: application/json');
     echo '{
         "success":"3",
         "message":"Cliente deletado "

@@ -10,7 +10,7 @@ $uriSegments = explode("/", $rout);
 
 if (isset($uriSegments[1])) {
   switch ($uriSegments[1]) {
-    case 'clients':
+    case 'client':
       require_once("controllers/ClientController.php");
       $client = new ClientController();
       switch ($request_method) {
@@ -24,10 +24,38 @@ if (isset($uriSegments[1])) {
           $client->insertClient();
           break;
         case 'PUT':
-          $client->updateClient($uriSegment[2]);
+          $client->updateClient($uriSegments[2]);
           break;
         case 'DELETE':
           $client->deleteClient($uriSegments[2]);
+          break;
+      }
+      break;
+    case 'user':
+      require_once("controllers/UserController.php");
+      $user = new UserController();
+      switch ($request_method) {
+        case 'GET':
+          $user->validateLogin();
+          break;
+      }
+      break;
+    case 'contact':
+      require_once("controllers/ContactController.php");
+      $contact = new ContactController();
+      switch ($request_method) {
+        case 'POST':
+          $contact->insertContact();
+          break;
+        case 'GET':
+          require_once('controllers/UserController.php');
+          $user = new UserController();
+          if ($user->isAdmin()) {
+            if (!isset($uriSegments[2]))
+              $contact->listContacts();
+            else
+              $contact->consultContact($uriSegments[2]);
+          }
           break;
       }
       break;

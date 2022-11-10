@@ -1,0 +1,1 @@
+SELECT SUM(qtd * val_unit) AS total FROM vendas_itens WHERE id_venda = 1001;

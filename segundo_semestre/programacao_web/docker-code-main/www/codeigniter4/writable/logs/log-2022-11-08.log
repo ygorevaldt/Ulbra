@@ -1,0 +1,11 @@
+CRITICAL - 2022-11-08 17:59:53 --> Undefined array key "id_client"
+in APPPATH/Views/client/listClients.php on line 18.
+ 1 APPPATH/Views/client/listClients.php(18): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id_client"', 'APPPATH/Views/client/listClients.php', 18)
+ 2 SYSTEMPATH/View/View.php(213): include('APPPATH/Views/client/listClients.php')
+ 3 SYSTEMPATH/View/View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1134): CodeIgniter\View\View->render('client/listClients', [], true)
+ 5 APPPATH/Controllers/Client.php(18): view('client/listClients', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(927): app\Controllers\Client->listClients()
+ 7 SYSTEMPATH/CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(app\Controllers\Client))
+ 8 SYSTEMPATH/CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()

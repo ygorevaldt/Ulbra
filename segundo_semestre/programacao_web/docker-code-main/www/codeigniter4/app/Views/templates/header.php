@@ -30,23 +30,23 @@
       <div class="collapse navbar-collapse" id="navbarExample01">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" aria-current="page" href="/home">Home</a>
+            <a class="nav-link" aria-current="page" href="<?=base_url('home')?>">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/about">Sobre</a>
+            <a class="nav-link" href="<?=base_url('about')?>">Sobre</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/product">Produtos & Serviços</a>
+            <a class="nav-link" href="<?=base_url('products')?>">Produtos & Serviços</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/contact">Contato</a>
-          </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="/register">Registrar cliente</a>
+            <a class="nav-link" href="<?=base_url('contact')?>">Contato</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/listClients">Listagem de clientes</a>
-          </li> -->
+            <a class="nav-link" href="<?=base_url('register')?>">Registrar cliente</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?=base_url('listClients')?>">Listagem de clientes</a>
+          </li>
         </ul>
       </div>
       <!-- <div>

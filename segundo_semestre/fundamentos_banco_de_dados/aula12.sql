@@ -34,7 +34,6 @@ create table projetos_colaboradores
         on update cascade
 );
 
-
 create table projetos_comentarios
 (
     id int not null auto_increment primary key,

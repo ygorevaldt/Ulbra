@@ -1,9 +1,16 @@
-<?php 
+<?php
 
 namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ClientModel extends Model{
-  protected $table = 'clients';
+class UserModel extends Model
+{
+
+  protected $table = 'users';
+
+  public function getUser($userName)
+  {
+    return $this->where('user', $userName)->first();
+  }
 }

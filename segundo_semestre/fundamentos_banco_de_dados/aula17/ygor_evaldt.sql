@@ -129,22 +129,28 @@ SELECT COUNT(matricula) AS total_de_autores_cadastrados FROM autores;
 
 --a) Estão sendo estudados aumentos nos preços dos livros. Escreva o comando SQL que retorna uma listagem contendo o titulo dos livros, e mais três colunas: uma contendo os preços dos livros acrescidos de 10% (deve ser chamada de ‘Opção_1’), a segunda contendo os preços acrescidos de 15% (deve ser chamada de ‘Opção_2’) e a terceira contendo os preços dos livros acrescidos de 20% (deve ser chamada de ‘Opção_3’). Somente devem ser considerados livros que já tenham sido lançados.
 
-SELECT titulo, preco, preco*1.10 AS opcao1, preco*1.15 AS opcao2, preco*1.20 AS opcao3 FROM livros WHERE lancamentos > '0000-00-00';
+SELECT titulo, preco, SUM(preco + preco * 1.10) AS opcao1, SUM(preco + preco * 1.15) AS opcao2, SUM(preco + preco * 1.20) AS opcao3
+FROM livros 
+WHERE lancamento > '0000-00-00';
 
 --b) Escreva o comando SQL que apresenta uma listagem contendo o código da editora, o nome da editora, a sigla do assunto e o titulo dos livros que já foram lançados. Os dados devem estar em ordem decrescente de preço, e ascendente de código da editora e de título do livro.
 
 SELECT id_editora, id_assunto, titulo, nome
 FROM livros, editoras
-    inner join editoras
-        on editoras.id = livros.id_editora
-    inner join assuntos
-        on assuntos.id = livros.id_assunto
-    inner join autores_livros
-        on livros.id = autores_livros.id_livro
+    INNER JOIN editoras
+        ON editoras.id = livros.id_editora
+    INNER JOIN assuntos
+        ON assuntos.id = livros.id_assunto
+    INNER JOIN autores_livros
+        ON livros.id = autores_livros.id_livro
  WHERE lancamento < 2022-11-23
  ORDER BY id_editora ASC
 
  -- c) Escreva o comando que apresente uma listagem dos nomes dos autores e do seu ano e mês de nascimento, para os autores brasileiros e que tem livros ainda não lançados. A listagem deve estar ordenada em ordem crescente de nome.
 
-SELECT nome, data_nascimento, nascionalidade, lancamento FROM autores, livros WHERE nacionalidade LIKE %Brasileiro% AND lancamento = NULL
-ORDER BY nome ASC;
+SELECT nome, data_nascimento, lancamento
+FROM autores, autores_livros
+    INNER JOIN autores, autores_livros
+        ON autores.matricula = autores_livros.matricula_autores
+WHERE lancamento < '2022-11-23'
+ORDER BY nome DESC;

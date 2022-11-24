@@ -4,6 +4,11 @@ from selenium.webdriver.common.by import By
 # passo 1
 driver = webdriver.Chrome()
 driver.get('https://www.google.com')
+driver.maximize_window()
+search_box = driver.find_element(By.CSS_SELECTOR, ('.gLFyf'))
+search_box.send_keys('Computação ULBRA Torres')
+search_box.submit()
+driver.quit()
 
 # passo 2
 import time

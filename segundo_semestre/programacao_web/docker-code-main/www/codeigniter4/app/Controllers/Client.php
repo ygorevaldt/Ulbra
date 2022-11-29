@@ -1,17 +1,20 @@
 <?php
-namespace app\Controllers;
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
+
 use App\Models\ClientModel;
+use CURLStringFile;
 
-class Client extends BaseController{
+class Client extends BaseController
+{
+
   public function listClients()
   {
+
     $ClientModel = new ClientModel();
-    $ClientModel -> findAll();
 
     $data = [
-      'arrayClients' => $ClientModel -> findAll()
+      'arrayClients' => $ClientModel->findAll()
     ];
 
     echo view('templates/header');

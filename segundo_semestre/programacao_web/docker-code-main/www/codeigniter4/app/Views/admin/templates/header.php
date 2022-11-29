@@ -26,7 +26,7 @@
         <h1 class="text-white h2">
             Área administrativa do sistema
         </h1>
-        <a class="text-primary" href="">Sair</a>
+        <a class="text-primary" href="<?= base_url('/admin/logout') ?>">Sair</a>
     </header>
     <main class="container-fluid d-md-flex px-0">
         <nav class="p-3 col-md-2" style="background-color: grey;">
@@ -34,15 +34,18 @@
             <section class="d-flex flex-column justify-content-between">
                 <ul class="nav flex-column">
                     <li class=" nav-item">
-                        <a class="nav-link text-white" href="">Início</a>
+                        <a class="nav-link text-white" href="<?= base_url('/admin') ?>">Início</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="">Clientes</a>
+                        <a class="nav-link text-white" href="<?= base_url('/admin/listClients') ?>">Clientes</a>
+                    </li>
+                    <li>
+                        <a class="nav-link text-white" href="<?= base_url('/admin/register') ?>">Cadastrar Cliente</a>
                     </li>
                 </ul>
                 <ul class="nav flex-column">
                     <li class="nav-iten">
-                        <a class="nav-link text-white" href="">Site</a>
+                        <a class="nav-link text-white" href="<?= base_url('/') ?>">Site</a>
                     </li>
                 </ul>
             </section>

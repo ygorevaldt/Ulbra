@@ -25,4 +25,11 @@ class Admin extends BaseController
     {
         echo view('admin/main/login');
     }
+
+    public function logout()
+    {
+        $session = \Config\Services::session();
+        $session->destroy();
+        return redirect()->to(base_url('admin/login'));
+    }
 }

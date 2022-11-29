@@ -1,4 +1,4 @@
-<main>
+<main class="">
     <h1 class="h2">
         Página Home
     </h1>

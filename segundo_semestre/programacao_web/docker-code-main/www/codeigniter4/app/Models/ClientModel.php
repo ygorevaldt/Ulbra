@@ -4,10 +4,16 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class ClientModel extends Model
 {
-
-  protected $table = 'users';
+  protected $table = 'clients';
+  protected $primaryKey = 'id_client';
+  protected $allowedFields = [
+    'name',
+    'email',
+    'phone',
+    'address'
+  ];
 
   public function getUser($userName)
   {

@@ -130,7 +130,10 @@ HAVING quantos >= 2;
 
 
 -- k) Escreva o comando para apresentar o preço médio dos livros por código de editora. Considere somente aqueles que custam mais de R$ 45,00.
-
+SELECT id_editora, AVG(preco) AS preco
+FROM livros
+WHERE preco > 45
+GROUP BY id_editora;
 
 -- l) Apresente o preço máximo, o preço mínimo e o preço médio dos livros cujos assuntos são ‘S’ ou ‘P’ ou ‘B’, para cada código de editora.
 

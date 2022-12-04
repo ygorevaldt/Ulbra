@@ -7,29 +7,35 @@ use App\Models\ClientModel;
 
 class Client extends BaseController
 {
-    public function listClients()
-    {
+    private $ClientModel;
 
-        $ClientModel = new ClientModel();
+    public function __construct()
+    {
+        $this->ClientModel = new ClientModel();
+    }
+
+    public function list()
+    {
+        // $seeder = \Config\Database::seeder();
+        // $seeder->call('client');
 
         $data = [
-            'arrayClients' => $ClientModel->findAll()
+            'clients' => $this->ClientModel->paginate(5),
+            'pager' => $this->ClientModel->pager
         ];
-
         echo view('admin/templates/header');
-        echo view('admin/client/listClients', $data);
+        echo view('admin/client/list', $data);
         echo view('admin/templates/footer');
     }
 
-    public function registerClient()
+    public function register()
     {
         echo view('admin/templates/header');
         echo view('admin/client/register');
         echo view('admin/templates/footer');
     }
 
-
-    public function registerClientAction()
+    public function registerAction()
     {
         $data = [
             'name' => $this->request->getVar('name'),
@@ -38,24 +44,30 @@ class Client extends BaseController
             'address' => $this->request->getVar('address'),
         ];
 
-        $ClientModel = new ClientModel();
+        $data  = array_map('trim', $data);
+        if (in_array('', $data)) {
+            $messageError = '<span class="d-block text-danger">Preencha todos os campos</span>';
 
-        $ClientModel->insert($data);
-        return redirect()->to(base_url('admin/listClients'));
+            echo view('admin/templates/header');
+            echo view('admin/client/register'), $messageError;
+            echo view('admin/templates/footer');
+        } else {
+            $this->ClientModel->insert($data);
+            return redirect()->to(base_url('admin/clients/list'));
+        }
     }
 
-    public function updateClient($idClient)
+    public function update($idClient)
     {
-        $ClientModel = new ClientModel();
         $data = [
-            'arrayClient' => $ClientModel->find($idClient)
+            'client' => $this->ClientModel->find($idClient)
         ];
         echo view('admin/templates/header');
-        echo view('admin/client/updateClient', $data);
+        echo view('admin/client/update', $data);
         echo view('admin/templates/footer');
     }
 
-    public function updateClientAction($idClient)
+    public function updateAction($idClient)
     {
         $data = [
             'name' => $this->request->getVar('name'),
@@ -63,17 +75,30 @@ class Client extends BaseController
             'phone' => $this->request->getVar('phone'),
             'address' => $this->request->getVar('address')
         ];
-
-        $ClientModel = new ClientModel();
-
-        $ClientModel->update($idClient, $data);
-        return redirect()->to(base_url('admin/listClients'));
+        $this->ClientModel->update($idClient, $data);
+        return redirect()->to(base_url('admin/clients/list'));
     }
 
-    public function deleteClient($idClient)
+    public function delete($idClient)
     {
-        $ClientModel = new ClientModel();
-        $ClientModel->delete($idClient);
-        return redirect()->to(base_url('admin/listClients'));
+        $this->ClientModel->delete($idClient);
+        return redirect()->to(base_url('admin/clients/list'));
+    }
+
+    public function search()
+    {
+        $search = $this->request->getVar('search');
+
+        if (empty($search)) {
+            return redirect()->to(base_url('admin/clients/list'));
+        }
+
+        $data = [
+            'clients' => $this->ClientModel->getClientsFor($search)
+        ];
+
+        echo view('admin/templates/header');
+        echo view('admin/client/list', $data);
+        echo view('admin/templates/footer');
     }
 }

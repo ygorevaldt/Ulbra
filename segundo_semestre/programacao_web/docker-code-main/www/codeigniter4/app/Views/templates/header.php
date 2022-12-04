@@ -16,6 +16,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"></script>
 
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/alerts.js"></script>
 
     <title>Aula 03</title>
 </head>
@@ -28,7 +29,7 @@
                 <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarExample01">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav ms-2 mb-2 mb-lg-0">
                     <li class="nav-item active">
                         <a class="nav-link" aria-current="page" href="<?= base_url('home') ?>">Home</a>
                     </li>
@@ -36,7 +37,7 @@
                         <a class="nav-link" href="<?= base_url('about') ?>">Sobre</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('products') ?>">Produtos & Serviços</a>
+                        <a class="nav-link" href="<?= base_url('/products') ?>">Produtos & Serviços</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('contact') ?>">Contato</a>
@@ -45,12 +46,16 @@
                         <a class="nav-link" href="<?= base_url('register') ?>">Registrar cliente</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('listClients') ?>">Listagem de clientes</a>
+                        <a class="nav-link" href="<?= base_url('/clients/list') ?>">Listagem de clientes</a>
                     </li>
                 </ul>
             </div>
             <div>
-                <a class="nav-link text-dark" href="<?= base_url('admin/login') ?>" class="">login</a>
+                <ul class="navbar-nav ms-2 mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="<?= base_url('admin/login') ?>" class="">login</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>

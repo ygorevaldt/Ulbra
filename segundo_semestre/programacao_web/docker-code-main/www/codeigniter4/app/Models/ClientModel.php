@@ -19,4 +19,15 @@ class ClientModel extends Model
   {
     return $this->where('user', $userName)->first();
   }
+
+  public function getClientsFor($search)
+  {
+    return $this->asArray()
+      ->like('id_client', $search)
+      ->orLike('name', $search)
+      ->orLike('phone', $search)
+      ->orLike('email', $search)
+      ->orLike('address', $search)
+      ->findAll();
+  }
 }

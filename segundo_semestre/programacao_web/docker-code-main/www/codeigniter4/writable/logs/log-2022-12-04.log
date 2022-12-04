@@ -1,0 +1,87 @@
+CRITICAL - 2022-12-04 11:13:49 --> in_array() expects at least 2 arguments, 1 given
+in APPPATH/Controllers/Admin/Client.php on line 48.
+ 1 APPPATH/Controllers/Admin/Client.php(48): in_array(', $data')
+ 2 SYSTEMPATH/CodeIgniter.php(927): App\Controllers\Admin\Client->registerAction()
+ 3 SYSTEMPATH/CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Client))
+ 4 SYSTEMPATH/CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-12-04 11:14:10 --> in_array() expects at least 2 arguments, 1 given
+in APPPATH/Controllers/Admin/Client.php on line 48.
+ 1 APPPATH/Controllers/Admin/Client.php(48): in_array(', $data')
+ 2 SYSTEMPATH/CodeIgniter.php(927): App\Controllers\Admin\Client->registerAction()
+ 3 SYSTEMPATH/CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Client))
+ 4 SYSTEMPATH/CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-12-04 11:29:39 --> CodeIgniter\HTTP\RedirectResponse::to(): Argument #2 ($code) must be of type ?int, string given, called in /var/www/html/codeigniter4/app/Controllers/Admin/Client.php on line 50
+in SYSTEMPATH/HTTP/RedirectResponse.php on line 32.
+ 1 APPPATH/Controllers/Admin/Client.php(50): CodeIgniter\HTTP\RedirectResponse->to('http://localhost/admin/client/register', 'Preencha todos os campos')
+ 2 SYSTEMPATH/CodeIgniter.php(927): App\Controllers\Admin\Client->registerAction()
+ 3 SYSTEMPATH/CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Client))
+ 4 SYSTEMPATH/CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-12-04 11:42:35 --> CodeIgniter\Database\BaseBuilder::like(): Argument #2 ($match) must be of type string, array given, called in /var/www/html/codeigniter4/system/Model.php on line 772
+in SYSTEMPATH/Database/BaseBuilder.php on line 954.
+ 1 SYSTEMPATH/Model.php(772): CodeIgniter\Database\BaseBuilder->like('id_client', [...])
+ 2 APPPATH/Models/ClientModel.php(26): CodeIgniter\Model->__call('like', [...])
+ 3 APPPATH/Controllers/Admin/Client.php(92): App\Models\ClientModel->getClientsFor([...])
+ 4 SYSTEMPATH/CodeIgniter.php(927): App\Controllers\Admin\Client->search()
+ 5 SYSTEMPATH/CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Client))
+ 6 SYSTEMPATH/CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-12-04 11:42:54 --> CodeIgniter\Database\BaseBuilder::like(): Argument #2 ($match) must be of type string, array given, called in /var/www/html/codeigniter4/system/Model.php on line 772
+in SYSTEMPATH/Database/BaseBuilder.php on line 954.
+ 1 SYSTEMPATH/Model.php(772): CodeIgniter\Database\BaseBuilder->like('id_client', [...])
+ 2 APPPATH/Models/ClientModel.php(26): CodeIgniter\Model->__call('like', [...])
+ 3 APPPATH/Controllers/Admin/Client.php(92): App\Models\ClientModel->getClientsFor([...])
+ 4 SYSTEMPATH/CodeIgniter.php(927): App\Controllers\Admin\Client->search()
+ 5 SYSTEMPATH/CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Client))
+ 6 SYSTEMPATH/CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-12-04 11:47:35 --> view(): Argument #2 ($data) must be of type array, string given, called in /var/www/html/codeigniter4/app/Controllers/Admin/Client.php on line 95
+in SYSTEMPATH/Common.php on line 1120.
+ 1 APPPATH/Controllers/Admin/Client.php(95): view('admin/client/list', 'Cliente 1')
+ 2 SYSTEMPATH/CodeIgniter.php(927): App\Controllers\Admin\Client->search()
+ 3 SYSTEMPATH/CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Client))
+ 4 SYSTEMPATH/CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-12-04 11:47:48 --> view(): Argument #2 ($data) must be of type array, string given, called in /var/www/html/codeigniter4/app/Controllers/Admin/Client.php on line 95
+in SYSTEMPATH/Common.php on line 1120.
+ 1 APPPATH/Controllers/Admin/Client.php(95): view('admin/client/list', '1')
+ 2 SYSTEMPATH/CodeIgniter.php(927): App\Controllers\Admin\Client->search()
+ 3 SYSTEMPATH/CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Client))
+ 4 SYSTEMPATH/CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-12-04 11:48:21 --> Undefined variable $pager
+in APPPATH/Views/admin/client/list.php on line 53.
+ 1 APPPATH/Views/admin/client/list.php(53): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $pager', 'APPPATH/Views/admin/client/list.php', 53)
+ 2 SYSTEMPATH/View/View.php(213): include('APPPATH/Views/admin/client/list.php')
+ 3 SYSTEMPATH/View/View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1134): CodeIgniter\View\View->render('admin/client/list', [], true)
+ 5 APPPATH/Controllers/Admin/Client.php(95): view('admin/client/list', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(927): App\Controllers\Admin\Client->search()
+ 7 SYSTEMPATH/CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Client))
+ 8 SYSTEMPATH/CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-12-04 11:52:19 --> base_url(): Argument #2 ($scheme) must be of type ?string, array given, called in /var/www/html/codeigniter4/app/Controllers/Admin/Client.php on line 94
+in SYSTEMPATH/Helpers/url_helper.php on line 100.
+ 1 APPPATH/Controllers/Admin/Client.php(94): base_url('admin/client/list', [...])
+ 2 SYSTEMPATH/CodeIgniter.php(927): App\Controllers\Admin\Client->search()
+ 3 SYSTEMPATH/CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Client))
+ 4 SYSTEMPATH/CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-12-04 12:40:07 --> Invalid file: client/list.php
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 33.
+ 1 SYSTEMPATH/View/View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('client/list.php')
+ 2 SYSTEMPATH/Common.php(1134): CodeIgniter\View\View->render('client/list', [], true)
+ 3 APPPATH/Controllers/Client.php(26): view('client/list', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(927): App\Controllers\Client->list()
+ 5 SYSTEMPATH/CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Client))
+ 6 SYSTEMPATH/CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-12-04 14:01:15 --> Call to undefined method App\Models\ClientModel::getAll
+in SYSTEMPATH/Model.php on line 774.
+ 1 APPPATH/Controllers/Api/Client.php(20): CodeIgniter\Model->__call('getAll', [])
+ 2 SYSTEMPATH/CodeIgniter.php(927): App\Controllers\Api\Client->list()
+ 3 SYSTEMPATH/CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Client))
+ 4 SYSTEMPATH/CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()

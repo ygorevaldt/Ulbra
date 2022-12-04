@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Exemplo Login</title>
+    <title>Login</title>
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
@@ -23,7 +23,7 @@
     <div id="tela-login" class="container pt-5">
         <h1 class="py-4 text-center fs-3">Login no sistema</h1>
         <section class="container card">
-            <form action="<?= base_url('admin/validateLogin') ?>" method=POST name="formulario" id="formulario" class="py-4 px-2">
+            <form action="<?= base_url('admin/login/validate') ?>" method=POST name="formulario" id="formulario" class="py-4 px-2">
                 <div class="form-group">
                     <label>Login</label>
                     <input type="text" class="form-control" name="login" placeholder="Digite o usuário">

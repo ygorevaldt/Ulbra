@@ -40,22 +40,26 @@ $routes->get('/home', 'Site::view/home');
 $routes->get('/about', 'Site::view/about');
 $routes->get('/products', 'Site::view/products');
 $routes->get('/contact', 'Site::view/contact');
-
-$routes->get('/register', 'Client::registerClient');
+$routes->get('/clients/list', 'Client::list');
+$routes->get('/register', 'Client::register');
 
 //rotas do admin
 $routes->get('/admin', 'Admin\Admin::index');
 $routes->get('/admin/login', 'Admin\Admin::login');
 $routes->get('/admin/logout', 'Admin\Admin::logout');
-$routes->add('/admin/validateLogin', 'Admin\User::validateLogin');
+$routes->add('/admin/login/validate', 'Admin\User::validateLogin');
 
+$routes->add('admin/contacts/list', 'Admin\Contact::list');
+$routes->add('admin/clients/list', 'Admin\Client::list');
+$routes->add('admin/client/search', 'Admin\Client::search');
+$routes->add('admin/client/register', 'Admin\Client::register');
+$routes->add('/admin/registerAction', 'Admin\Client::registerAction');
+$routes->add('/admin/client/update/(:num)', 'Admin\Client::update/$1');
+$routes->add('/admin/updateAction/(:num)', 'Admin\Client::updateAction/$1');
+$routes->add('admin/delete/(:num)', 'Admin\Client::delete/$1');
 
-$routes->add('admin/listClients', 'Admin\Client::listClients');
-$routes->add('admin/register', 'Admin\Client::registerClient');
-$routes->add('/admin/registerClientAction', 'Admin\Client::registerClientAction');
-$routes->add('/admin/updateClient/(:num)', 'Admin\Client::updateClient/$1');
-$routes->add('/admin/updateClientAction/(:num)', 'Admin\Client::updateClientAction/$1');
-$routes->add('admin/deleteClient/(:num)', 'Admin\Client::deleteClient/$1');
+$routes->get('api/clients/list', 'Api\Client::list');
+
 
 
 /*

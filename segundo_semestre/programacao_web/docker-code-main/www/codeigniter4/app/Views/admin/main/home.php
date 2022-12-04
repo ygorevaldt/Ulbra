@@ -1,4 +1,4 @@
-<main class="">
+<main class="container-fluid">
     <h1 class="h2">
         Página Home
     </h1>

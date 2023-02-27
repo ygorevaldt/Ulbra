@@ -1,0 +1,93 @@
+- Anotações para a AS
+
+- Um programa de computador é uma entidade abstrata, um software, que serve para explorar os recursos
+do hardware. Criado principalmente para resolver algum tipo de necessidade 
+
+- Desenvolvimento de software requer alguns passos essinciais como: 
+ Saber oque o software deve fazer
+ saber o tempo e custo pra desenvolver
+ prever falhar 
+ tratar manutenções e updates
+
+- Problemas / crises de software envolvem:
+ software inadequado (que nao atende os requisitos para o que ele foi desenvolvido)
+ custos e prazo pra desenvolvimento impreciso
+ Falta da documentação do desenvolvimento do software
+
+- Solução para problemas com desenvolvimentos de software
+ Metodologias de desenvolvimento de software como framwork scrum
+
+- Objetivo principal da engenharia de osftware é mellhorar a qualidade do software e aumentar
+a produtividade do desevolvedores, além de enxugar custos
+
+- Ciclo de vida do software:
+ analise (levantamento de requisitos)
+ projeto (especificação profissional, escrever historias de usuario,)
+ codificação (desenvolvimento do software)
+ teste (testar funcionalidades do software)
+ manutenção (gerar novas versões com melhorias, adequações, e correções de bugs)
+
+- Existem metodologias para desenvolvimento de software, entre elas existem:
+ metodologias ageis
+ metodologia cascata
+
+e todas elas tem fazes
+projeto e implemetação de software
+validação de software - parte de testes que validam as funcionalidades
+evolução  -manutenção/ atualizações
+
+tipos de metodologias: 
+- Metodologias tradicionais: Orientada a documentação
+- Metodologias ageis: Desenvolvido com o mínimo de documentação
+- Metodologias tradicionais: codifica, corrige
+
+manifesto agil
+individuo e interações
+software executavel
+colabiração do cliente
+resposta agil a mudança
+
+principal diferença das metodologias ageis
+feedback constant e entregas de valor
+
+processos padrao
+conjunto de praticas definidos que uma empresa segue
+
+Ciclo de vida de um software
+planejamento
+levantamento de requisitos
+codificação
+entrega
+manutenção
+
+Gerencia de projeto de softwares envolve:
+produtos
+pessoas
+
+
+
+entendimento do negocio: Conhecer o negocio como um todo
+dominio da aplicação: conhecer onde o sistema irá ser aplicado
+entendimento do problema: conhecimento e detalhadamento do problema que o software ira solucionar.
+
+tipos de requisitos:
+funcionais: funções que o sistema deve fornecer 
+nao funcionais: restrições sobre tempo, recursos, dizem respeito a ao sistema como um todo.
+
+
+fluxpgrama:
+Técnica onde se faz um desenho de fluxo da aplicação que descreve oque irá ocorrer na aplicação
+conferme suas funções
+
+QA:
+Prevenção de problemas e melhorar qualidade do software desenvolvido antes da entrega.
+
+
+
+
+
+
+
+
+
+

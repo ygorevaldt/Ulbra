@@ -71,11 +71,10 @@ angular.module('lowcode', []).controller('mycontroller', function ($scope, $filt
                         getValueSelic: function (params) {
                             const objParams = { ...params }
                             let { date, selicArray } = objParams;
-                            console.log(params);
-                            debugger;
+
                             let objDate = new Date(date);
                             const newDate = this.formatDateToCompareWithDateSelic(objDate);
-                            const selic = selicArray.find(item => item.data === newDate);
+                            const selic = $scope.selic.find(item => item.data === newDate);
 
                             return parseFloat(selic.valor);
                         },

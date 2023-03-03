@@ -68,11 +68,14 @@ angular.module('lowcode', []).controller('mycontroller', function ($scope, $filt
                             const newDate = [day, month, year].join('/');
                             return newDate;
                         },
-                        getValueSelic: function (date, array) {
-                            console.log(array);
+                        getValueSelic: function (params) {
+                            const objParams = { ...params }
+                            let { date, selicArray } = objParams;
+                            console.log(params);
+                            debugger;
                             let objDate = new Date(date);
                             const newDate = this.formatDateToCompareWithDateSelic(objDate);
-                            const selic = $scope.selic.find(item => item.data === newDate);
+                            const selic = selicArray.find(item => item.data === newDate);
 
                             return parseFloat(selic.valor);
                         },
@@ -88,9 +91,10 @@ angular.module('lowcode', []).controller('mycontroller', function ($scope, $filt
                             return serverContribution;
                         },
                         handleCorrectedContributionAmount: function (params) {
-                            const { date, payed, debit } = params;
+                            const objParams = { ...params }
+                            const { date, selicArray, payed, debit } = objParams;
 
-                            const valueSelic = this.getValueSelic(date);
+                            const valueSelic = this.getValueSelic({ date: date, selicArray: selicArray });
                             const serverContribution = payed - debit;
                             const correctedContributionAmount = serverContribution * valueSelic;
 
@@ -221,20 +225,21 @@ angular.module('lowcode', []).controller('mycontroller', function ($scope, $filt
 
                 ];
 
-                let selicArray = $scope.selic;
-                const newArray = $scope.IPREV.reduce((accumulator, currentValue, currentIndex, array) => {
+                const selicArray = [...$scope.selic]; // Armazena o array selic em uma variável local
+                const newArray = [];
+                $scope.IPREV.forEach((currentValue) => {
                     let check = laws.find((value) => (new Date(currentValue.month) >= new Date(value.initial_range)) && (new Date(currentValue.month) <= new Date(value.final_range)));
 
                     if (check) {
                         if (check.name === "lei_12" && check.type === "server") {
-                            accumulator.push({
+                            newArray.push({
                                 ...currentValue,
                                 law: check,
                                 startDelay: check.handleStartDelay(currentValue.month),
-                                selic: check.getValueSelic(currentValue.month, selicArray),
+                                selic: check.getValueSelic({ date: currentValue.month, selicArray: selicArray }), // Usa a variável local em vez da global
                                 qntMonthsDelay: check.handleQntMonthsDelay({ start: check.final_range, monthComparacion: currentValue.month }),
                                 serverContribution: check.handleServerContribution(currentValue.valor_pago_servidor, currentValue.devido_servidor),
-                                correctedContributionAmount: check.handleCorrectedContributionAmount({ payed: currentValue.valor_pago_servidor, debit: currentValue.devido_servidor, date: currentValue.month }),
+                                correctedContributionAmount: check.handleCorrectedContributionAmount({ payed: currentValue.valor_pago_servidor, debit: currentValue.devido_servidor, date: currentValue.month, selicArray: selicArray }),
                                 defaultInterest: check.handleDefaultInterest({ payed: currentValue.valor_pago_servidor, debit: currentValue.devido_servidor, date: currentValue.month }, { start: check.initial_range, stop: check.final_range, monthComparacion: currentValue.month }),
                                 penaltyValue: check.handlePenaltValue({ payed: currentValue.valor_pago_servidor, debit: currentValue.devido_servidor, date: currentValue.month }),
                                 totalToBeCollected: check.handleTotalToBeCollected({ payed: currentValue.valor_pago_servidor, debit: currentValue.devido_servidor, date: currentValue.month }, { start: check.initial_range, stop: check.final_range, monthComparacion: currentValue.month })
@@ -244,8 +249,9 @@ angular.module('lowcode', []).controller('mycontroller', function ($scope, $filt
                             console.log(check.name);
                         }
                     }
-                    return accumulator;
-                }, []);
+                });
+
+
                 $scope.array = newArray;
                 $scope.totalValue = $scope.array.reduce((accumulator, currentValue, currentIndex, array) => {
                     return parseFloat((accumulator += currentValue.totalToBeCollected).toFixed(2));

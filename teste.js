@@ -3,12 +3,13 @@ angular.module('lowcode', []).controller('mycontroller', function ($scope, $filt
         $.getJSON("./data/data.json", function (json) {
             $scope["IPREV"] = json;
 
-            $scope.selic;
             $http({
                 method: 'GET',
                 url: 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.4390/dados?formato=json&dataInicial=01/07/1996&dataFinal=30/06/2001'
             }).then(function successCallback(response) {
-                $scope.selic = response.data;
+                if (response.data) {
+                    $scope.selic = response.data;
+                }
 
                 $scope.dataByComparative = {
                     processo_sei: "14/147-56",
@@ -68,9 +69,10 @@ angular.module('lowcode', []).controller('mycontroller', function ($scope, $filt
                             return newDate;
                         },
                         getValueSelic: function (date, array) {
+                            console.log(array);
                             let objDate = new Date(date);
                             const newDate = this.formatDateToCompareWithDateSelic(objDate);
-                            const selic = array.find(item => item.data === newDate);
+                            const selic = $scope.selic.find(item => item.data === newDate);
 
                             return parseFloat(selic.valor);
                         },
@@ -219,12 +221,12 @@ angular.module('lowcode', []).controller('mycontroller', function ($scope, $filt
 
                 ];
 
+                let selicArray = $scope.selic;
                 const newArray = $scope.IPREV.reduce((accumulator, currentValue, currentIndex, array) => {
                     let check = laws.find((value) => (new Date(currentValue.month) >= new Date(value.initial_range)) && (new Date(currentValue.month) <= new Date(value.final_range)));
 
                     if (check) {
                         if (check.name === "lei_12" && check.type === "server") {
-                            let selicArray = [...$scope.selic];
                             accumulator.push({
                                 ...currentValue,
                                 law: check,

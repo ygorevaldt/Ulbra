@@ -1,40 +1,56 @@
 angular.module('lowcode', []).controller('mycontroller', function ($scope, $filter, $http, $sce) {
     $scope.onInit = function () {
         $.getJSON("./data/data.json", function (json) {
-            $scope["IPREV"] = json;
+            $scope.iprev = json;
+            $scope.dataByComparative = {
+                processo_sei: "14/147-56",
+                nome_servidor: "Lucas",
+                orgao: "Secretaria de estado de justi\u{E7}a e cidadania do distrito federal",
+                cargo: "Assistente social",
+                num_matricula: "123456",
+                data_calculo: new Date(),
+                periodo_inicial: new Date("2001-07-02"),
+                periodo_final: new Date("2001-12-31"),
+            }
+            function formatDateToGetSelic(date) {
+                let day = date.getDate();
+                let month = date.getMonth() + 1;
+                const year = date.getFullYear();
+
+                if (day <= 9) {
+                    day = `0${day}`;
+                }
+                if (month <= 9) {
+                    month = `0${month}`;
+                }
+
+                const newDate = [day, month, year].join('/');
+                return newDate;
+            }
+
+            const initialDate = formatDateToGetSelic($scope.dataByComparative.periodo_inicial);
+            const finalyDate = formatDateToGetSelic(new Date());
 
             $http({
                 method: 'GET',
-                url: 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.4390/dados?formato=json&dataInicial=01/07/1996&dataFinal=30/06/2001'
+                url: `https://api.bcb.gov.br/dados/serie/bcdata.sgs.4390/dados?formato=json&dataInicial=${initialDate}&dataFinal=${finalyDate}`
             }).then(function successCallback(response) {
                 if (response.data) {
                     $scope.selic = response.data;
                 }
 
-                $scope.dataByComparative = {
-                    processo_sei: "14/147-56",
-                    nome_servidor: "Lucas",
-                    orgao: "Secretaria de estado de justi\u{E7}a e cidadania do distrito federal",
-                    cargo: "Assistente social",
-                    num_matricula: "123456",
-                    data_calculo: new Date(),
-                    periodo_inicial: new Date("2004-01-02"),
-                    periodo_final: new Date("2004-12-02"),
-                }
-                $scope.law12server = {
-                    name: "lei_12",
+                $scope.law394server = {
+                    name: "lei_394",
                     type: "server",
-                    initial_range: new Date("1996-07-01"),
-                    final_range: new Date("2001-06-30"),
+                    initial_range: new Date("2001-07-01"),
+                    final_range: new Date("2001-12-30"),
                     daily_selic: false,
-                    month_selic: true,
-                    observations: `Observações: SELIC retirada do site do Banco Central `,
-                    title: "LEI COMPLEMENTAR Nº 12, DE 22 DE JULHO DE 1996",
-                    description: `"Art. 1º - Os tributos arrecadados pelo Distrito Federal cujos fatos geradores vierem a ocorrer a partir da data de vigência desta Lei Complementar e que não forem pagos nos prazos estabelecidos, sem prejuízo da incidência de multas previstas na legislação tributária do Distrito Federal, serão acrescidos de juros de mora equivalentes à taxa referencial do Sistema Especial de Liquidação e Custódia - SELIC para títulos federais, acumulada mensalmente.
-                    § 1º - Os juros de mora incidirão a partir do primeiro dia do mês subseqüente ao do vencimento.
-                    § 2º - O percentual dos juros de mora relativo ao mês em que o pagamento estiver sendo efetuado será de 1 % (um por cento) ao mês."
-                    `,
-                    delay: "O início do atraso é considerado a partir do do 5º dia útil do mês subsequente à referência."
+                    month_selic: false,
+                    observations: "INPC retirado do site do IBGE ",
+                    observations_selic: "SELIC retirada do site do Banco Central ",
+                    description: "Art. 1º Os valores expressos em moeda corrente na legislação do Distrito Federal, bem como os relativos a multas e acréscimos de qualquer natureza que, de acordo com a legislação vigente, seriam atualizados pela Unidade de Referência Fiscal – UFIR, deverão ser atualizados anualmente pelo Índice Nacional de Preços as Consumidor – INPC, apurado pelo Instituto Brasileiro de Geografia e Estatística – IBGE – ou, na sua ausência, por outro índice de preços de caráter nacional, que reflita a variação de preços ao consumidor, a ser divulgado em ato do Secretário de Fazenda e Planejamento Parágrafo único. A atualização a que se refere o caput será efetivada no primeiro dia útil do mês de março, de cada ano, considerando o índice acumulado referente ao período do mês de janeiro do ano anterior ao mesmo mês do ano corrente. Art.2º Sobre os débitos tributários pagos com o atraso acrescidos os juros moratórios equivalentes à taxa referencial do sistema Especial de Liquidação e Custódia – SELIC, nos termos da Lei Complementar nº 12, de 22 de julho de 1996, não se aplicando nenhum indexador.",
+                    delay: "O início do atraso é considerado a partir do do 5º dia útil do mês subsequente à referência.",
+                    reference: "INPC e Selic",
                 }
 
                 const laws = [
@@ -153,7 +169,94 @@ angular.module('lowcode', []).controller('mycontroller', function ($scope, $filt
                         description: "Art. 1º Os valores expressos em moeda corrente na legislação do Distrito Federal, bem como os relativos a multas e acréscimos de qualquer natureza que, de acordo com a legislação vigente, seriam atualizados pela Unidade de Referência Fiscal – UFIR, deverão ser atualizados anualmente pelo Índice Nacional de Preços as Consumidor – INPC, apurado pelo Instituto Brasileiro de Geografia e Estatística – IBGE – ou, na sua ausência, por outro índice de preços de caráter nacional, que reflita a variação de preços ao consumidor, a ser divulgado em ato do Secretário de Fazenda e Planejamento Parágrafo único. A atualização a que se refere o caput será efetivada no primeiro dia útil do mês de março, de cada ano, considerando o índice acumulado referente ao período do mês de janeiro do ano anterior ao mesmo mês do ano corrente. Art.2º Sobre os débitos tributários pagos com o atraso acrescidos os juros moratórios equivalentes à taxa referencial do sistema Especial de Liquidação e Custódia – SELIC, nos termos da Lei Complementar nº 12, de 22 de julho de 1996, não se aplicando nenhum indexador.",
                         delay: "O início do atraso é considerado a partir do do 5º dia útil do mês subsequente à referência.",
                         reference: "INPC e Selic",
+                        formatDateToCompareWithDateSelic(date) {
+                            let day = "1";
+                            let month = date.getMonth() + 1;
+                            const year = date.getFullYear();
 
+                            if (day <= 9) {
+                                day = `0${day}`;
+                            }
+                            if (month <= 9) {
+                                month = `0${month}`;
+                            }
+
+                            const newDate = [day, month, year].join('/');
+                            return newDate;
+                        },
+                        handleStartDelay: function (handledDate) {
+                            const date = new Date(handledDate);
+                            return new Date(date.getFullYear(), date.getMonth() + 2, 0);
+                        },
+                        handleServerContribution: function (payed, debit) {
+                            const payedValue = payed;
+                            const debitValue = debit;
+                            const serverContribution = payedValue - debitValue;
+
+                            return serverContribution;
+                        },
+                        handleCorrectedContributionAmount: function (params) {
+                            /*
+                                O sistema irá multiplicar a Contribuição Servidor pelo INPC.
+                                Referência: Planilha Fabio Felix Silveira Simulado – Aba Servidor (394).
+                            */
+                            const { date, payed, debit } = params;
+                            const inpc = 0; //???
+                            const serverContribution = payed - debit;
+
+                            const correctedContributionAmount = serverContribution * inpc;
+                            return correctedContributionAmount;
+                        },
+                        handleInpcValue: function (params) {
+                            const { date, payed, debit } = params;
+
+                            const correctedContributionAmount = this.handleCorrectedContributionAmount(params); //params ??
+                            const serverContribution = this.handleServerContribution(payed, debit);
+
+                            const inpcValue = correctedContributionAmount - serverContribution;
+                            return inpcValue;
+                        },
+                        getValueSelic: function (params) {
+                            //valor (selic / 100 + 1)
+                            let { date, selicArray } = params;
+                            const objDate = new Date(date);
+
+                            const atualMonthDate = this.formatDateToCompareWithDateSelic(objDate);
+                            let atualMonthSelic = $scope.selic.find(item => item.data === atualMonthDate);
+                            atualMonthSelic = (atualMonthSelic / 100) + 1;
+
+                            let subsequentMonth = new Date(this.handleStartDelay(date));
+                            subsequentMonth = this.formatDateToCompareWithDateSelic(subsequentMonth);
+                            let subsequentMonthSelic = $scope.selic.find(item => item.data === subsequentMonth);
+                            subsequentMonthSelic = (subsequentMonthSelic / 100) + 1;
+
+                            let selicValue = (atualMonthSelic * subsequentMonthSelic).toFixed(2);
+                            console.log(selicValue);
+
+                            return parseFloat(selicValue);
+                        },
+                        handleDefaultInterest: function (params) {
+                            const correctedContributionAmount = this.handleCorrectedContributionAmount(params);
+                            const selicValue = this.getValueSelic(params);
+                            const resultDiscount = 1.00;
+                            let defaultInterest = parseFloat(((correctedContributionAmount * selicValue) - resultDiscount).toFixed(2));
+                            return defaultInterest
+                        },
+                        handlePenaltValue: function (params) {
+                            const correctedServerContribution = this.handleCorrectedContributionAmount(params);
+                            const penaltyPercentage = 0.10;
+
+                            const penaltyValue = parseFloat((correctedServerContribution * penaltyPercentage).toFixed(2));
+                            return penaltyValue;
+                        },
+                        handleTotalToBeCollected: function (params) {
+                            const correctedContributionAmount = this.handleCorrectedContributionAmount(params);
+                            const defaultInterest = this.handleDefaultInterest(params);
+                            const penaltyValue = this.handlePenaltValue(params);
+
+                            let totalToBeCollected = (correctedContributionAmount + defaultInterest + penaltyValue).toFixed(2);
+                            return parseFloat(totalToBeCollected);
+                        }
                     },
                     {
                         name: "lei_435",
@@ -226,36 +329,91 @@ angular.module('lowcode', []).controller('mycontroller', function ($scope, $filt
 
                 const selicArray = [...$scope.selic]; // Armazena o array selic em uma variável local
                 const newArray = [];
-                $scope.IPREV.forEach((currentValue) => {
-                    let check = laws.find((value) => (new Date(currentValue.month) >= new Date(value.initial_range)) && (new Date(currentValue.month) <= new Date(value.final_range)));
+                $scope.iprev.forEach((currentValue) => {
+                    let correspondingLaw = laws.find((value) => (new Date(currentValue.month) >= value.initial_range) && (new Date(currentValue.month) <= value.final_range));
 
-                    if (check) {
-                        if (check.name === "lei_12" && check.type === "server") {
+                    const params = {
+                        payed: currentValue.valor_pago_servidor,
+                        debit: currentValue.devido_servidor,
+                        date: currentValue.month
+                    }
+
+                    const paramsToGetSelicValue = {
+                        date: currentValue.month,
+                        selicArray: selicArray
+                    }
+
+                    if (correspondingLaw) {
+                        if (correspondingLaw.name === "lei_12" && correspondingLaw.type === "server") {
+                            console.log(correspondingLaw.name);
+
+                            const paramsToQntMonthsDelay = {
+                                start: correspondingLaw.final_range,
+                                monthComparacion: currentValue.month
+                            }
                             newArray.push({
                                 ...currentValue,
-                                law: check,
-                                startDelay: check.handleStartDelay(currentValue.month),
-                                selic: check.getValueSelic({ date: currentValue.month, selicArray: selicArray }), // Usa a variável local em vez da global
-                                qntMonthsDelay: check.handleQntMonthsDelay({ start: check.final_range, monthComparacion: currentValue.month }),
-                                serverContribution: check.handleServerContribution(currentValue.valor_pago_servidor, currentValue.devido_servidor),
-                                correctedContributionAmount: check.handleCorrectedContributionAmount({ payed: currentValue.valor_pago_servidor, debit: currentValue.devido_servidor, date: currentValue.month, selicArray: selicArray }),
-                                defaultInterest: check.handleDefaultInterest({ payed: currentValue.valor_pago_servidor, debit: currentValue.devido_servidor, date: currentValue.month }, { start: check.initial_range, stop: check.final_range, monthComparacion: currentValue.month }),
-                                penaltyValue: check.handlePenaltValue({ payed: currentValue.valor_pago_servidor, debit: currentValue.devido_servidor, date: currentValue.month }),
-                                totalToBeCollected: check.handleTotalToBeCollected({ payed: currentValue.valor_pago_servidor, debit: currentValue.devido_servidor, date: currentValue.month }, { start: check.initial_range, stop: check.final_range, monthComparacion: currentValue.month })
+                                law: correspondingLaw,
+                                startDelay: correspondingLaw.handleStartDelay(currentValue.month),
+                                selic: correspondingLaw.getValueSelic({
+                                    date: currentValue.month,
+                                    selicArray: selicArray
+                                }), // Usa a variável local em vez da global
+                                qntMonthsDelay: correspondingLaw.handleQntMonthsDelay({
+                                    start: correspondingLaw.final_range,
+                                    monthComparacion: currentValue.month
+                                }),
+                                serverContribution: correspondingLaw.handleServerContribution(currentValue.valor_pago_servidor, currentValue.devido_servidor),
+                                correctedContributionAmount: correspondingLaw.handleCorrectedContributionAmount(params),
+                                defaultInterest: correspondingLaw.handleDefaultInterest(
+                                    params,
+                                    {
+                                        start: correspondingLaw.initial_range,
+                                        stop: correspondingLaw.final_range,
+                                        monthComparacion: currentValue.month
+                                    }
+                                ),
+                                penaltyValue: correspondingLaw.handlePenaltValue(params),
+                                totalToBeCollected: correspondingLaw.handleTotalToBeCollected(
+                                    params,
+                                    {
+                                        start: correspondingLaw.initial_range,
+                                        stop: correspondingLaw.final_range,
+                                        monthComparacion: currentValue.month
+                                    }
+                                )
                             })
                         }
-                        if (check.name === "lei_394" && check.type === "server") {
-                            console.log(check.name);
+                        if (correspondingLaw.name === "lei_394" && correspondingLaw.type === "server") {
+                            const paramsPlusSelicArray = {
+                                payed: currentValue.valor_pago_servidor,
+                                debit: currentValue.devido_servidor,
+                                date: currentValue.month,
+                                selicArray: selicArray
+                            }
+
+                            newArray.push({
+                                ...currentValue,
+                                law: correspondingLaw,
+                                startDelay: correspondingLaw.handleStartDelay(currentValue.month),
+                                serverContribution: correspondingLaw.handleServerContribution(currentValue.valor_pago_servidor, currentValue.devido_servidor),
+                                correctedContributionAmount: correspondingLaw.handleCorrectedContributionAmount(params),
+                                inpcValue: correspondingLaw.handleInpcValue(params),
+                                selic: correspondingLaw.getValueSelic(paramsToGetSelicValue),
+                                defaultInterest: correspondingLaw.handleDefaultInterest(paramsPlusSelicArray),
+                                penaltyValue: correspondingLaw.handlePenaltValue(params),
+                                totalToBeCollected: correspondingLaw.handleTotalToBeCollected(params)
+                            })
                         }
                     }
                 });
 
 
                 $scope.array = newArray;
-                $scope.totalValue = $scope.array.reduce((accumulator, currentValue, currentIndex, array) => {
+                // console.log($scope.array);
+                $scope.totalValue = $scope.array.reduce((accumulator, currentValue) => {
                     return parseFloat((accumulator += currentValue.totalToBeCollected).toFixed(2));
                 }, 0);
-                $scope.$apply();
             });
         });
     }

@@ -1,4 +1,4 @@
-public class activit {
+public class Main {
     public static void main(String[] args) {
         checkDateValidity(30, 02, 2020);
     }
@@ -65,5 +65,4 @@ public class activit {
         }
         return true;
     }
-
 }

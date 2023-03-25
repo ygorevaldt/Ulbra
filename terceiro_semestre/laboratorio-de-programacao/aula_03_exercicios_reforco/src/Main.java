@@ -25,7 +25,6 @@ public class Main {
         number = getNumber("Informe um número inteiro positivo para visualizar os números ímpares de 1 até o número informado: ");
         Exercice05 exercice05 = new Exercice05();
         exercice05.printOddNumbers(number);
-
     }
 
     public static int getNumber(String message) {

@@ -6,37 +6,20 @@ public class Main {
         Product product04 = new Product("Areia de gato", 8.79, 10);
 
         Store store = new Store();
-        //Listando produtos
-        store.listProducts();
 
-        //Adicionando produtos
         store.addProduct(product01);
         store.addProduct(product02);
         store.addProduct(product03);
         store.addProduct(product04);
 
-        //Listando produtos
-        store.listProducts();
-
-        //Removendo produto [Salgadinho]
         store.removeProduct(product03);
 
-        //Listando produtos
-        store.listProducts();
-
-        //Vendendo produto [Cerveja]
         store.sellProduct(product01, 5);
-        store.sellProduct(product01, 50);
+        store.sellProduct(product02, 50);
 
-        //Listando produtos
-        store.listProducts();
-
-        //Adicionando estoque de cerveja
         store.addStock(product01, 5);
 
-        //Listando produtos
         store.listProducts();
-
 
     }
 }

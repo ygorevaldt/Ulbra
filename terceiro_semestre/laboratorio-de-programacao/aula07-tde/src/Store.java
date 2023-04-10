@@ -25,7 +25,7 @@ public class Store {
 
     public void removeProduct(Product product) {
         String sucessMessage = "Produto " + product.getName() + " removido da loja.";
-        String failMessage = "Produto " + product.getName() + "não encontrado no estoque";
+        String failMessage = "Produto " + product.getName() + " não encontrado no estoque";
 
         if (this.product01 == product) {
             this.product01 = null;
@@ -47,13 +47,13 @@ public class Store {
 
     public void listProducts() {
         if (this.product01 != null) {
-            System.out.println("Produto: " + this.product01.getName() + " Quantidade: " + this.product01.getAmount());
+            this.printProductData(this.product01);
         }
         if (this.product02 != null) {
-            System.out.println("Produto: " + this.product02.getName() + " Quantidade: " + this.product02.getAmount());
+            this.printProductData(this.product02);
         }
         if (this.product03 != null) {
-            System.out.println("Produto: " + this.product03.getName() + " Quantidade: " + this.product03.getAmount());
+            this.printProductData(this.product03);
         }
     }
 
@@ -64,9 +64,8 @@ public class Store {
         String failMessage = "Estoque insuficiente";
 
         if (this.product01 == product) {
-            stock = this.product01.getAmount();
-            if (stock >= amount) {
-                newStock = stock - amount;
+            newStock = this.getNewProductStock(this.product01, amount, '-');
+            if (newStock != 0) {
                 this.product01.setAmount(newStock);
                 System.out.println(successMessage);
             } else {
@@ -74,9 +73,8 @@ public class Store {
             }
         }
         else if (this.product02 == product) {
-            stock = this.product02.getAmount();
-            if (stock >= amount) {
-                newStock = stock - amount;
+            newStock = this.getNewProductStock(this.product02, amount, '-');
+            if (newStock != 0) {
                 this.product02.setAmount(newStock);
                 System.out.println(successMessage);
             } else {
@@ -84,9 +82,8 @@ public class Store {
             }
         }
         else if (this.product03 == product) {
-            stock = this.product03.getAmount();
-            if (stock >= amount) {
-                newStock = stock - amount;
+            newStock = this.getNewProductStock(this.product03, amount, '-');
+            if (newStock != 0) {
                 this.product03.setAmount(newStock);
                 System.out.println(successMessage);
             } else {
@@ -101,23 +98,48 @@ public class Store {
         String successMessage = "Nova quantidade do produto " + product.getName() + " adicionada com sucesso.";
 
         if (this.product01 == product) {
-            stock = this.product01.getAmount();
-            newStock = stock + amount;
+            newStock = this.getNewProductStock(this.product01, amount, '+');
+
             this.product01.setAmount(newStock);
             System.out.println(successMessage);
         }
         else if (this.product02 == product) {
-            stock = this.product02.getAmount();
-            newStock = stock + amount;
+            newStock = this.getNewProductStock(this.product02, amount, '+');
+
             this.product02.setAmount(newStock);
             System.out.println(successMessage);
         }
         else if (this.product03 == product) {
-            stock = this.product03.getAmount();
-            newStock = stock + amount;
+            newStock = this.getNewProductStock(this.product03, amount, '+');
+
             this.product03.setAmount(newStock);
             System.out.println(successMessage);
         }
+    }
+
+    private void printProductData(Product product) {
+        System.out.println("Produto: " + product.getName() + " Quantidade: " + product.getAmount());
+    }
+
+    private int getNewProductStock(Product product, int amount, char operator) {
+
+        int stock = product.getAmount();
+        int newStock = 0;
+
+        if (amount > stock && operator == '-') {
+            return 0;
+        }
+
+        switch (operator) {
+            case '+':
+                newStock = stock + amount;
+                break;
+            case '-':
+                newStock = stock - amount;
+                break;
+        }
+
+        return newStock;
     }
 
 }

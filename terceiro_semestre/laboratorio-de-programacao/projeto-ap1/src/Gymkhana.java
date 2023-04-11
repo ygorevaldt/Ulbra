@@ -2,7 +2,7 @@ public class Gymkhana {
     private String GymkhanaName;
     private int TotalStudents = 0;
     private Student WinningStudent;
-    private int MaxPoints;
+    private int MaxPoints = 0;
 
     public void setGymkhanaName(String name) {
         this.GymkhanaName = name;
@@ -40,5 +40,27 @@ public class Gymkhana {
 
     public void addStudent(Student student) {
         this.TotalStudents += 1;
+
+        int points = student.getPoints();
+        boolean conditionUpdateWinningStudent = this.checkStudentPoints(points);
+
+        if (conditionUpdateWinningStudent) {
+            this.setWinningStudent(student);
+            this.setMaxPoints(points);
+        }
+    }
+
+    public void showWinner() {
+        String winningStudent = this.WinningStudent.getName();
+        System.out.println("Vencedor atual: " + winningStudent + "\nPontuação máxima: " + this.MaxPoints + " pontos.");
+    }
+
+    private boolean checkStudentPoints(int points) {
+        boolean condition = this.MaxPoints < points;
+        if (condition) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -17,7 +17,6 @@ public class App {
 
         Gymkhana gymkhana = new Gymkhana();
         gymkhana.setGymkhanaName("Queimado");
-        gymkhana.setWinningStudent(student01);
 
         gymkhana.addStudent(student01);
         gymkhana.addStudent(student02);

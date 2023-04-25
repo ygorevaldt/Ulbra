@@ -42,7 +42,7 @@ public class Gymkhana {
         this.TotalStudents += 1;
 
         int points = student.getPoints();
-        boolean conditionUpdateWinningStudent = this.checkStudentPoints(points);
+        boolean conditionUpdateWinningStudent = this.WinningStudent == null || this.checkStudentPoints(points);
 
         if (conditionUpdateWinningStudent) {
             this.setWinningStudent(student);

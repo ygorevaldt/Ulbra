@@ -1,8 +1,14 @@
-public class Account {
+public abstract class Account {
     double Balance;
-    int Number;
+    String Number;
 }
 
 class CurrentAccount extends Account {
-    double limit;
+    double Limit;
+
+    public CurrentAccount(double balance, String number, double limit) {
+        this.Balance = balance;
+        this.Number = number;
+        this.Limit = limit;
+    }
 }

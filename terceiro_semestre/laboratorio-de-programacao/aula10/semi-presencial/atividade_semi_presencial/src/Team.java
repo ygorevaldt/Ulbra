@@ -27,6 +27,10 @@ public class Team {
         return this.Draws;
     }
 
+    public int getTotalGames() {
+        return this.Wins + this.Defeats + this.Draws;
+    }
+
     public void setName(String name) {
         this.Name = name;
     }
@@ -56,7 +60,7 @@ public class Team {
     }
 
     public void printInformations() {
-        System.out.println(this.getName() + " - " + " Vitórias: " + this.getWins() + " Derrotas: "
-                + this.getDefeats() + " Empates: " + this.getDraws());
+        System.out.println(this.Name + " - " + "Total de jogos: " + this.getTotalGames() + " ---> Vitórias: " + this.Wins + " Derrotas: "
+                + this.Defeats + " Empates: " + this.Draws);
     }
 }

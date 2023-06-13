@@ -1,12 +1,11 @@
 package GeometricForm;
 
 public class Triangle implements GeometricForm {
-    double Base;
-    double Height;
-    double Hide1;
-    double Hide2;
-    double Hide3;
-    int DivisionValueToCalculateArea = 2;
+    private double Base;
+    private double Height;
+    private double Hide1;
+    private double Hide2;
+    private double Hide3;
 
     public Triangle(double base, double height, double hide1, double hide2, double hide3) {
         this.Base = base;
@@ -18,7 +17,8 @@ public class Triangle implements GeometricForm {
 
     @Override
     public double calculateArea() {
-        return (this.Base * this.Height) / this.DivisionValueToCalculateArea;
+        int divisor = 2;
+        return (this.Base * this.Height) / divisor;
     }
     @Override
     public double calculatePerimeter() {

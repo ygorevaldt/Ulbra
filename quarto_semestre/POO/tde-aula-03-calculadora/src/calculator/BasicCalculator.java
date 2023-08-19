@@ -29,7 +29,8 @@ public class BasicCalculator extends Calculator {
 
             double number2 = this.getNumber();
             ArrayList<Double> numbers = new ArrayList<>(Arrays.asList(number1, number2));
-            this.result = this.calculate(numbers, operator);
+            operator.calculate(numbers);
+            this.result = operator.calculate(numbers);
             System.out.println(this.result);
         }
     }
@@ -98,27 +99,5 @@ public class BasicCalculator extends Calculator {
             }
         }
         return false;
-    }
-
-    protected double calculate(ArrayList<Double> numbers, Operator operator) {
-        double result = 0.0;
-        switch (operator.getType()) {
-            case "+":
-                result = operator.calculate(numbers);
-                break;
-            case "-":
-                result = operator.calculate(numbers);
-                break;
-            case "*":
-                result = operator.calculate(numbers);
-                break;
-            case "/":
-                result = operator.calculate(numbers);
-                break;
-            default:
-                System.out.println("Erro");
-                break;
-        }
-        return result;
     }
 }

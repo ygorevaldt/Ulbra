@@ -3,7 +3,6 @@ package calculator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 import calculator.operators.Division;
 import calculator.operators.Multiplication;
@@ -12,10 +11,16 @@ import calculator.operators.Subtraction;
 import calculator.operators.Sum;
 
 public class BasicCalculator extends Calculator {
-    private double result = 0.0; 
-    private ArrayList<String> typeOperators = new ArrayList<>(Arrays.asList("+", "-", "*", "/", "="));
-    private Scanner scanner = new Scanner(System.in);
+    public BasicCalculator () {
+        this.typeOperators = this.getTypeOperators();
+    }
 
+    @Override
+    protected ArrayList<String> getTypeOperators () {
+        return new ArrayList<>(Arrays.asList("+", "-", "*", "/", "="));
+    }
+
+    @Override
     public void start() {
         this.getStarted();
         while (true) {
@@ -34,15 +39,8 @@ public class BasicCalculator extends Calculator {
             System.out.println(this.result);
         }
     }
-
-    private boolean resultIsGreaterThanZero () {
-        return this.result > 0.0;
-    }
-
-    private void getStarted() {
-        System.out.println("Calculadora iniciada");
-    }
-
+ 
+    @Override
     protected double getNumber() {
         double number = 0.0;
         boolean validInput = false;
@@ -61,6 +59,7 @@ public class BasicCalculator extends Calculator {
         return number;
     }
 
+    @Override
     protected Operator getOperator() {
         System.out.println("Operador: ");
         String input = this.scanner.nextLine();
@@ -86,18 +85,5 @@ public class BasicCalculator extends Calculator {
         }
 
         return null;
-    }
-
-    private void showResult (double value) {
-        System.out.println("Resultado: " + value);
-    }
-
-    private boolean checkInputedOperator(String input) {
-        for (String type : this.typeOperators) {
-            if (input.equals(type)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

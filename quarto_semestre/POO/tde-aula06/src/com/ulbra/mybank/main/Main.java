@@ -9,5 +9,6 @@ public class Main {
         Client someClient = new Client("Algum cliente");
         ChekingAccount conta1 = new ChekingAccount(someClient);
         SavingsAccount conta2 = new SavingsAccount(someClient);
+
     }
 }

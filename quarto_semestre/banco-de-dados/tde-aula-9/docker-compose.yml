@@ -1,0 +1,18 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo:4
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: senhaadmin
+    ports:
+      - 27017:27017
+
+  mongoclient:
+    image: mongoclient/mongoclient
+    container_name: mongoclient
+    ports:
+      - 3000:3000
+    links:
+      - mongodb:mongodb

@@ -1,8 +1,6 @@
-package rules.shared;
+package com.poo.tde.rules.shared;
 
-import rules.shared.valueobjects.Id;
-
-import java.util.UUID;
+import com.poo.tde.rules.shared.valueobjects.Id;
 
 public class Entity {
     protected Id id;

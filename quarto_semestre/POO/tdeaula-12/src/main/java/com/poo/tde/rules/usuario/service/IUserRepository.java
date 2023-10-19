@@ -1,6 +1,6 @@
-package rules.usuario.service;
+package com.poo.tde.rules.usuario.service;
 
-import rules.usuario.model.User;
+import com.poo.tde.rules.usuario.model.User;
 
 import java.util.ArrayList;
 

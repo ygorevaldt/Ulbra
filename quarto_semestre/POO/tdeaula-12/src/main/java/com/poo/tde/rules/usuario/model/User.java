@@ -1,8 +1,8 @@
-package rules.usuario.model;
+package com.poo.tde.rules.usuario.model;
 
-import rules.shared.Entity;
-import rules.shared.valueobjects.Cellphone;
-import rules.shared.valueobjects.SimpleName;
+import com.poo.tde.rules.shared.Entity;
+import com.poo.tde.rules.shared.valueobjects.Cellphone;
+import com.poo.tde.rules.shared.valueobjects.SimpleName;
 
 public class User extends Entity {
     private SimpleName name;

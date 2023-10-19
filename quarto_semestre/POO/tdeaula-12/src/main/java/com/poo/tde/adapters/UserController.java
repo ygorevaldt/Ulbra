@@ -1,17 +1,18 @@
-package com.poo.tde.controllers;
+package com.poo.tde.adapters;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import com.poo.tde.rules.usuario.model.User;
 import com.poo.tde.rules.usuario.service.IUserRepository;
+
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    private IUserRepository repository;
+    IUserRepository repository;
 
+    @Autowired
     public UserController(IUserRepository repository) {
         this.repository = repository;
     }
@@ -21,5 +22,10 @@ public class UserController {
         User newUSer = new User(name, cellphone);
         this.repository.save(newUSer);
         return "Usuario criado com sucesso";
+    }
+
+    @GetMapping("/read")
+    public ArrayList<User> read() {
+        return this.repository.searchAll();
     }
 }

@@ -1,4 +1,4 @@
-package rules.shared.valueobjects;
+package com.poo.tde.rules.shared.valueobjects;
 
 import java.util.UUID;
 

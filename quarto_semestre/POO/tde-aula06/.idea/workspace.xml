@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f432b455-d72a-494f-97b2-3c3b6d668fef" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/ulbra/mybank/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ulbra/mybank/main/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="f432b455-d72a-494f-97b2-3c3b6d668fef" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,6 +74,7 @@
       <workItem from="1693441256582" duration="1117000" />
       <workItem from="1693611793347" duration="40000" />
       <workItem from="1694038225323" duration="913000" />
+      <workItem from="1696163175012" duration="65000" />
     </task>
     <servers />
   </component>

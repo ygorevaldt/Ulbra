@@ -1,4 +1,4 @@
-package rules.shared.valueobjects;
+package com.poo.tde.rules.shared.valueobjects;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

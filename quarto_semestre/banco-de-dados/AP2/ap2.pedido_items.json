@@ -1,0 +1,28 @@
+[
+	{
+		"_id": {
+			"$oid": "6543f23fb64f222e6d8743bf"
+		},
+		"produto_id": {
+			"$oid": "6543ea6004fd406a2d049625"
+		},
+		"quantidade": 4,
+		"preco": 160,
+		"pedido_id": {
+			"$oid": "6543f12fb64f222e6d8743b9"
+		}
+	},
+	{
+		"_id": {
+			"$oid": "65440ab3c92a80b94df46817"
+		},
+		"produto_id": {
+			"$oid": "6543ea6004fd406a2d049625"
+		},
+		"quantidade": 5,
+		"preco": 200,
+		"pedido_id": {
+			"$oid": "6543f12fb64f222e6d8743b9"
+		}
+	}
+]

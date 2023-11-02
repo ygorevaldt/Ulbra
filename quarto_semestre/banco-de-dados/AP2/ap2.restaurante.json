@@ -1,0 +1,72 @@
+[
+	{
+		"_id": {
+			"$oid": "653d0c875ee5ce0e9dc6049a"
+		},
+		"nome": "Restaurante 01",
+		"telefone": "51988887777",
+		"localizacao": {
+			"type": "Point",
+			"coordinates": [
+				-23.55799,
+				-46.636994
+			]
+		}
+	},
+	{
+		"_id": {
+			"$oid": "653d0d345ee5ce0e9dc6049c"
+		},
+		"nome": "Restaurante 02",
+		"telefone": "5140028922",
+		"localizacao": {
+			"type": "Point",
+			"coordinates": [
+				-29.341304,
+				-49.726928
+			]
+		}
+	},
+	{
+		"_id": {
+			"$oid": "653d0d685ee5ce0e9dc6049e"
+		},
+		"nome": "Restaurante 03",
+		"telefone": "518777666",
+		"localizacao": {
+			"type": "Point",
+			"coordinates": [
+				-24.557,
+				-45.6369
+			]
+		}
+	},
+	{
+		"_id": {
+			"$oid": "653d0d935ee5ce0e9dc604a0"
+		},
+		"nome": "Restaurante 04",
+		"telefone": "51766665555",
+		"localizacao": {
+			"type": "Point",
+			"coordinates": [
+				-29.335075,
+				-49.733995
+			]
+		}
+	},
+	{
+		"_id": {
+			"$oid": "653d0dce5ee5ce0e9dc604a2"
+		},
+		"nome": "Restaurante 05",
+		"telefone": "516555444",
+		"localizacao": {
+			"type": "Point",
+			"coordinates": [
+				-29.332287,
+				-49.737235
+			]
+		}
+	}
+]

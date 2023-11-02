@@ -2,11 +2,16 @@
 Conforme as telas passadas, possuímos o protótipo de um aplicativo de entrega de comida,  devemos nos basear nessas telas para construir uma estrutura de banco de dados utilizando o  MongoDB, criando todas as collections e atributos necessários para que contemple a consistência e  persistência de todas as informações apresentadas. 
 
 ## 1 - Criar esquema de collections com suas propriedades. 
+- cliente
+- restaurante
+- produto
+- pedido
+- pedido_items
+
 ## 2 - Construir objetos de modelo. 
 ## 3 - Pelo menos uma collection deve possuir referência com outra. 
 
 # A partir da construção deste esquema, devemos gerar alguns relatórios:
-
 ## 1 - Relatório que efetue uma busca por geolocalização (clientes ou restaurantes). 
 ```javascript
 db.restaurante.find({

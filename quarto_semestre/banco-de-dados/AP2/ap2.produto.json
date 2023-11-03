@@ -1,27 +1,25 @@
-[
-	{
-		"_id": {
-			"$oid": "6543ea6004fd406a2d049625"
-		},
-		"nome": "Pizza Grande",
-		"descricao": "Sabor calabresa",
-		"valor": 40,
-		"imagens": [
-			{
-				"nome": "Imagem 1",
-				"url": "https://url"
-			},
-			{
-				"nome": "Imagem 2",
-				"url": "https://url"
-			},
-			{
-				"nome": "Imagem 3",
-				"url": "https://url"
-			}
-		],
-		"restaurante_id": {
-			"$oid": "653d0c875ee5ce0e9dc6049a"
-		}
-	}
-]
+[{
+  "_id": {
+    "$oid": "6543ea6004fd406a2d049625"
+  },
+  "nome": "Pizza Grande",
+  "descricao": "Sabor calabresa",
+  "valor": 40,
+  "imagens": [
+    {
+      "nome": "Imagem 1",
+      "url": "https://url"
+    },
+    {
+      "nome": "Imagem 2",
+      "url": "https://url"
+    },
+    {
+      "nome": "Imagem 3",
+      "url": "https://url"
+    }
+  ],
+  "restaurante_id": {
+    "$oid": "653d0c875ee5ce0e9dc6049a"
+  }
+}]

@@ -17,7 +17,7 @@ public class Update implements IUseCaseWithId<Client, Void> {
     public Void execute(String id, Client client) {
         ArrayList<Client> existingClient = this.repository.findById(id);
         if (existingClient.size() == 0) {
-            throw new IllegalArgumentException("Cliente não cadastrado");
+            throw new IllegalArgumentException("Usuario não cadastrado");
         }
 
         Client register = existingClient.get(0);

@@ -67,17 +67,11 @@ db.pedido.find({
 ```javascript
 db.pedido.aggregate([
     {
-        $group: {
-            _id: "$cliente_id",
-            totalPedidos: { $sum: 1 }
-        }
-    },
-    {
         $lookup: {
-            from: "cliente",
-            localField: "cliente_id",
-            foreignField: "_id",
-            as: "cliente_info"
+            from: "pedido",
+            localField: "referencia",
+            foreignField: "cliente_id",
+            as: "pedidos"
         }
     }
 ]);

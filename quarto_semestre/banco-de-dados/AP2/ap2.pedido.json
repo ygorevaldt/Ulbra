@@ -1,50 +1,48 @@
-[
-	{
-		"_id": {
-			"$oid": "6543f12fb64f222e6d8743b9"
-		},
-		"restaurante_id": {
-			"$oid": "653d0c875ee5ce0e9dc6049a"
-		},
-		"forma_pagamento": "Cartão de crédito",
-		"subtotal": 306.65,
-		"delivery": 12,
-		"total": 318.65,
-		"data": "2023-11-02T14:30:00Z",
-		"cliente_id": {
-			"$oid": "6543f455b64f222e6d8743c7"
-		}
-	},
-	{
-		"_id": {
-			"$oid": "6543f15db64f222e6d8743bb"
-		},
-		"restaurante_id": {
-			"$oid": "653d0c875ee5ce0e9dc6049a"
-		},
-		"forma_pagamento": "Dinheiro",
-		"subtotal": 61.66,
-		"delivery": 12,
-		"total": 73.66,
-		"cliente_id": {
-			"$oid": "6543f482b64f222e6d8743c9"
-		},
-		"data": "2023-11-02T15:30:00Z"
-	},
-	{
-		"_id": {
-			"$oid": "6543f180b64f222e6d8743bd"
-		},
-		"restaurante_id": {
-			"$oid": "653d0c875ee5ce0e9dc6049a"
-		},
-		"forma_pagamento": "Cartão de crédito",
-		"subtotal": 81.66,
-		"delivery": 12,
-		"total": 93.66,
-		"cliente_id": {
-			"$oid": "6543f455b64f222e6d8743c7"
-		},
-		"data": "2023-11-01T14:30:00Z"
-	}
-]
+[{
+  "_id": {
+    "$oid": "6543f12fb64f222e6d8743b9"
+  },
+  "restaurante_id": {
+    "$oid": "653d0c875ee5ce0e9dc6049a"
+  },
+  "forma_pagamento": "Cartão de crédito",
+  "subtotal": 306.65,
+  "delivery": 12,
+  "total": 318.65,
+  "data": {
+    "$date": "2023-11-02T14:30:00.000Z"
+  },
+  "cliente_id": "6543f455b64f222e6d8743c7"
+},
+{
+  "_id": {
+    "$oid": "6543f15db64f222e6d8743bb"
+  },
+  "restaurante_id": {
+    "$oid": "653d0c875ee5ce0e9dc6049a"
+  },
+  "forma_pagamento": "Dinheiro",
+  "subtotal": 61.66,
+  "delivery": 12,
+  "total": 73.66,
+  "cliente_id": "6543f482b64f222e6d8743c9",
+  "data": {
+    "$date": "2023-11-02T15:30:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6543f180b64f222e6d8743bd"
+  },
+  "restaurante_id": {
+    "$oid": "653d0c875ee5ce0e9dc6049a"
+  },
+  "forma_pagamento": "Cartão de crédito",
+  "subtotal": 81.66,
+  "delivery": 12,
+  "total": 93.66,
+  "cliente_id": "6543f455b64f222e6d8743c7",
+  "data": {
+    "$date": "2023-11-01T14:30:00.000Z"
+  }
+}]

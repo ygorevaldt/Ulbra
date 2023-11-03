@@ -12,6 +12,7 @@ public class ClientController {
     private final IClientRepository repository;
     private final Save save;
     private final Find find;
+    private final FindByAge findByAge;
     private final Update update;
     private final Delete delete;
 
@@ -20,6 +21,7 @@ public class ClientController {
         this.repository = ClientMemoryRepository;
         this.save = new Save(this.repository);
         this.find = new Find(this.repository);
+        this.findByAge = new FindByAge(this.repository);
         this.update = new Update(this.repository);
         this.delete = new Delete(this.repository);
     }
@@ -32,6 +34,11 @@ public class ClientController {
     @GetMapping("/read/{id}")
     public ArrayList<Client> read(@PathVariable String id) {
         return this.find.execute(id);
+    }
+
+    @GetMapping("/read/filter")
+    public ArrayList<Client> filterByAge(@RequestParam Integer age) {
+        return this.findByAge.execute(age);
     }
 
     @PostMapping("/create")

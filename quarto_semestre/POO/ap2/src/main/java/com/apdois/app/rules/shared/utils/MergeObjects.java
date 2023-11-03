@@ -13,19 +13,29 @@ public class MergeObjects {
         }
 
         for (Field field : target.getClass().getDeclaredFields()) {
-            if (!Modifier.isFinal(field.getModifiers()) && !Modifier.isStatic(field.getModifiers())) {
-                field.setAccessible(true);
-                try {
-                    Object sourceValue = field.get(source);
-                    if (sourceValue != null) {
-                        field.set(target, sourceValue);
-                    }
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
+            if (MergeObjects.fieldIsFinalOrStatic(field)) {
+                continue;
+            }
+
+            field.setAccessible(true);
+            try {
+                Object sourceValue = field.get(source);
+                if (sourceValue != null) {
+                    field.set(target, sourceValue);
                 }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
             }
         }
 
         return target;
     }
+
+    private static boolean fieldIsFinalOrStatic(Field field) {
+        if (Modifier.isFinal(field.getModifiers()) || Modifier.isStatic(field.getModifiers())) {
+            return true;
+        }
+        return false;
+    }
+
 }

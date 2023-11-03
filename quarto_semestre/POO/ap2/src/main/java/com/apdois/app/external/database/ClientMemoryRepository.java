@@ -47,12 +47,10 @@ public class ClientMemoryRepository implements IClientRepository {
 
     @Override
     public void delete(String id) {
-        UUID uuid = UUID.fromString(id);
-        for(Client client : this.clients) {
-            if (client.getId().getValue().equals(uuid)) {
-                this.clients.remove(client);
-                return;
-            }
+        ArrayList<Client> clients = this.findById(id);
+        if (clients.get(0) == null) {
+            return;
         }
+        this.clients.remove(clients.get(0));
     }
 }

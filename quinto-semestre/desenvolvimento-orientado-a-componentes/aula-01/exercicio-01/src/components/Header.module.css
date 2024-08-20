@@ -1,0 +1,18 @@
+.header {
+    background-color: var(--gray-700);
+    padding: 1rem;
+}
+
+.header>h1,
+.header>p {
+    line-height: 1.6;
+}
+
+.header>h1 {
+    color: var(--gray-100);
+}
+
+.header>p {
+    font-size: 0.875rem;
+    color: var(--gray-400);
+}

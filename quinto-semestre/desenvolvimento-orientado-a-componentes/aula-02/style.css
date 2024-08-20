@@ -1,0 +1,348 @@
+:root {
+    --white: #fff;
+    --black: #000;
+
+    --gray-100: #a4a4aa;
+    --gray-200: #444447;
+    --gray-600: #17171B;
+    --gray-700: #1b1b1b;
+
+    --red-300: #f64137;
+    --red-500: #b32c25;
+
+    --blue-500: #00319F;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+:focus {
+    outline: transparent;
+    box-shadow: 0 0 0 2px var(--blue-500);
+}
+
+ul,
+ol,
+dl {
+    list-style: none;
+}
+
+button,
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a,
+button {
+    transition: 200ms linear;
+}
+
+.dark-theme {
+    background-color: #333;
+    color: #fff;
+}
+
+.changeTheme {
+    position: fixed;
+    z-index: 2;
+    bottom: 10px;
+    right: 10px;
+    padding: .5rem 1rem;
+    border-radius: 4px;
+    background-color: var(--gray-600);
+    color: var(--white);
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.dark-theme .changeTheme {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+.logoNasa {
+    width: 4rem;
+    height: 4rem;
+}
+
+
+.imgGradient::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(65.99deg, #000 0, transparent 99.04%);
+    z-index: -1;
+}
+
+.linkAndArrow {
+    font-weight: bold;
+    color: var(--black);
+}
+
+.dark-theme .linkAndArrow {
+    color: var(--white);
+}
+
+.linkAndArrow>i {
+    color: var(--red-300);
+}
+
+.header>aside {
+    display: grid;
+    grid-template-columns: 1fr 4rem 1fr;
+    align-items: center;
+    background-color: var(--black);
+    padding: 0.75rem 2rem;
+}
+
+.header .search {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.header .search>input[type=text] {
+    background-color: transparent;
+    color: var(--white);
+    border: 1px solid var(--gray-200);
+    padding: 0.5rem;
+}
+
+.header .dropdown {
+    display: flex;
+    gap: 2rem;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.dropdownButton {
+    background-color: transparent;
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dropdownButton>i {
+    font-size: 1rem;
+}
+
+.header .dropdown>a {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--white);
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.header .dropdown>a span {
+    border: solid 1px var(--red-300);
+    font-size: 0.75rem;
+    padding: 0.10rem 0.40rem;
+    border-radius: 2px;
+    font-weight: 300;
+}
+
+.header nav {
+    background-color: var(--gray-600);
+}
+
+.header>nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.header>nav a {
+    color: var(--white);
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.header>nav a:hover {
+    color: var(--gray-100);
+}
+
+.banner01,
+.banner02 {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    color: var(--white);
+    display: grid;
+    align-items: center;
+    align-content: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.banner01 {
+    background-image: url("https://www.nasa.gov/wp-content/uploads/2023/03/gpn-2001-000014.jpg");
+}
+
+.banner02 {
+    background-image: url("https://www.nasa.gov/wp-content/uploads/2023/06/53163620238-e67ac5fe39-k.jpg?resize=2000,1272");
+}
+
+.banner01 .contentBox,
+.banner02 .contentBox {
+    max-width: 40rem;
+}
+
+.banner01 .contentBox h1 {
+    font-size: 4.5rem;
+    line-height: 1.6;
+}
+
+.banner01 .contentBox p {
+    font-size: 1.1rem;
+    line-height: 2;
+}
+
+.articleGridBox {
+    display: grid;
+    grid-template-columns: 24rem 1fr;
+    grid-template-rows: 6rem 1fr;
+    align-content: flex-start;
+    column-gap: 6rem;
+    padding: 4rem 2rem;
+}
+
+.articleGridBox .titleBox h2 {
+    font-size: 2.5rem;
+}
+
+.articleGridBox .titleBox span {
+    font-size: 0.70rem;
+    letter-spacing: 0.25rem;
+}
+
+.articleGridBox>.contentBox {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.articleGridBox>.contentBox h3 {
+    font-size: 1.5rem;
+}
+
+.articleGridBox>.contentBox p {
+    line-height: 1.8;
+    font-size: 1rem;
+}
+
+.articleGridBox>.contentBox .contentBoxText {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.articleGridBox .imgBox {
+    grid-row: span 2;
+    text-align: end;
+}
+
+.articleGridBox .imgBox img {
+    object-fit: cover;
+    width: 100%;
+    height: fit-content;
+}
+
+.banner02 .contentBox {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0rem 2rem;
+}
+
+.banner02 .contentBox h2 {
+    font-size: 5rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.banner02 .contentBox p {
+    line-height: 1.8;
+    font-size: 1rem;
+}
+
+.banner02 .contentBox a {
+    color: var(--white);
+}
+
+.banner02 .contentBox a.linkAndArrow {
+    color: var(--white);
+    font-size: 1.5rem;
+}
+
+.resources {
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.resources>h3 {
+    font-size: 1.375rem;
+}
+
+.resources>ul>li {
+    border-top: solid 1px var(--gray-100);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.resources>ul>li {
+    display: grid;
+    grid-template-columns: 40vw 1fr;
+    column-gap: 2rem;
+}
+
+.resources>ul>li .content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    justify-content: flex-start;
+}
+
+.resources>ul>li .content.button {
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+.resources>ul>li .content.button p {
+    line-height: 1.6;
+}
+
+.resources>ul>li .content.button a>i {
+    color: var(--red-300);
+    font-size: 2rem;
+}
+
+.resources>ul>li .content.button a:hover {
+    color: var(--red-500);
+}
+
+.resources>ul>li h4 {
+    font-size: 2.25rem;
+}

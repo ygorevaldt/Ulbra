@@ -1,5 +1,5 @@
-import { Question } from "../types/question";
-import { Response } from "../types/response";
+import { Question } from "../models/question";
+import { Response } from "../models/response";
 
 export function getPossibleAnswers(questions: Question[]) {
     const answers: string[] = [];

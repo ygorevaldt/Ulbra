@@ -1,8 +1,8 @@
-import { Question } from "../types/question";
-import { Response } from "../types/response";
+import { Question } from "../models/question";
+import { Response } from "../models/response";
 
 export const questions: Question[] = [
-    new Question("É homen?", new Response(
+    new Question("É homem?", new Response(
         new Question("Ele joga futebol?", new Response(
             new Question("Ele é goleiro?", new Response("Julio Cezar", "Neymar"))
         ))

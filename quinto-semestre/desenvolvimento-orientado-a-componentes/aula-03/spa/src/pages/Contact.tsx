@@ -4,7 +4,8 @@ import { Header } from "../components/Header";
 import { Page } from "../components/Page";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useStoredContacts } from "../hooks/use-get-stored-contacts";
 
 const newContactSchema = z.object({
     name: z.string()
@@ -21,12 +22,7 @@ export function Contact() {
 
     const [contacts, setContacts] = useState<ContactForm[]>([]);
 
-    useEffect(() => {
-        const storedContacts = localStorage.getItem("contacts");
-        if (!storedContacts) return;
-
-        setContacts(JSON.parse(storedContacts));
-    }, []);
+    useStoredContacts(setContacts);
 
     const { register, handleSubmit, formState, reset } = useForm<ContactForm>({
         resolver: zodResolver(newContactSchema)

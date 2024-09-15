@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .tableRow {
+        @apply border border-slate-600 p-2;
+    }
+}
+
+@layer components {
+    .btn {
+        @apply px-6 py-2 rounded-md text-base duration-300;
+        @apply bg-pink-500 hover:bg-pink-800;
+    }
+
+    .input {
+        @apply rounded-lg border-2 border-pink-500 outline-none;
+        @apply p-2 text-zinc-900;
+    }
+}

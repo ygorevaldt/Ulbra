@@ -5,7 +5,6 @@ class NeuralNetwork {
     #weightsInputToHiddenLayer = [];
     #weightsHiddenToOutputLayer = [];
 
-
     constructor({
         inputSize,
         hiddenSize,

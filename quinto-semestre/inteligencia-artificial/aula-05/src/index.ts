@@ -1,4 +1,5 @@
 import { LocalDatabase } from "./database/local-database";
+import { askQuestion } from "./utils/ask-question";
 import { displayPossibleAnswers } from "./utils/display-possible-answers";
 import { getPossibleAnswers } from "./utils/get-responses";
 import { Prompt } from "./utils/prompt";
@@ -15,16 +16,17 @@ async function main() {
 
     displayPossibleAnswers(answers);
 
-    for (const { title, response } of questions) {
-        const answer = await prompt.select(title, [
-            "Sim",
-            "Não"
-        ]);
+    let answer: string | undefined;
+    for (const question of questions) {
+        answer = await askQuestion(prompt, question);
+        if (!answer) continue;
 
-        // continuar aqui, de forma recursiva
-
-        console.log("");
+        console.log(`Você pensou em: ${answer}`);
+        break;
     }
+
+    if (answer) return;
+    console.log("Desculpe, não consegui adivinhar a resposta");
 }
 
 main();

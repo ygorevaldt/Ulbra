@@ -1,8 +1,16 @@
 import { Response } from "./response";
 
+type QuestionParams = {
+    title: string;
+    response: Response;
+}
+
 export class Question {
-    constructor(
-        readonly title: string,
-        readonly response: Response
-    ) { }
+    readonly title: string;
+    readonly response: Response;
+
+    constructor({ title, response }: QuestionParams) {
+        this.title = title;
+        this.response = response;
+    }
 }

@@ -1,8 +1,16 @@
 import { Question } from "./question";
 
+type ResponseParams = {
+    yes: string | Question;
+    no?: string | Question
+}
+
 export class Response {
-    constructor(
-        readonly yes: string | Question,
-        readonly no?: string
-    ) { }
+    readonly yes: string | Question;
+    readonly no?: string | Question;
+
+    constructor({ yes, no }: ResponseParams) {
+        this.yes = yes;
+        this.no = no;
+    }
 }

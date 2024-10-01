@@ -1,4 +1,5 @@
 import { Scientist } from "../../types";
+import styles from "./profile.module.css";
 
 type ProfileProps = {
     scientist: Scientist;
@@ -8,7 +9,7 @@ export function Profile({
     scientist
 }: ProfileProps) {
     return (
-        <article>
+        <article className={styles.profileContainer}>
             <header>
                 <h2>{scientist.name}</h2>
             </header>
@@ -19,7 +20,7 @@ export function Profile({
                     <p>{scientist.profession}</p>
                 </li>
                 <li key={1}>
-                    <span>Prêmios: {scientist.awards.length}</span>
+                    <span>Prêmios: <strong>{scientist.awards.length}</strong></span>
                     <div>
                         {
                             scientist.awards.map((award, index) => {

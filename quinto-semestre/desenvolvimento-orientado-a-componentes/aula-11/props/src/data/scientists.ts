@@ -3,7 +3,7 @@ import { Scientist } from "../types";
 export const scientists: Scientist[] = [
     {
         name: "Maria Sklodowaska-Curie",
-        imgPath: "",
+        imgPath: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Marie_Curie_c1920.jpg",
         profession: "Física e química",
         discovered: "poionium (elemento químico)",
         awards: [
@@ -14,7 +14,7 @@ export const scientists: Scientist[] = [
     },
     {
         name: "Katsuko Saruhashi",
-        imgPath: "",
+        imgPath: "https://th.bing.com/th/id/OIP.mfAacDPH6ZKs4bHbYNCbmAHaEd?rs=1&pid=ImgDetMain",
         profession: "Geoquímica",
         discovered: "Método para medir o dióxido de carbono na água do mar",
         awards: [

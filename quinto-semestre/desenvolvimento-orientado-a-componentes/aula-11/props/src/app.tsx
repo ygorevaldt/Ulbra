@@ -1,18 +1,20 @@
 import { scientists } from "./data/scientists";
-import './App.css'
-import { Gallery } from "./components/gallery";
+import { Gallery } from "./components/Gallery";
 
 export function App() {
     return (
-        <>
+        <div className="
+            flex flex-col gap-4
+            p-6
+        ">
             <header>
-                <h1>
+                <h1 className="font-bold font-black text-4xl">
                     Ciêntistas notáveis
                 </h1>
             </header>
             <main>
                 <Gallery scientists={scientists} />
             </main>
-        </>
+        </div>
     );
 }

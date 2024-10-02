@@ -1,26 +1,13 @@
-:root {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-ul,
-ol,
-dl,
-li,
-dt,
-dd {
-    list-style: none;
-}
-
-body {
-    padding: 0 1rem;
+@layer components {
+    .profile-card {
+        @apply flex flex-col gap-3;
+        @apply items-center justify-center;
+        @apply shadow-box hover:shadow-box-hover;
+        @apply transition duration-300;
+        @apply rounded-lg p-4 h-80;
+    }
 }

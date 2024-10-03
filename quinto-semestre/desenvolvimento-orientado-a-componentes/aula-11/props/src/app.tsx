@@ -8,7 +8,7 @@ export function App() {
             p-6
         ">
             <header>
-                <h1 className="font-bold font-black text-4xl">
+                <h1 className="font-bold text-4xl">
                     Ciêntistas notáveis
                 </h1>
             </header>

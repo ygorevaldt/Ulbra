@@ -26,20 +26,5 @@ export function Gallery({
                 );
             })}
         </ul>
-        // <ul className="flex flex-wrap justify-start content-start gap-2">
-        //     {scientists.map((scientist) => {
-        //         return (
-        //             <li
-        //                 className="
-        //                     grow flex-1
-        //                     min-w-96
-        //                 "
-        //                 key={scientist.name}
-        //             >
-        //                 <Profile scientist={scientist} />
-        //             </li>
-        //         );
-        //     })}
-        // </ul>
     );
 }

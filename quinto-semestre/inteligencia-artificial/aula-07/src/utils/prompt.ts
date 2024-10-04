@@ -7,7 +7,7 @@ export class Prompt {
         return answer;
     }
 
-    async select(question: string, responses: Response[]): Promise<Response | undefined> {
+    async select(question: string, responses: Response[]): Promise<Response> {
         const options = responses.map(response => response.value);
 
         const answer = await select<string>({
@@ -15,6 +15,10 @@ export class Prompt {
             choices: [...options]
         })
 
-        return responses.find(response => response.value === answer);
+        const response = responses.find(response => response.value === answer);
+        if (!response)
+            throw new Error("response not found");
+
+        return response;
     }
 }

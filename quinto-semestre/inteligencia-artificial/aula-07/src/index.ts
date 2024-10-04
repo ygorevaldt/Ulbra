@@ -1,6 +1,7 @@
 import { LocalDatabase } from "./database/local-database";
 import { askQuestion } from "./utils/ask-question";
 import { Prompt } from "./utils/prompt";
+import { Response } from "./models/response";
 
 async function main() {
     const prompt = new Prompt();
@@ -10,13 +11,17 @@ async function main() {
 
     console.log("=-=-=-=-=-= Especialista em Recomendar Livros =-=-=-=-=-= \n")
 
-    let answer: string | undefined;
+    let answer: Response | undefined;
     for (const question of questions) {
         answer = await askQuestion(prompt, question);
-        if (!answer) continue;
+        const { redirectToQuestion, recomendation } = answer;
 
-        console.log(`Você pensou em: ${answer}`);
-        break;
+        // CONTINUAR DAQUI
+        if (recomendation) {
+            const { title, author } = recomendation;
+            console.log(`Minha recomendação: ${title} de ${author}`);
+            break;
+        }
     }
 
     if (answer) return;

@@ -9,22 +9,5 @@ export async function askQuestion(prompt: Prompt, question: Question) {
             question.responses
         ));
 
-    console.log(answer);
-    return;
-
-    if (answer === "não") {
-        if (!question.response.no) return;
-
-        if (question.response.no instanceof Question) {
-            return await askQuestion(prompt, question.response.no);
-        }
-
-        return question.response.no;
-    }
-
-    if (question.response.yes instanceof Question) {
-        return await askQuestion(prompt, question.response.yes);
-    }
-
-    return question.response.yes
+    return answer;
 }

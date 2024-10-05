@@ -8,24 +8,17 @@ async function main() {
     const database = new LocalDatabase();
 
     const questions = database.getQuestions();
+    const firstQuestion = questions[0];
 
     console.log("=-=-=-=-=-= Especialista em Recomendar Livros =-=-=-=-=-= \n")
 
-    let answer: Response | undefined;
-    for (const question of questions) {
-        answer = await askQuestion(prompt, question);
-        const { redirectToQuestion, recomendation } = answer;
-
-        // CONTINUAR DAQUI
-        if (recomendation) {
-            const { title, author } = recomendation;
-            console.log(`Minha recomendação: ${title} de ${author}`);
-            break;
-        }
+    const recomendation = await askQuestion(prompt, firstQuestion, questions);
+    if (!recomendation) {
+        console.log("Desculpe, não consegui encontrar nenhuma boa recomendação para você");
+        return;
     }
 
-    if (answer) return;
-    console.log("Desculpe, não consegui adivinhar a resposta");
+    console.log(`Minha recomendação: ${recomendation.title} de ${recomendation.author}`);
 }
 
 main();

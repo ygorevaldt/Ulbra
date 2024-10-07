@@ -1,0 +1,88 @@
+{
+    "artworks": [
+        {
+            "name": "Homenaje a la Neurocirugía",
+            "artist": "Marta Colvin Andrade",
+            "description": "Embora Colvin seja predominantemente conhecida por temas abstratos que aludem a símbolos pré-hispânicos, esta gigantesca escultura, uma homenagem à neurocirurgia, é uma de suas obras públicas mais reconhecíveis.",
+            "url": "https://i.imgur.com/Mx7dA2Y.jpg",
+            "alt": "Uma estátua de bronze de duas mãos cruzadas segurando delicadamente um cérebro humano com as pontas dos dedos."
+        },
+        {
+            "name": "Floralis Genérica",
+            "artist": "Eduardo Catalano",
+            "description": "Esta enorme flor de prata (75 pés ou 23 metros) está localizada em Buenos Aires. Foi projetada para se mover, fechando suas pétalas à noite ou quando ventos fortes sopram, e abrindo-as pela manhã.",
+            "url": "https://i.imgur.com/ZF6s192m.jpg",
+            "alt": "Uma escultura de flor metálica gigantesca com pétalas espelhadas e estames fortes."
+        },
+        {
+            "name": "Eternal Presence",
+            "artist": "John Woodrow Wilson",
+            "description": "Wilson era conhecido por sua preocupação com a igualdade, justiça social, bem como pelas qualidades essenciais e espirituais da humanidade. Este imenso bronze (7 pés ou 2,13m) representa o que ele descreveu como 'uma presença negra simbólica impregnada de um senso de humanidade universal.'",
+            "url": "https://i.imgur.com/aTtVpES.jpg",
+            "alt": "A escultura que representa uma cabeça humana parece sempre presente e solene. Ela irradia calma e serenidade."
+        },
+        {
+            "name": "Moai",
+            "artist": "Unknown Artist",
+            "description": "Localizados na Ilha de Páscoa, existem 1.000 moai, ou estátuas monumentais, criadas pelos primeiros povos Rapa Nui, que alguns acreditam representar ancestrais divinizados.",
+            "url": "https://i.imgur.com/RCwLEoQm.jpg",
+            "alt": "Três bustos monumentais de pedra com cabeças desproporcionalmente grandes e rostos sombrios."
+        },
+        {
+            "name": "Blue Nana",
+            "artist": "Niki de Saint Phalle",
+            "description": "As Nanas são criaturas triunfantes, símbolos de feminilidade e maternidade. Inicialmente, Saint Phalle usava tecido e objetos encontrados para as Nanas, e mais tarde introduziu poliéster para alcançar um efeito mais vibrante.",
+            "url": "https://i.imgur.com/Sd1AgUOm.jpg",
+            "alt": "Uma grande escultura em mosaico de uma figura feminina dançante e alegre, com um traje colorido e cheia de alegria."
+        },
+        {
+            "name": "Ultimate Form",
+            "artist": "Barbara Hepworth",
+            "description": "Esta escultura abstrata de bronze faz parte da série A Família do Homem, localizada no Yorkshire Sculpture Park. Hepworth escolheu não criar representações literais do mundo, mas desenvolveu formas abstratas inspiradas em pessoas e paisagens.",
+            "url": "https://i.imgur.com/2heNQDcm.jpg",
+            "alt": "Uma escultura alta feita de três elementos empilhados uns sobre os outros, lembrando uma figura humana."
+        },
+        {
+            "name": "Cavaliere",
+            "artist": "Lamidi Olonade Fakeye",
+            "description": "Descendente de quatro gerações de entalhadores, o trabalho de Fakeye misturou temas tradicionais e contemporâneos do povo iorubá.",
+            "url": "https://i.imgur.com/wIdGuZwm.png",
+            "alt": "Uma escultura intrincada de madeira de um guerreiro com expressão concentrada em um cavalo adornado com padrões."
+        },
+        {
+            "name": "Big Bellies",
+            "artist": "Alina Szapocznikow",
+            "description": "Szapocznikow é conhecida por suas esculturas do corpo fragmentado como uma metáfora para a fragilidade e impermanência da juventude e beleza. Esta escultura retrata duas barrigas grandes e muito realistas empilhadas uma sobre a outra, cada uma com cerca de cinco pés (1,5m) de altura.",
+            "url": "https://i.imgur.com/AlHTAdDm.jpg",
+            "alt": "A escultura lembra uma cascata de dobras, bastante diferente das barrigas em esculturas clássicas."
+        },
+        {
+            "name": "Terracotta Army",
+            "artist": "Unknown Artist",
+            "description": "O Exército de Terracota é uma coleção de esculturas de terracota que retratam os exércitos de Qin Shi Huang, o primeiro Imperador da China. O exército consistia em mais de 8.000 soldados, 130 carruagens com 520 cavalos e 150 cavalos de cavalaria.",
+            "url": "https://i.imgur.com/HMFmH6m.jpg",
+            "alt": "12 esculturas de terracota de guerreiros solenes, cada um com uma expressão facial e armadura únicas."
+        },
+        {
+            "name": "Lunar Landscape",
+            "artist": "Louise Nevelson",
+            "description": "Nevelson era conhecida por vasculhar objetos dos destroços da cidade de Nova York, que mais tarde ela montava em construções monumentais. Nesta obra, ela usou partes díspares, como um poste de cama, um pino de malabares e um fragmento de assento, pregando e colando-os em caixas que refletem a influência da abstração geométrica do cubismo no espaço e forma.",
+            "url": "https://i.imgur.com/rN7hY6om.jpg",
+            "alt": "Uma escultura em preto fosco onde os elementos individuais são inicialmente indistinguíveis."
+        },
+        {
+            "name": "Aureole",
+            "artist": "Ranjani Shettar",
+            "description": "Shettar une o tradicional e o moderno, o natural e o industrial. Sua arte foca na relação entre o homem e a natureza. Seu trabalho foi descrito como intrigante tanto de forma abstrata quanto figurativa, desafiando a gravidade, e como uma 'fina síntese de materiais improváveis.'",
+            "url": "https://i.imgur.com/okTpbHhm.jpg",
+            "alt": "Uma escultura pálida, semelhante a fios, montada na parede de concreto e descendo ao chão. Parece leve."
+        },
+        {
+            "name": "Hippos",
+            "artist": "Taipei Zoo",
+            "description": "O Zoológico de Taipei encomendou uma Praça dos Hipopótamos com hipopótamos submersos brincando.",
+            "url": "https://i.imgur.com/6o5Vuyu.jpg",
+            "alt": "Um grupo de esculturas de bronze de hipopótamos emergindo da calçada pavimentada, como se estivessem nadando."
+        }
+    ]
+}

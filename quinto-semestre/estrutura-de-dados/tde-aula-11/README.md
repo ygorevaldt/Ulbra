@@ -3,7 +3,7 @@
 ## Inserção
 
 [] - Inserir no inicio
-[] - Inserir no fim
+[x] - Inserir no fim
 [] - Inserir por posição
 
 ## Busca
@@ -20,12 +20,12 @@
 
 [] - Remover do inicio
 [] - Remover do fim
-[] - Remover por valor
+[x] - Remover por valor
 [] - Remover por posição
 
 ## Outros métodos
 
-[] - Obter tamanho da lista
-[] - Verificar se a lista está vazia
+[x] - Obter tamanho da lista
+[x] - Verificar se a lista está vazia
 [] - Limpar lista
-[] - Mostrar lista (toString)
+[x] - Mostrar lista (toString)

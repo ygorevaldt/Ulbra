@@ -2,30 +2,30 @@
 
 ## Inserção
 
-[] - Inserir no inicio
+[x] - Inserir no inicio
 [x] - Inserir no fim
-[] - Inserir por posição
+[x] - Inserir por posição
 
 ## Busca
 
-[] - Buscar por posição
-[] - Buscar posição
+[x] - Buscar por posição
+[x] - Buscar posição
 
 
 ## Atualização
 
-[] - Atualizar
+[x] - Atualizar
 
 ## Remoção
 
-[] - Remover do inicio
-[] - Remover do fim
+[x] - Remover do inicio
+[x] - Remover do fim
 [x] - Remover por valor
-[] - Remover por posição
+[x] - Remover por posição
 
 ## Outros métodos
 
 [x] - Obter tamanho da lista
 [x] - Verificar se a lista está vazia
-[] - Limpar lista
+[x] - Limpar lista
 [x] - Mostrar lista (toString)

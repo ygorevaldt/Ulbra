@@ -63,4 +63,3 @@ Você foi contratado para desenvolver um pequeno sistema de gerenciamento de ped
 [] - A lista deverá permitir a adição de livros tanto no início quanto no fim da lista <br/>
 [] - Cada nó da lista de livros deve ter ponteiros para o nó anterior e próximo <br/>
 [] - Todo livro deve ter id, título e autor
-

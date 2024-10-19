@@ -53,8 +53,4 @@ public class PendingOrderList extends LinkedList {
         }
         return listAsText;
     }
-
-    // public int getSize() {
-    // return size;
-    // }
 }

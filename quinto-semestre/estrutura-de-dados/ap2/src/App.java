@@ -47,6 +47,11 @@ public class App {
                     break;
 
                 case 3:
+                    if (pendingOrders.getSize() == 0) {
+                        System.out.println("Não há pedidos pendentes para cancelar");
+                        break;
+                    }
+
                     Order oldOrder = pendingOrders.dequeue();
                     cancelledOrders.push(oldOrder);
 
@@ -96,6 +101,6 @@ public class App {
         } while (action != 7);
 
         System.out.println("\nExercício 02");
-
+        // To be continue
     }
 }

@@ -1,8 +1,12 @@
 import java.util.Scanner;
 
+import ex01.CancelledOrdersStack;
+import ex01.Order;
+import ex01.PendingOrderList;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("*-*-*-* AP2 *-*-*-*\n");
+        System.out.println("*-*-*-* AP2 *-*-*-*");
 
         Scanner scanner = new Scanner(System.in);
         PendingOrderList pendingOrders = new PendingOrderList();
@@ -11,6 +15,7 @@ public class App {
         int action = 0;
         String orders;
 
+        System.out.println("\nExercício 01");
         do {
             System.out.println("\nDigite a ação desejada\n");
             System.out.println("[1] - Adicionar pedido");
@@ -89,5 +94,8 @@ public class App {
             }
 
         } while (action != 7);
+
+        System.out.println("\nExercício 02");
+
     }
 }

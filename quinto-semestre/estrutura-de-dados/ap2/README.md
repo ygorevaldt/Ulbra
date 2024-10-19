@@ -7,7 +7,7 @@
 
 ## Atividades
 
-### 1
+### 1 Implementação de Pilha e Fila com Lista Simplesmente Ligada
 
 Você foi contratado para desenvolver um pequeno sistema de gerenciamento de pedidos para uma cafeteria. Esse sistema deverá organizar os pedidos dos clientes em duas estruturas de dados: uma Pilha e uma Fila, ambas implementadas utilizando listas simplesmente ligadas.
 
@@ -39,7 +39,8 @@ Você foi contratado para desenvolver um pequeno sistema de gerenciamento de ped
 [x] - Pilha de pedidos cancelados <br>
     [x] - Método 'push' para adicionar pedido cancelado no topo da pilha <br>
     [x] - Método 'pop' para remover o pedido cancelado mais recente <br>
-    [x] - Método 'pop(id)' para remover o pedido cancelado por id <br>
     [x] - Método 'printStack' para imprimir todos os pedidos cancelados <br>
 
 <hr />
+
+### 2 Implementação de Lista Duplamente Ligada para Gerenciamento de Biblioteca

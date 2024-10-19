@@ -1,3 +1,5 @@
+package ex01;
+
 public class PendingOrderList extends LinkedList {
     public PendingOrderList() {
         this.start = null;

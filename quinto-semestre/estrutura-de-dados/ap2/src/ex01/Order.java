@@ -1,3 +1,5 @@
+package ex01;
+
 import java.util.UUID;
 
 public class Order {

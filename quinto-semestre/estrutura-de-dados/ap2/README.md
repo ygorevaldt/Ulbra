@@ -18,7 +18,7 @@ Você foi contratado para desenvolver um pequeno sistema de gerenciamento de ped
 [x] - O sistema deve poder cancelar um pedido e exibir qual pedido está sendo cancelado <br>
 [] - O sistema deve poder restaurar um pedido e exibir qual pedido está sendo restaurado <br>
 [x] - O sistema deve poder imprimir todos os pedidos pendentes <br>
-[] - O sistema deve poder imprimir todos os pedidos cancelados <br>
+[x] - O sistema deve poder imprimir todos os pedidos cancelados <br>
 
 ### Regras de negócio
 

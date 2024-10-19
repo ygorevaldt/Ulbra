@@ -32,28 +32,51 @@ public class App {
                     break;
 
                 case 2:
-                    System.out.println("\nPedido atendido: " + pendingOrders.getStart());
-                    pendingOrders.dequeue();
+                    if (pendingOrders.getSize() == 0) {
+                        System.out.println("Não há pedidos pendentes");
+                        break;
+                    }
+
+                    Order order = pendingOrders.dequeue();
+                    System.out.println("\nPedido atendido: " + order);
                     break;
 
                 case 3:
-                    System.out.println("Pedidos pendentes:");
-                    orders = pendingOrders.printQueue();
-                    System.out.println(orders);
+                    Order oldOrder = pendingOrders.dequeue();
+                    cancelledOrders.push(oldOrder);
 
-                    System.out.println("Digite o ID do pedido que quer cancelar:");
-                    String id = scanner.nextLine();
+                    System.out.println("Pedido cancelado: " + oldOrder);
+                    break;
 
-                    System.out.println("\nPedido cancelado: " + pendingOrders.getById(id));
-                    pendingOrders.dequeueBy(id);
+                case 4:
+                    if (cancelledOrders.getSize() == 0) {
+                        System.out.println("Não há pedidos cancelados para restaurar");
+                        break;
+                    }
+                    Order orderRestored = cancelledOrders.pop();
+                    pendingOrders.enqueue(orderRestored);
+
+                    System.out.println("Pedido restaurado: " + orderRestored);
                     break;
 
                 case 5:
-                    System.out.println("\nListando pedidos");
+                    System.out.println("\nListando pedidos pendentes");
                     orders = pendingOrders.printQueue();
 
                     if (orders.length() == 0) {
                         System.out.println("Não há pedidos pendentes");
+                        break;
+                    }
+
+                    System.out.println(orders);
+                    break;
+
+                case 6:
+                    System.out.println("\nListando pedidos cancelados");
+                    orders = cancelledOrders.printStack();
+
+                    if (orders.length() == 0) {
+                        System.out.println("Não há pedidos cancelados");
                         break;
                     }
 

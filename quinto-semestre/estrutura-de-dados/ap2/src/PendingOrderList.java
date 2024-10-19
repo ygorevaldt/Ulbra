@@ -1,7 +1,4 @@
-public class PendingOrderList {
-    private Node<Order> start;
-    private int size = 0;
-
+public class PendingOrderList extends LinkedList {
     public PendingOrderList() {
         this.start = null;
     }
@@ -23,68 +20,18 @@ public class PendingOrderList {
         currentNode.setNext(newValue);
     }
 
-    public void dequeue() {
+    public Order dequeue() {
         if (this.start == null) {
             System.out.println("Empty list");
-            return;
+            return null;
         }
+
+        Order start = this.start.getValue();
+
         this.start = this.start.getNext();
         this.size--;
-    }
 
-    public void dequeueBy(String id) {
-        if (this.start == null) {
-            System.out.println("Empty list");
-            return;
-        }
-
-        if (this.start.getValue().getId().toString().equals(id)) {
-            this.start = this.start.getNext();
-            this.size--;
-            return;
-        }
-
-        Node<Order> currentNode = this.start;
-        Node<Order> previousNode = null;
-
-        while (currentNode != null && !currentNode.getValue().getId().toString().equals(id)) {
-            previousNode = currentNode;
-            currentNode = currentNode.getNext();
-        }
-
-        if (currentNode == null) {
-            System.out.println("Pedido " + id + " não encontrado");
-            return;
-        }
-
-        previousNode.setNext(currentNode.getNext());
-        this.size--;
-    }
-
-    public Order getById(String id) {
-        if (this.start == null) {
-            System.out.println("Empty list");
-            return null;
-        }
-
-        if (this.start.getValue().getId().toString().equals(id)) {
-            return this.start.getValue();
-        }
-
-        Node<Order> currentNode = this.start;
-        Node<Order> previousNode = null;
-
-        while (currentNode != null && !currentNode.getValue().getId().toString().equals(id)) {
-            previousNode = currentNode;
-            currentNode = currentNode.getNext();
-        }
-
-        if (currentNode == null) {
-            System.out.println(String.format("Pedido '%s' não encontrado", id));
-            return null;
-        }
-
-        return currentNode.getValue();
+        return start;
     }
 
     public Order getStart() {
@@ -105,7 +52,7 @@ public class PendingOrderList {
         return listAsText;
     }
 
-    public int getSize() {
-        return size;
-    }
+    // public int getSize() {
+    // return size;
+    // }
 }

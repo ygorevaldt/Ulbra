@@ -1,9 +1,4 @@
-import java.util.UUID;
-
-public class CancelledOrdersStack {
-    private Node<Order> start;
-    private int size = 0;
-
+public class CancelledOrdersStack extends LinkedList {
     public CancelledOrdersStack() {
         this.start = null;
     }
@@ -11,56 +6,20 @@ public class CancelledOrdersStack {
     public void push(Order value) {
         this.size++;
         Node<Order> newValue = new Node<>(value);
-
-        if (this.start == null) {
-            this.start = newValue;
-            return;
-        }
-
-        Node<Order> currentNode = this.start;
-        while (currentNode.getNext() != null) {
-            currentNode = currentNode.getNext();
-        }
-
-        currentNode.setNext(newValue);
+        newValue.setNext(this.start);
+        this.start = newValue;
     }
 
-    public void pop() {
+    public Order pop() {
         if (this.start == null) {
-            System.out.println("Empty list");
-            return;
+            System.out.println("Empty stack");
+            return null;
         }
+        Order cancelledOrder = this.start.getValue();
         this.start = this.start.getNext();
         this.size--;
-    }
 
-    public void pop(UUID id) {
-        if (this.start == null) {
-            System.out.println("Empty list");
-            return;
-        }
-
-        if (this.start.getValue().getId().equals(id)) {
-            this.start = this.start.getNext();
-            this.size--;
-            return;
-        }
-
-        Node<Order> currentNode = this.start;
-        Node<Order> previousNode = null;
-
-        while (currentNode != null && !currentNode.getValue().getId().equals(id)) {
-            previousNode = currentNode;
-            currentNode = currentNode.getNext();
-        }
-
-        if (currentNode == null) {
-            System.out.println("Order with ID " + id + " not found.");
-            return;
-        }
-
-        previousNode.setNext(currentNode.getNext());
-        this.size--;
+        return cancelledOrder;
     }
 
     public String printStack() {
@@ -76,5 +35,4 @@ public class CancelledOrdersStack {
         }
         return listAsText;
     }
-
 }

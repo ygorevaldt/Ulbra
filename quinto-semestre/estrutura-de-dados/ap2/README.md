@@ -40,26 +40,3 @@ Você foi contratado para desenvolver um pequeno sistema de gerenciamento de ped
     [x] - Método 'push' para adicionar pedido cancelado no topo da pilha <br>
     [x] - Método 'pop' para remover o pedido cancelado mais recente <br>
     [x] - Método 'printStack' para imprimir todos os pedidos cancelados
-
-<hr />
-
-### 2 Implementação de Lista Duplamente Ligada para Gerenciamento de Biblioteca
-
-### Requisitos funcionais
-
-[] - Adicionar Livro no Início: Insira um novo livro no início da lista <br/>
-[] - Adicionar Livro no Fim: Insira um novo livro no final da lista <br/>
-[] - Remover Livro do Início: Remova o livro que está no início da lista <br/>
-[] - Remover Livro do Fim: Remova o livro que está no final da lista <br/>
-[] - Exibir livro que está sendo removido <br/>
-[] - Pesquisar Livro por ID: Percorra a lista e encontre um livro específico pelo seu ID <br/>
-[] - Exibir libro encontrado por id <br/>
-[] - Imprimir Livros na Ordem Original: Exiba todos os livros da lista na ordem em que foram adicionados <br/>
-[] - Imprimir Livros na Ordem Reversa: Exiba todos os livros da lista na ordem inversa 
-
-### Requisitos não funcionais
-
-[] - Lista Duplamente Ligada de Livros
-[] - A lista deverá permitir a adição de livros tanto no início quanto no fim da lista <br/>
-[] - Cada nó da lista de livros deve ter ponteiros para o nó anterior e próximo <br/>
-[] - Todo livro deve ter id, título e autor

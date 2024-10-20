@@ -1,4 +1,3 @@
-package ex01;
 
 public abstract class LinkedList {
 	protected Node<Order> start;

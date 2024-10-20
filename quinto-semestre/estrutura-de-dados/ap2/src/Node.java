@@ -1,4 +1,3 @@
-package ex01;
 
 public class Node<T> {
     private T value;

@@ -1,11 +1,7 @@
-# AP2 
-
 ## Grupo
 
 - Ygor Bitencourt Evaldt
 - Alessandra da Silveira
-
-## Atividades
 
 ### 1 Implementação de Pilha e Fila com Lista Simplesmente Ligada
 

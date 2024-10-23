@@ -37,17 +37,19 @@ export function Home() {
                 </h1>
             </Header>
             <main className="flex flex-col gap-4">
-                <section>
+                <section className="flex justify-between items-start">
                     <h2 className="font-bold text-xl">Seja bem vindo {data.user.name}</h2>
-                    <button
-                        className="btn text-xl rounded-3xl"
-                        onClick={handleShowLocationData}
-                    >
-                        Mostrar localização
-                    </button>
-                    {location !== null
-                        && isShowingLocationData
-                        && <LocationCard data={location} />}
+                    <div>
+                        <button
+                            className="btn text-xl rounded-3xl"
+                            onClick={handleShowLocationData}
+                        >
+                            Mostrar localização
+                        </button>
+                        {location !== null
+                            && isShowingLocationData
+                            && <LocationCard data={location} />}
+                    </div>
                 </section>
                 <section>
                     <h2 className="font-bold text-xl">Participantes</h2>

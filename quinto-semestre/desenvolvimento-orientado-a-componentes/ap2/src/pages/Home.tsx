@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-import { Header } from "../components/Header";
 import { Page } from "../components/Page";
 
 import { useStoredParticipants } from "../hooks/use-get-stored-contacts";
@@ -30,12 +29,7 @@ export function Home() {
     useStoredParticipants(setParticipants);
 
     return (
-        <Page>
-            <Header>
-                <h1>
-                    Entrevero
-                </h1>
-            </Header>
+        <Page title="Entrevero">
             <main className="flex flex-col gap-4">
                 <section className="flex justify-between items-start">
                     <h2 className="font-bold text-xl">Seja bem vindo {data.user.name}</h2>

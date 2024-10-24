@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-import { Header } from "../components/Header";
 import { Page } from "../components/Page";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -44,10 +43,7 @@ export function Register() {
     }
 
     return (
-        <Page>
-            <Header>
-                <h1>Contato</h1>
-            </Header>
+        <Page title="Contato">
             <main className="flex flex-col gap-6">
                 <form onSubmit={handleSubmit(handleSubmitParticipant)} className="flex flex-col gap-4">
                     <div className="flex flex-col items-start flex-wrap gap-4">

@@ -17,7 +17,7 @@ export function ParticipantCard({
         ">
             <Avatar imgUrl={participant.imgUrl} />
             <span className="font-black text-2xl">{participant.name}</span>
-            <span>{participant.guest ? "Egresso|Convidado" : "Estudante"}</span>
+            <span>{participant.guest ? "Egresso | Convidado" : "Estudante"}</span>
             <span>{participant.paid ? "Confirmado" : "Não confirmado"}</span>
         </article>
     );

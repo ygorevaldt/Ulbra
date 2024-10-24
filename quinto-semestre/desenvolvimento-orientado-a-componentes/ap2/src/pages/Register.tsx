@@ -11,8 +11,10 @@ const newParticipantSchema = z.object({
     name: z.string()
         .min(3, "Informe seu nome"),
     phone: z.string().optional(),
-    guest: z.coerce.boolean(),
-    paid: z.coerce.boolean(),
+    guest: z.string({ invalid_type_error: "Escolha obrigatória" }).refine(val => val === "true" || val === "false",)
+        .transform(val => val === "true"),
+    paid: z.string({ invalid_type_error: "Escolha obrigatória" }).refine(val => val === "true" || val === "false")
+        .transform(val => val === "true"),
     imgUrl: z.string()
         .min(1, "Informe a URL da imagem de perfil")
 });
@@ -39,11 +41,6 @@ export function Register() {
 
     function saveParticipantsToLocalStorage(participants: RegisterForm[]) {
         localStorage.setItem("participants", JSON.stringify(participants));
-    }
-
-    function forceTypeBoolean(value: string | null | boolean): boolean | null {
-        console.log(value);
-        return typeof value === "boolean" ? value : value === "true" ? true : value === "false" ? false : null;
     }
 
     return (
@@ -104,7 +101,7 @@ export function Register() {
                                         <input
                                             type="radio"
                                             value="true"
-                                            {...register("guest", { setValueAs: forceTypeBoolean })}
+                                            {...register("guest")}
                                         />
                                         Sim
                                     </label>
@@ -112,11 +109,15 @@ export function Register() {
                                         <input
                                             type="radio"
                                             value="false"
-                                            {...register("guest", { setValueAs: forceTypeBoolean })}
+                                            {...register("guest")}
                                         />
                                         Não
                                     </label>
+
                                 </div>
+                                {formState.errors.guest && (
+                                    <p className="text-xs text-purple-500">{formState.errors.guest.message}</p>
+                                )}
                             </div>
                             <div className="flex flex-col gap-1">
                                 <label>Pago:</label>
@@ -125,7 +126,7 @@ export function Register() {
                                         <input
                                             type="radio"
                                             value="true"
-                                            {...register("paid", { setValueAs: forceTypeBoolean })}
+                                            {...register("paid")}
                                         />
                                         Sim
                                     </label>
@@ -133,11 +134,14 @@ export function Register() {
                                         <input
                                             type="radio"
                                             value="false"
-                                            {...register("paid", { setValueAs: forceTypeBoolean })}
+                                            {...register("paid")}
                                         />
                                         Não
                                     </label>
                                 </div>
+                                {formState.errors.paid && (
+                                    <p className="text-xs text-purple-500">{formState.errors.paid.message}</p>
+                                )}
                             </div>
                         </div>
 

@@ -32,7 +32,9 @@ export function Home() {
         <Page title="Entrevero">
             <main className="flex flex-col gap-4">
                 <section className="flex justify-between items-start">
-                    <h2 className="font-bold text-xl">Seja bem vindo {data.user.name}</h2>
+                    <h2 className="font-bold text-xl text-zinc-500">
+                        Seja bem vindo {data.user.name}
+                    </h2>
                     <div>
                         <button
                             className="btn text-xl rounded-3xl"

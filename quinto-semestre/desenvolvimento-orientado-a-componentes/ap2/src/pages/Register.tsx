@@ -47,7 +47,7 @@ export function Register() {
             <main className="flex flex-col gap-6">
                 <form onSubmit={handleSubmit(handleSubmitParticipant)} className="flex flex-col gap-4">
                     <div className="flex flex-col items-start flex-wrap gap-4">
-                        <div className="flex items-center flex-wrap gap-4">
+                        <div className="flex items-start flex-wrap gap-4">
                             <div className="flex flex-col gap-1">
                                 <label htmlFor="name">Nome:</label>
                                 <input
@@ -57,9 +57,11 @@ export function Register() {
                                     className="input w-full"
                                     {...register("name")}
                                 />
-                                {formState.errors.name && (
-                                    <p className="text-xs text-purple-500">{formState.errors.name.message}</p>
-                                )}
+                                <span>
+                                    {formState.errors.name && (
+                                        <p className="text-xs text-purple-500">{formState.errors.name.message}</p>
+                                    )}
+                                </span>
                             </div>
                             <div className="flex flex-col gap-1">
                                 <label htmlFor="phone">Telefone:</label>
@@ -71,9 +73,6 @@ export function Register() {
                                     {...register("phone")}
 
                                 />
-                                {formState.errors.phone && (
-                                    <p className="text-xs text-purple-500">{formState.errors.phone.message}</p>
-                                )}
                             </div>
                             <div className="flex flex-col gap-1">
                                 <label htmlFor="imgUrl">Imagem de perfil:</label>
@@ -84,9 +83,11 @@ export function Register() {
                                     className="input"
                                     {...register("imgUrl")}
                                 />
-                                {formState.errors.imgUrl && (
-                                    <p className="text-xs text-purple-500">{formState.errors.imgUrl.message}</p>
-                                )}
+                                <span>
+                                    {formState.errors.imgUrl && (
+                                        <p className="text-xs text-purple-500">{formState.errors.imgUrl.message}</p>
+                                    )}
+                                </span>
                             </div>
                         </div>
                         <div className="flex items-center flex-wrap gap-4">

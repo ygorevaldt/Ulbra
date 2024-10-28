@@ -1,3 +1,5 @@
+import genericUser from "../assets/generic-user.png";
+
 type AvatarProps = {
     imgUrl: string;
 }
@@ -11,7 +13,7 @@ export function Avatar({
                 rounded-full w-20 h-20 
                 outline-double outline-2 outline-offset-2
             "
-            src={imgUrl}
+            src={imgUrl ?? genericUser}
         />
     );
 }

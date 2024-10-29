@@ -90,7 +90,7 @@ export function Register() {
                                 </span>
                             </div>
                         </div>
-                        <div className="flex items-center flex-wrap gap-4">
+                        <div className="flex items-start flex-wrap gap-4">
                             <div className="flex flex-col gap-1">
                                 <label>Convidado:</label>
                                 <div className="flex gap-2">

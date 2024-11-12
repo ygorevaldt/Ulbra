@@ -1,0 +1,8 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.outletContainer {
+  padding: 2rem;
+}

@@ -5,4 +5,9 @@ public class Restitution implements ISpace {
         throw new UnsupportedOperationException("Unimplemented method 'action'");
     }
 
+    @Override
+    public String getDescription() {
+        return "Restituição";
+    }
+
 }

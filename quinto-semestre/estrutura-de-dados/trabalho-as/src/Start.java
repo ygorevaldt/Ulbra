@@ -3,4 +3,9 @@ public class Start implements ISpace {
     public void action(Player player) {
         throw new UnsupportedOperationException("Unimplemented method 'action'");
     }
+
+    @Override
+    public String getDescription() {
+        return "Início";
+    }
 }

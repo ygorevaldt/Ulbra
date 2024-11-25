@@ -1,12 +1,11 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("=-=-=-=-=-= BANCO IMOBILIÁRIO NO TERMINAL =-=-=-=-=-=");
-
         Dice dice = new Dice();
+        Scanner scanner = new Scanner(System.in);
 
         ArrayList<Player> players = new ArrayList<Player>(
                 Arrays.asList(
@@ -57,7 +56,20 @@ public class App {
             board.insertAtEnd(new Node<ISpace>(space));
         }
 
-        board.print();
+        System.out.println("=-=-=-=-=-= BANCO IMOBILIÁRIO NO TERMINAL =-=-=-=-=-=");
+
+        System.out.print("Digite o saldo inicial dos jogadores: ");
+        double initialBalance = scanner.nextDouble();
+
+        System.out.print("Digite o salário dos jogadores: ");
+        double playerSalary = scanner.nextDouble();
+
+        System.out.print("Digite o número máximo de rodadas: ");
+        int maxRounds = scanner.nextInt();
+
+        for (Player player : players) {
+            player.setBankBalance(initialBalance);
+        }
 
     }
 }

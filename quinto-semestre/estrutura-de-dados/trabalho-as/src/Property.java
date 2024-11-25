@@ -48,4 +48,9 @@ public class Property implements ISpace {
     public double getRental() {
         return rental;
     }
+
+    @Override
+    public String getDescription() {
+        return "Propriedade";
+    }
 }

@@ -1,4 +1,4 @@
-public class Restitution implements Space {
+public class Restitution implements ISpace {
 
     @Override
     public void action(Player player) {

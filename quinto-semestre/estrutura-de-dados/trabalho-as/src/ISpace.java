@@ -1,3 +1,3 @@
-public interface Space {
+public interface ISpace {
     public void action(Player player);
 }

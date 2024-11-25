@@ -1,0 +1,12 @@
+#dependencies
+node_modules
+
+#database
+temp-database/*.db
+
+#enviroments
+.env
+.env.test
+
+#build
+dist

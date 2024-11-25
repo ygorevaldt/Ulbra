@@ -1,0 +1,41 @@
+{
+  "name": "as-api",
+  "version": "1.0.0",
+  "main": "server.ts",
+  "engines": {
+    "node": ">= 18"
+  },
+  "scripts": {
+    "build": "tsup src",
+    "start": "node --env-file .env dist/server.js",
+    "dev": "tsx --watch --env-file .env src/server.ts",
+    "dev-test": "tsx --watch --env-file .env.test src/server.ts",
+    "knex": "node --env-file .env --import tsx ./node_modules/knex/bin/cli.js",
+    "lint": "eslint src -ext .ts --fix",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@fastify/cookie": "^10.0.0",
+    "fastify": "^5.0.0",
+    "knex": "^3.1.0",
+    "pg": "^8.13.0",
+    "supertest": "^7.0.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.4",
+    "@types/supertest": "^6.0.2",
+    "sqlite3": "^5.1.7",
+    "eslint": "^9.10.0",
+    "globals": "^15.9.0",
+    "tsup": "^8.3.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.4.0",
+    "vitest": "^2.1.1"
+  }
+}

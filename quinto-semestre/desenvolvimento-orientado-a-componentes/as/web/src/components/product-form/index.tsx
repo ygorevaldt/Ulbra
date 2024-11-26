@@ -13,14 +13,13 @@ import { useState } from "react";
 const newProductFormValidationSchema = zod.object({
   name: zod
     .string()
-    .min(1, "Informe o nome do produto")
+    .min(3, "Informe o nome do produto")
     .max(50, "O nome do produto deve ter no máximo 50 caracteres"),
-  price: zod.number().min(0.01, "Informe o preço do produto"),
+  price: zod
+    .number({ invalid_type_error: "Informe o preço do produto" })
+    .min(0.01, "Informe o preço do produto"),
   description: zod.string().optional(),
-  image: zod
-    .string()
-    .min(1, "Informe a URL da imagem do produto")
-    .max(255, "A da imagem do produto é URL muito longa"),
+  image: zod.string().url("Informe uma URL válida"),
 });
 
 type NewProductFormData = zod.infer<typeof newProductFormValidationSchema>;
@@ -34,15 +33,16 @@ export function ProductForm({ product, isEditMode }: ProductFormProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
-  const { register, handleSubmit, reset } = useForm<NewProductFormData>({
-    resolver: zodResolver(newProductFormValidationSchema),
-    defaultValues: {
-      name: product?.name ?? "",
-      price: product?.price ?? 0.0,
-      description: product?.description ?? "",
-      image: product?.image ?? "",
-    },
-  });
+  const { register, handleSubmit, reset, formState } =
+    useForm<NewProductFormData>({
+      resolver: zodResolver(newProductFormValidationSchema),
+      defaultValues: {
+        name: product?.name ?? "",
+        price: product?.price ?? 0.0,
+        description: product?.description ?? "",
+        image: product?.image ?? "",
+      },
+    });
 
   async function handleSubmitProduct(data: NewProductFormData) {
     setIsLoading(true);
@@ -88,9 +88,11 @@ export function ProductForm({ product, isEditMode }: ProductFormProps) {
           type="text"
           id="name"
           placeholder="Dígite o nome do produto"
-          required
           {...register("name")}
         />
+        <span className={styles.errorMessage}>
+          {formState.errors.name && <p>{formState.errors.name.message}</p>}
+        </span>
       </div>
       <div className={styles.formGroup}>
         <label htmlFor="description">Descrição:</label>
@@ -108,19 +110,23 @@ export function ProductForm({ product, isEditMode }: ProductFormProps) {
             type="text"
             id="price"
             placeholder="Defina o preço do produto"
-            required
             {...register("price", { valueAsNumber: true })}
           />
+          <span className={styles.errorMessage}>
+            {formState.errors.price && <p>{formState.errors.price.message}</p>}
+          </span>
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="image">URL imagem:</label>
+          <label htmlFor="image">URL imagem: </label>
           <input
             type="url"
             id="image"
             placeholder="URL da imagem do produto"
-            required
             {...register("image")}
           />
+          <span className={styles.errorMessage}>
+            {formState.errors.image && <p>{formState.errors.image.message}</p>}
+          </span>
         </div>
       </div>
       <div className={styles.actionButtonsContainer}>

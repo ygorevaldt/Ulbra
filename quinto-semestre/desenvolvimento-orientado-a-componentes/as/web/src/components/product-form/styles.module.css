@@ -67,3 +67,7 @@
 .actionButtonsContainer > a:hover {
   background-color: var(--red-300);
 }
+
+.errorMessage {
+  color: var(--red-500);
+}

@@ -9,9 +9,12 @@ export function useFetchProducts(
   useEffect(() => {
     async function getProducts() {
       try {
-        const response = await axios.get("http://localhost:3333/product", {
-          withCredentials: true,
-        });
+        const response = await axios.get(
+          `${process.env.API_PRODUCT_BASE_URL}/product`,
+          {
+            withCredentials: true,
+          }
+        );
         callback(response.data.products);
       } catch (error) {
         callback([]);

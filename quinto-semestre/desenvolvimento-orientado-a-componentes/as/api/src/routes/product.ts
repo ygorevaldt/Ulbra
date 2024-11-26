@@ -9,6 +9,7 @@ import {
   summaryProduct,
 } from "../services/product";
 import { checkSessionId } from "./middlewares/check-session-id";
+import { deleteProduct } from "../services/product/delete-product";
 
 export async function productRoutes(app: FastifyInstance) {
   app.post("/", async (request, reply) => {
@@ -76,6 +77,24 @@ export async function productRoutes(app: FastifyInstance) {
     async (request) => {
       const { sessionId } = request.cookies;
       return await summaryProduct(sessionId!);
+    }
+  );
+
+  app.delete(
+    "/:id",
+    {
+      preHandler: [checkSessionId],
+    },
+    async (request, reply) => {
+      const getUniqueProductParamSchema = z.object({
+        id: z.string().uuid(),
+      });
+      const { sessionId } = request.cookies;
+
+      const { id } = getUniqueProductParamSchema.parse(request.params);
+      await deleteProduct(id, sessionId!);
+
+      return reply.status(200).send();
     }
   );
 }

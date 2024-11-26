@@ -102,4 +102,45 @@ describe("Product routes", () => {
 
     expect(findSummaryProductsResponse.body.summary.registred_total).toEqual(2);
   });
+
+  it.only("should be able to delete a specific product", async () => {
+    const cookies = [
+      `sessionId=12126978-3a71-4caa-90d8-475242e10718; Max-Age604800; Path=/; SameSite=Lax`,
+    ];
+
+    await Promise.all([
+      request(app.server)
+        .post("/product")
+        .set("Cookie", cookies)
+        .send(createProductBody),
+      request(app.server)
+        .post("/product")
+        .set("Cookie", cookies)
+        .send({ ...createProductBody, name: "Produto 2" }),
+    ]);
+
+    const listProductResponse = await request(app.server)
+      .get("/product")
+      .set("Cookie", cookies!)
+      .expect(200);
+
+    const productId = listProductResponse.body.products[0].id;
+
+    await request(app.server)
+      .delete(`/product/${productId}`)
+      .set("Cookie", cookies!)
+      .expect(200);
+
+    const newListProductResponse = await request(app.server)
+      .get("/product")
+      .set("Cookie", cookies!)
+      .expect(200);
+
+    expect(newListProductResponse.body.products.length).toEqual(1);
+    expect(newListProductResponse.body.products).not.toEqual(
+      expect.objectContaining({
+        id: productId,
+      })
+    );
+  });
 });

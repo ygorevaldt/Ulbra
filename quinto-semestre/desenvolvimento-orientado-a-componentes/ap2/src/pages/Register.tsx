@@ -10,9 +10,13 @@ const newParticipantSchema = z.object({
     name: z.string()
         .min(3, "Informe seu nome"),
     phone: z.string().optional(),
-    guest: z.string({ invalid_type_error: "Escolha obrigatória" }).refine(val => val === "true" || val === "false",)
+    guest: z
+        .string({ invalid_type_error: "Escolha obrigatória" })
+        .refine(val => val === "true" || val === "false",)
         .transform(val => val === "true"),
-    paid: z.string({ invalid_type_error: "Escolha obrigatória" }).refine(val => val === "true" || val === "false")
+    paid: z
+        .string({ invalid_type_error: "Escolha obrigatória" })
+        .refine(val => val === "true" || val === "false")
         .transform(val => val === "true"),
     imgUrl: z.string()
         .min(1, "Informe a URL da imagem de perfil")

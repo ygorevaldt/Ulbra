@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "./styles.module.css";
 import { Logo } from "../logo";
 
@@ -8,13 +8,13 @@ export function NavBar() {
       <Logo />
       <ul className={styles.ulContainer}>
         <li>
-          <Link to={`/`}>Início</Link>
+          <NavLink to={`/`}>Início</NavLink>
         </li>
         <li>
-          <Link to={`/about`}>Sobre</Link>
+          <NavLink to={`/about`}>Sobre</NavLink>
         </li>
         <li>
-          <Link to={`/contact`}>Contato</Link>
+          <NavLink to={`/contact`}>Contato</NavLink>
         </li>
       </ul>
     </aside>

@@ -8,7 +8,7 @@ export function Contact() {
   return (
     <Page>
       <header>
-        <h1>Página Contado</h1>
+        <h1>Página Contato</h1>
       </header>
       <main className={styles.mainContainer}>
         <ContactForm />

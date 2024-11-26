@@ -7,10 +7,10 @@ type CepCardProps = {
 export function CepCard({
     getCep
 }: CepCardProps) {
-    const [cepValue, setCelValue] = useState("");
+    const [cepValue, setCepValue] = useState("");
 
     function handleChangeCepValue(event: ChangeEvent<HTMLInputElement>) {
-        setCelValue(event.target.value);
+        setCepValue(event.target.value);
     }
 
     return (

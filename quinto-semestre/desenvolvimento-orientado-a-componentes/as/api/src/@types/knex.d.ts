@@ -2,13 +2,16 @@
 import { Knex } from "knes";
 
 declare module "knex/types/tables" {
-    export interface Tables {
-        transactions: {
-            id: string;
-            title: string;
-            amount: number;
-            created_at: string;
-            session_id?: string;
-        }
-    }
+  export interface Tables {
+    product: {
+      id: string;
+      name: string;
+      price: number;
+      description?: string;
+      image: string;
+      created_at: string;
+      deleted_at?: string;
+      session_id: string;
+    };
+  }
 }

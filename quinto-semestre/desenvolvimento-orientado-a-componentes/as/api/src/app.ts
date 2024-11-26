@@ -1,9 +1,12 @@
 import fastify from "fastify";
+import cors from "@fastify/cors";
 import cookie from "@fastify/cookie";
 
-import { transactionRoutes } from "./routes/transaction";
+import { productRoutes } from "./routes/product";
 
 export const app = fastify();
 
+app.register(cors, { origin: "*" });
+
 app.register(cookie);
-app.register(transactionRoutes, { prefix: "/transactions" });
+app.register(productRoutes, { prefix: "/product" });

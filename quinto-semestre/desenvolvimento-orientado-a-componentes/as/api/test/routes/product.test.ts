@@ -144,7 +144,7 @@ describe("Product routes", () => {
     );
   });
 
-  it.only("should be able to get a specific product", async () => {
+  it("should be able to update a specific product already registred", async () => {
     const createProductResponse = await request(app.server)
       .post("/product")
       .send(createProductBody);

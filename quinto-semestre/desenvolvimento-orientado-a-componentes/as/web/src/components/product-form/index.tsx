@@ -23,7 +23,7 @@ type NewProductFormData = zod.infer<typeof newProductFormValidationSchema>;
 
 export function ProductForm() {
   const navigate = useNavigate();
-  const { register, handleSubmit, watch, reset } = useForm<NewProductFormData>({
+  const { register, handleSubmit, reset } = useForm<NewProductFormData>({
     resolver: zodResolver(newProductFormValidationSchema),
     defaultValues: {
       name: "",

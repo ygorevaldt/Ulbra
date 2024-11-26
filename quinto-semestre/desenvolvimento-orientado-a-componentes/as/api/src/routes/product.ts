@@ -102,11 +102,15 @@ export async function productRoutes(app: FastifyInstance) {
 
       const { sessionId } = request.cookies;
 
-      await editProduct({
-        ...body,
-        id,
-        session_id: sessionId!,
-      });
+      try {
+        await editProduct({
+          ...body,
+          id,
+          session_id: sessionId!,
+        });
+      } catch (error) {
+        console.error(error);
+      }
 
       return reply.status(200).send();
     }

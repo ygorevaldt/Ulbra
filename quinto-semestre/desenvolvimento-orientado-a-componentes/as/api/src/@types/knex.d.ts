@@ -10,7 +10,7 @@ declare module "knex/types/tables" {
       description?: string;
       image: string;
       created_at: string;
-      deleted_at?: string;
+      updated_at?: string;
       session_id: string;
     };
   }

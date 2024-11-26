@@ -28,6 +28,7 @@ export async function editProduct({
     description,
     image,
     session_id,
+    updated_at: new Date().toISOString(),
   });
 
   await knex("product").where({ id }).update(newProduct);

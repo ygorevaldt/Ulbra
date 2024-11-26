@@ -23,7 +23,7 @@ export async function createProduct({
     description: description ?? "",
     image,
     created_at: new Date().toISOString(),
-    deleted_at: "",
+    updated_at: "",
     session_id,
   });
 }

@@ -37,7 +37,7 @@ export function Products() {
             Cadastrar
           </NavLink>
         </div>
-        {products[0] && <ProductsTable products={products} />}
+        {products[0] && <ProductsTable productsList={products} />}
       </main>
     </Page>
   );

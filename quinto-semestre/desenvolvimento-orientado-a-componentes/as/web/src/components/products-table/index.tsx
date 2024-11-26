@@ -3,14 +3,32 @@ import { PiPencilLineBold, PiTrashBold } from "react-icons/pi";
 import { ProductType } from "../../types/product.type";
 import styles from "./styles.module.css";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
 
 type ProductsListProps = {
-  products: ProductType[];
+  productsList: ProductType[];
 };
 
-export function ProductsTable({ products }: ProductsListProps) {
+export function ProductsTable({ productsList }: ProductsListProps) {
+  const [products, setProducts] = useState<ProductType[]>(productsList);
+
   async function handleDeleteProduct(id: string) {
-    console.log("Deletando produto: ", id);
+    try {
+      await axios.delete(`http://localhost:3333/product/${id}`, {
+        withCredentials: true,
+      });
+
+      alert("Produto removido com sucesso");
+
+      const productsWithoutDeleted = products.filter(
+        (product) => product.id !== id
+      );
+      setProducts(productsWithoutDeleted);
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao remover produto");
+    }
   }
 
   function handleNavigateToEditProductPage(product: ProductType) {

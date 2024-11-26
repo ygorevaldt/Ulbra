@@ -6,7 +6,10 @@ import { productRoutes } from "./routes/product";
 
 export const app = fastify();
 
-app.register(cors, { origin: "*" });
+app.register(cors, {
+  origin: "http://localhost:5173",
+  credentials: true,
+});
 
 app.register(cookie);
 app.register(productRoutes, { prefix: "/product" });

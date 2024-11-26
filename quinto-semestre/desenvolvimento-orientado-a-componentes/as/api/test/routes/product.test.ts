@@ -46,7 +46,7 @@ describe("Product routes", () => {
       .set("Cookie", cookies!)
       .expect(200);
 
-    expect(listProductResponse.body.product).toEqual([
+    expect(listProductResponse.body.products).toEqual([
       expect.objectContaining({
         name: createProductBody.name,
       }),
@@ -65,7 +65,7 @@ describe("Product routes", () => {
       .set("Cookie", cookies!)
       .expect(200);
 
-    const productId = listProductResponse.body.product[0].id;
+    const productId = listProductResponse.body.products[0].id;
 
     const getProductResponse = await request(app.server)
       .get(`/product/${productId}`)
@@ -79,7 +79,7 @@ describe("Product routes", () => {
     );
   });
 
-  it.only("should be able to get a products summary", async function () {
+  it("should be able to get a products summary", async function () {
     const cookies = [
       `sessionId=12126978-3a71-4caa-90d8-475242e10718; Max-Age604800; Path=/; SameSite=Lax`,
     ];

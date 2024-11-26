@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { PiPencilLineBold, PiTrashBold } from "react-icons/pi";
-
-import { ProductType } from "../../types/product.type";
-import styles from "./styles.module.css";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+
+import { ProductType } from "../../types/product.type";
+import { successAlert, errorAlert } from "../../utils/sweetalert";
+
+import styles from "./styles.module.css";
 
 type ProductsListProps = {
   productsList: ProductType[];
@@ -15,11 +17,10 @@ export function ProductsTable({ productsList }: ProductsListProps) {
 
   async function handleDeleteProduct(id: string) {
     try {
-      await axios.delete(`http://localhost:3333/product/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/product/${id}`, {
         withCredentials: true,
       });
-
-      alert("Produto removido com sucesso");
+      successAlert("Produto removido com sucesso");
 
       const productsWithoutDeleted = products.filter(
         (product) => product.id !== id
@@ -27,7 +28,7 @@ export function ProductsTable({ productsList }: ProductsListProps) {
       setProducts(productsWithoutDeleted);
     } catch (error) {
       console.error(error);
-      alert("Erro ao remover produto");
+      errorAlert("Erro ao remover produto");
     }
   }
 
@@ -57,10 +58,11 @@ export function ProductsTable({ productsList }: ProductsListProps) {
                 <NavLink
                   to={"/products/edit"}
                   onClick={() => handleNavigateToEditProductPage(product)}
+                  title="Editar"
                 >
                   {<PiPencilLineBold size={20} />}
                 </NavLink>
-                <button onClick={() => handleDeleteProduct(id)}>
+                <button onClick={() => handleDeleteProduct(id)} title="Excluir">
                   {<PiTrashBold size={20} />}
                 </button>
               </td>

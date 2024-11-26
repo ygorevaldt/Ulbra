@@ -5,7 +5,7 @@
 }
 
 .productTable thead {
-  background-color: var(--green-500);
+  background-color: var(--gray-400);
   font-weight: bold;
   color: var(--white);
 }

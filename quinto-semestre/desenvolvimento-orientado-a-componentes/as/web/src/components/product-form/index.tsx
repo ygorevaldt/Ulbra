@@ -6,6 +6,7 @@ import axios from "axios";
 
 import styles from "./styles.module.css";
 import { ProductType } from "../../types/product.type";
+import { errorAlert, successAlert } from "../../utils/sweetalert";
 
 const newProductFormValidationSchema = zod.object({
   name: zod
@@ -50,15 +51,17 @@ export function ProductForm({ product, isEditMode }: ProductFormProps) {
           withCredentials: true,
         }
       );
-      alert(
+
+      reset();
+      await successAlert(
         isEditMode
           ? "Produto atualizado com sucesso"
           : "Produto cadastrado com sucesso"
       );
-      reset();
+
       navigate("/products");
     } catch (error) {
-      alert(
+      errorAlert(
         isEditMode ? "Erro ao atualizar produto" : "Erro ao cadastrar produto"
       );
       console.error(error);

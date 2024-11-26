@@ -23,9 +23,7 @@ export function Products() {
           ${!products[0] ? styles.justifyBetween : ""}
         `}
         >
-          {products[0] ? (
-            <input type="text" placeholder="Nome do produto" />
-          ) : (
+          {!products[0] && (
             <p className={styles.noProductRegistred}>
               Nenhum produto cadastrado
             </p>

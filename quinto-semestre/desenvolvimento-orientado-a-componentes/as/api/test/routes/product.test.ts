@@ -169,8 +169,6 @@ describe("Product routes", () => {
       .set("Cookie", cookies!)
       .expect(200);
 
-    console.log(getProductResponse.body);
-
     expect(getProductResponse.body.product).toEqual(
       expect.objectContaining({
         name: "new name",

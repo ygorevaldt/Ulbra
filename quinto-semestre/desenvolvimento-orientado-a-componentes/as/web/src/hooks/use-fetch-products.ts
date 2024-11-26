@@ -10,7 +10,7 @@ export function useFetchProducts(
     async function getProducts() {
       try {
         const response = await axios.get(
-          `${process.env.API_PRODUCT_BASE_URL}/product`,
+          `${import.meta.env.VITE_API_BASE_URL}/product`,
           {
             withCredentials: true,
           }

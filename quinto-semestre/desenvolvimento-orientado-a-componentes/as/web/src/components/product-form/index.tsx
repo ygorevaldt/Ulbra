@@ -43,8 +43,8 @@ export function ProductForm({ product, isEditMode }: ProductFormProps) {
     try {
       await axios[isEditMode ? "put" : "post"](
         isEditMode && product
-          ? `http://localhost:3333/product/${product.id}`
-          : "http://localhost:3333/product",
+          ? `${import.meta.env.VITE_API_BASE_URL}/product/${product.id}`
+          : `${import.meta.env.VITE_API_BASE_URL}/product`,
         data,
         {
           withCredentials: true,

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class App {
@@ -7,13 +8,24 @@ public class App {
         Dice dice = new Dice();
         Scanner scanner = new Scanner(System.in);
 
-        ArrayList<Player> players = new ArrayList<Player>(
-                Arrays.asList(
-                        new Player("Jogador 1"),
-                        new Player("Jogador 2"),
-                        new Player("Jogador 3"),
-                        new Player("Jogador 4")));
+        CircularLinkedList<Player> players = definePlayers();
+        CircularLinkedList<ISpace> board = buildBoard();
 
+        System.out.println("=-=-=-=-=-= BANCO IMOBILIÁRIO NO TERMINAL =-=-=-=-=-=");
+
+        System.out.print("Digite o saldo inicial dos jogadores: ");
+        double initialBalance = scanner.nextDouble();
+        addBalanceToPlayers(players, initialBalance);
+
+        System.out.print("Digite o salário dos jogadores: ");
+        double playerSalary = scanner.nextDouble();
+
+        System.out.print("Digite o número máximo de rodadas: ");
+        int maxRounds = scanner.nextInt();
+
+    }
+
+    public static CircularLinkedList<ISpace> buildBoard() {
         ArrayList<Property> properties = new ArrayList<Property>(
                 Arrays.asList(
                         new Property("Casa do Bosque", 200000.00, 1100.00),
@@ -43,33 +55,41 @@ public class App {
                         new Restitution(),
                         new Restitution()));
 
-        Start start = new Start();
-
-        Board board = new Board<ISpace>(new Node<ISpace>(start));
-
         ArrayList<ISpace> allSpaces = new ArrayList<ISpace>();
         allSpaces.addAll(properties);
         allSpaces.addAll(taxes);
         allSpaces.addAll(restitutions);
 
+        Collections.shuffle(allSpaces);
+
+        Start start = new Start();
+        CircularLinkedList<ISpace> board = new CircularLinkedList<ISpace>(new Node<ISpace>(start));
+
         for (ISpace space : allSpaces) {
-            board.insertAtEnd(new Node<ISpace>(space));
+            board.insertAtEnd(space);
         }
 
-        System.out.println("=-=-=-=-=-= BANCO IMOBILIÁRIO NO TERMINAL =-=-=-=-=-=");
+        return board;
+    }
 
-        System.out.print("Digite o saldo inicial dos jogadores: ");
-        double initialBalance = scanner.nextDouble();
+    public static CircularLinkedList<Player> definePlayers() {
+        Player player1 = new Player("Jogador 1");
+        Player player2 = new Player("Jogador 2");
+        Player player3 = new Player("Jogador 3");
 
-        System.out.print("Digite o salário dos jogadores: ");
-        double playerSalary = scanner.nextDouble();
+        CircularLinkedList<Player> players = new CircularLinkedList<Player>(new Node<Player>(player1));
+        players.insertAtEnd(player2);
+        players.insertAtEnd(player3);
 
-        System.out.print("Digite o número máximo de rodadas: ");
-        int maxRounds = scanner.nextInt();
+        return players;
+    }
 
-        for (Player player : players) {
-            player.setBankBalance(initialBalance);
-        }
+    public static void addBalanceToPlayers(CircularLinkedList<Player> players, double initialBalance) {
+        Node<Player> current = players.getStart();
 
+        do {
+            current.getData().setBankBalance(initialBalance);
+            current = current.getNext();
+        } while (current != players.getStart());
     }
 }

@@ -1,7 +1,7 @@
-public class Board<T> {
+public class CircularLinkedList<T> {
     private Node<T> start;
 
-    public Board(Node<T> start) {
+    public CircularLinkedList(Node<T> start) {
         this.start = null;
     }
 

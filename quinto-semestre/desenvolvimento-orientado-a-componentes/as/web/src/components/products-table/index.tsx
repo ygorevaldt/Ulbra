@@ -13,6 +13,10 @@ export function ProductsTable({ products }: ProductsListProps) {
     console.log("Deletando produto: ", id);
   }
 
+  function handleNavigateToEditProductPage(product: ProductType) {
+    localStorage.setItem("productToEdit", JSON.stringify(product));
+  }
+
   return (
     <table className={styles.productTable}>
       <thead>
@@ -32,7 +36,10 @@ export function ProductsTable({ products }: ProductsListProps) {
               <td>{description ? description : "N/A"}</td>
               <td>{price}</td>
               <td className={styles.actionButtons}>
-                <NavLink to={"/products/edit"}>
+                <NavLink
+                  to={"/products/edit"}
+                  onClick={() => handleNavigateToEditProductPage(product)}
+                >
                   {<PiPencilLineBold size={20} />}
                 </NavLink>
                 <button onClick={() => handleDeleteProduct(id)}>

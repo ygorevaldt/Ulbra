@@ -33,7 +33,14 @@
   width: 100%;
 }
 
-.submitButton > button[type="submit"] {
+.actionButtonsContainer {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.actionButtonsContainer > button[type="submit"],
+.actionButtonsContainer > a {
   background-color: var(--green-500);
   padding: 0.6rem 1.2rem;
   color: var(--white);
@@ -41,6 +48,14 @@
   cursor: pointer;
 }
 
-.submitButton > button[type="submit"]:hover {
+.actionButtonsContainer > a {
+  background-color: var(--red-500);
+}
+
+.actionButtonsContainer > button[type="submit"]:hover {
   background-color: var(--green-300);
+}
+
+.actionButtonsContainer > a:hover {
+  background-color: var(--red-300);
 }

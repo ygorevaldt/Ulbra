@@ -1,10 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { z as zod } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 
 import styles from "./styles.module.css";
+import { ProductType } from "../../types/product.type";
 
 const newProductFormValidationSchema = zod.object({
   name: zod
@@ -21,23 +22,32 @@ const newProductFormValidationSchema = zod.object({
 
 type NewProductFormData = zod.infer<typeof newProductFormValidationSchema>;
 
-export function ProductForm() {
+type ProductFormProps = {
+  product?: ProductType;
+  isEditMode?: boolean;
+};
+
+export function ProductForm({ product, isEditMode }: ProductFormProps) {
   const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm<NewProductFormData>({
     resolver: zodResolver(newProductFormValidationSchema),
     defaultValues: {
-      name: "",
-      price: 0.0,
-      description: "",
+      name: product?.name ?? "",
+      price: product?.price ?? 0.0,
+      description: product?.description ?? "",
+      image: product?.image ?? "",
     },
   });
 
   async function handleSubmitProduct(data: NewProductFormData) {
-    console.log("data", data);
     try {
-      await axios.post("http://localhost:3333/product", data, {
-        withCredentials: true,
-      });
+      await axios[isEditMode ? "put" : "post"](
+        "http://localhost:3333/product",
+        data,
+        {
+          withCredentials: true,
+        }
+      );
       alert("Produto cadastrado com sucesso");
       reset();
       navigate("/products");
@@ -93,7 +103,8 @@ export function ProductForm() {
           />
         </div>
       </div>
-      <div className={styles.submitButton}>
+      <div className={styles.actionButtonsContainer}>
+        <NavLink to={"/products"}>Cancelar</NavLink>
         <button type="submit">Salvar</button>
       </div>
     </form>

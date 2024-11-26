@@ -3,6 +3,7 @@ import { Home } from "./pages/home";
 import { Products } from "./pages/products";
 import { Default } from "./layouts/default";
 import { ProductsRegister } from "./pages/products-register";
+import { ProductsEdit } from "./pages/products-edit";
 
 export function App() {
   return (
@@ -12,6 +13,7 @@ export function App() {
           <Route index element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/register" element={<ProductsRegister />} />
+          <Route path="/products/edit" element={<ProductsEdit />} />
         </Route>
       </Routes>
     </BrowserRouter>

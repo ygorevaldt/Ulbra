@@ -42,17 +42,25 @@ export function ProductForm({ product, isEditMode }: ProductFormProps) {
   async function handleSubmitProduct(data: NewProductFormData) {
     try {
       await axios[isEditMode ? "put" : "post"](
-        "http://localhost:3333/product",
+        isEditMode && product
+          ? `http://localhost:3333/product/${product.id}`
+          : "http://localhost:3333/product",
         data,
         {
           withCredentials: true,
         }
       );
-      alert("Produto cadastrado com sucesso");
+      alert(
+        isEditMode
+          ? "Produto atualizado com sucesso"
+          : "Produto cadastrado com sucesso"
+      );
       reset();
       navigate("/products");
     } catch (error) {
-      alert("Erro ao cadastrar produto");
+      alert(
+        isEditMode ? "Erro ao atualizar produto" : "Erro ao cadastrar produto"
+      );
       console.error(error);
     }
   }

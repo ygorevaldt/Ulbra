@@ -4,14 +4,13 @@ export function Home() {
   return (
     <Page>
       <header>
-        <h1>Página Home</h1>
+        <h1>Controle de Produtos</h1>
       </header>
       <main>
+        <p>Bem vindo ao painel administrativo de controle de produtos.</p>
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias autem
-          asperiores quos. Recusandae sequi architecto at, accusantium
-          praesentium temporibus quasi cumque quam animi, rerum enim possimus
-          nostrum suscipit, et facilis.
+          Acesse a página <strong>produtos</strong> para cadastrar e gerênciar
+          seus produtos.
         </p>
       </main>
     </Page>

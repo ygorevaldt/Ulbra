@@ -15,6 +15,7 @@ export function Products() {
     <Page>
       <header className={styles.headerContainer}>
         <h1>Produtos</h1>
+        <p>Cadastre e gerêncie seus produtos de forma simples e fácil</p>
       </header>
       <main className={styles.mainContainer}>
         <div

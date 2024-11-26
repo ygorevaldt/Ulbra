@@ -8,6 +8,7 @@ import { successAlert, errorAlert } from "../../utils/sweetalert";
 
 import styles from "./styles.module.css";
 import { LoadingSpinner } from "../loading-spinner";
+import { formatMonetaryValue } from "../../utils/format-monetary-value";
 
 type ProductsListProps = {
   productsList: ProductType[];
@@ -60,7 +61,7 @@ export function ProductsTable({ productsList }: ProductsListProps) {
             <tr key={id}>
               <td>{name}</td>
               <td>{description ? description : "N/A"}</td>
-              <td>{price}</td>
+              <td>{formatMonetaryValue(price)}</td>
               <td className={styles.actionButtons}>
                 <NavLink
                   to={"/products/edit"}

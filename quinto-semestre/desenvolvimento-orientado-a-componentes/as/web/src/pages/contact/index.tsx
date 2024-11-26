@@ -1,4 +1,4 @@
-import { ContactForm } from "../../components/contact-form";
+import { ProductForm } from "../../components/product-form";
 import { Page } from "../../components/page";
 
 import styles from "./styles.module.css";
@@ -11,7 +11,7 @@ export function Contact() {
         <h1>Página Contato</h1>
       </header>
       <main className={styles.mainContainer}>
-        <ContactForm />
+        <ProductForm />
         <img
           className={styles.svg}
           src={contactSvg}

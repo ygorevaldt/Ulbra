@@ -14,6 +14,7 @@
   --green-500: #00875f;
 
   --red-300: #f75a68;
+  --red-500: #db0214;
 }
 
 :focus {
@@ -51,7 +52,9 @@ dl {
   list-style: none;
 }
 
-a {
+a,
+button {
   text-decoration: none;
   transition: 200ms linear;
+  cursor: pointer;
 }

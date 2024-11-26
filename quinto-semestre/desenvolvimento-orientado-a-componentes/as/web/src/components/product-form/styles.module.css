@@ -15,12 +15,22 @@
   font-weight: bold;
 }
 
-.formGroup input,
-.formGroup textarea {
+.formGroup input {
   padding: 1rem;
   color: var(--gray-900);
   border: solid 1px var(--green-500);
   border-radius: 8px;
+  width: 100%;
+}
+
+.priceAndUrlImageContainer {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.priceAndUrlImageContainer .formGroup {
+  width: 100%;
 }
 
 .submitButton > button[type="submit"] {

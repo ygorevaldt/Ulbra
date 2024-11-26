@@ -1,4 +1,6 @@
 import { useEffect, SetStateAction } from "react";
+import axios from "axios";
+
 import { ProductType } from "../types/product.type";
 
 export function useFetchProducts(
@@ -7,15 +9,14 @@ export function useFetchProducts(
   useEffect(() => {
     async function getProducts() {
       try {
-        const response = await fetch("http://localhost:3333/product");
-        const responseJson = await response.json();
-        callback(responseJson.products);
+        const response = await axios.get("http://localhost:3333/product", {
+          withCredentials: true,
+        });
+        callback(response.data.products);
       } catch (error) {
-        console.error(error);
         callback([]);
       }
     }
-
     getProducts();
   }, []);
 }

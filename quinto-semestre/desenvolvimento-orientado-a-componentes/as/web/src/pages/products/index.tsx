@@ -4,7 +4,8 @@ import { Page } from "../../components/page";
 import styles from "./styles.module.css";
 import { ProductType } from "../../types/product.type";
 import { useFetchProducts } from "../../hooks/use-fetch-products";
-import { ProductsList } from "../../components/products-list";
+import { ProductsTable } from "../../components/products-table";
+import { NavLink } from "react-router-dom";
 
 export function Products() {
   const [products, setProducts] = useState<ProductType[]>([]);
@@ -13,15 +14,31 @@ export function Products() {
   return (
     <Page>
       <header className={styles.headerContainer}>
-        <h1>Página Produtos</h1>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste rerum
-          fugiat quidem quam nostrum placeat, dolorem amet asperiores aperiam
-          pariatur assumenda sequi veritatis perspiciatis explicabo porro totam
-          repellat ducimus minima.
-        </p>
+        <h1>Produtos</h1>
       </header>
-      <ProductsList products={products} />
+      <main className={styles.mainContainer}>
+        <div
+          className={`
+          ${styles.registerProductContainer} 
+          ${!products[0] ? styles.justifyBetween : ""}
+        `}
+        >
+          {products[0] ? (
+            <input type="text" placeholder="Nome do produto" />
+          ) : (
+            <p className={styles.noProductRegistred}>
+              Nenhum produto cadastrado
+            </p>
+          )}
+          <NavLink
+            className={styles.registerProductButton}
+            to={"/products/register"}
+          >
+            Cadastrar
+          </NavLink>
+        </div>
+        {products[0] && <ProductsTable products={products} />}
+      </main>
     </Page>
   );
 }

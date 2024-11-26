@@ -41,6 +41,7 @@
 .actionButtons > button {
   color: var(--gray-600);
   background-color: transparent;
+  outline: transparent;
 }
 
 .actionButtons > button {

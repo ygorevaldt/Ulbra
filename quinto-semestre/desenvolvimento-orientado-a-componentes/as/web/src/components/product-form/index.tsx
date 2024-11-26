@@ -7,6 +7,8 @@ import axios from "axios";
 import styles from "./styles.module.css";
 import { ProductType } from "../../types/product.type";
 import { errorAlert, successAlert } from "../../utils/sweetalert";
+import { LoadingSpinner } from "../loading-spinner";
+import { useState } from "react";
 
 const newProductFormValidationSchema = zod.object({
   name: zod
@@ -29,6 +31,8 @@ type ProductFormProps = {
 };
 
 export function ProductForm({ product, isEditMode }: ProductFormProps) {
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm<NewProductFormData>({
     resolver: zodResolver(newProductFormValidationSchema),
@@ -41,6 +45,8 @@ export function ProductForm({ product, isEditMode }: ProductFormProps) {
   });
 
   async function handleSubmitProduct(data: NewProductFormData) {
+    setIsLoading(true);
+
     try {
       await axios[isEditMode ? "put" : "post"](
         isEditMode && product
@@ -53,6 +59,7 @@ export function ProductForm({ product, isEditMode }: ProductFormProps) {
       );
 
       reset();
+      setIsLoading(false);
       await successAlert(
         isEditMode
           ? "Produto atualizado com sucesso"
@@ -65,6 +72,8 @@ export function ProductForm({ product, isEditMode }: ProductFormProps) {
         isEditMode ? "Erro ao atualizar produto" : "Erro ao cadastrar produto"
       );
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -116,7 +125,10 @@ export function ProductForm({ product, isEditMode }: ProductFormProps) {
       </div>
       <div className={styles.actionButtonsContainer}>
         <NavLink to={"/products"}>Cancelar</NavLink>
-        <button type="submit">Salvar</button>
+        <button type="submit">
+          Salvar
+          {isLoading && <LoadingSpinner />}
+        </button>
       </div>
     </form>
   );

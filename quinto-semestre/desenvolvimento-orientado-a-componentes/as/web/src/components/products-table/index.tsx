@@ -7,15 +7,19 @@ import { ProductType } from "../../types/product.type";
 import { successAlert, errorAlert } from "../../utils/sweetalert";
 
 import styles from "./styles.module.css";
+import { LoadingSpinner } from "../loading-spinner";
 
 type ProductsListProps = {
   productsList: ProductType[];
 };
 
 export function ProductsTable({ productsList }: ProductsListProps) {
+  const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState<ProductType[]>(productsList);
 
   async function handleDeleteProduct(id: string) {
+    setIsLoading(true);
+
     try {
       await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/product/${id}`, {
         withCredentials: true,
@@ -26,9 +30,12 @@ export function ProductsTable({ productsList }: ProductsListProps) {
         (product) => product.id !== id
       );
       setProducts(productsWithoutDeleted);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
       errorAlert("Erro ao remover produto");
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -63,7 +70,11 @@ export function ProductsTable({ productsList }: ProductsListProps) {
                   {<PiPencilLineBold size={20} />}
                 </NavLink>
                 <button onClick={() => handleDeleteProduct(id)} title="Excluir">
-                  {<PiTrashBold size={20} />}
+                  {isLoading ? (
+                    <LoadingSpinner className="red" />
+                  ) : (
+                    <PiTrashBold size={20} />
+                  )}
                 </button>
               </td>
             </tr>

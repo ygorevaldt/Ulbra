@@ -37,6 +37,7 @@
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .actionButtonsContainer > button[type="submit"],
@@ -46,6 +47,13 @@
   color: var(--white);
   border-radius: 8px;
   cursor: pointer;
+}
+
+.actionButtonsContainer > button[type="submit"] {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .actionButtonsContainer > a {

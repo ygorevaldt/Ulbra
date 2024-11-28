@@ -3,26 +3,47 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
+import javax.management.relation.RoleResult;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        Dice dice = new Dice();
-        Scanner scanner = new Scanner(System.in);
+        final double PLAYERS_INITIAL_BANK_BALANCE = 5000;
+        final double PLAYERS_SALARY = 5000;
+        final int MAX_ROUNDS = 10;
 
-        CircularLinkedList<Player> players = definePlayers();
-        CircularLinkedList<ISpace> board = buildBoard();
+        Dice dice = new Dice();
 
         System.out.println("=-=-=-=-=-= BANCO IMOBILIÁRIO NO TERMINAL =-=-=-=-=-=");
+        CircularLinkedList<ISpace> board = buildBoard();
+        CircularLinkedList<Player> players = definePlayers(board.getStart(), PLAYERS_SALARY);
 
-        System.out.print("Digite o saldo inicial dos jogadores: ");
-        double initialBalance = scanner.nextDouble();
-        addBalanceToPlayers(players, initialBalance);
+        addBalanceToPlayers(players, PLAYERS_INITIAL_BANK_BALANCE);
 
-        System.out.print("Digite o salário dos jogadores: ");
-        double playerSalary = scanner.nextDouble();
+        int roundsAmount = 0;
+        do {
+            int rollResult = dice.roll();
+            System.out.println("\nRESULTADO DO DADO: " + rollResult);
+            Node<Player> currentPlayerNode = players.getStart();
 
-        System.out.print("Digite o número máximo de rodadas: ");
-        int maxRounds = scanner.nextInt();
+            do {
+                Player player = currentPlayerNode.getData();
+                System.out.println("\nVez do jogador " + player.getName());
 
+                Node<ISpace> currentPosition = player.getPositionOnBoard();
+                for (int i = 0; i < rollResult; i++) {
+                    currentPosition = currentPosition.getNext();
+                }
+                player.setPositionOnBoard(currentPosition);
+
+                System.out.println("Você caiu na casa: " + currentPosition.getData().getDescription());
+
+                currentPosition.getData().action(player);
+
+                currentPlayerNode = currentPlayerNode.getNext();
+            } while (currentPlayerNode != players.getStart());
+
+            roundsAmount++;
+        } while (roundsAmount != MAX_ROUNDS);
     }
 
     public static CircularLinkedList<ISpace> buildBoard() {
@@ -55,33 +76,65 @@ public class App {
                         new Restitution(),
                         new Restitution()));
 
-        ArrayList<ISpace> allSpaces = new ArrayList<ISpace>();
-        allSpaces.addAll(properties);
-        allSpaces.addAll(taxes);
-        allSpaces.addAll(restitutions);
+        ArrayList<ISpace> allBoardSpaces = new ArrayList<ISpace>();
+        allBoardSpaces.addAll(properties);
+        allBoardSpaces.addAll(taxes);
+        allBoardSpaces.addAll(restitutions);
 
-        Collections.shuffle(allSpaces);
+        Collections.shuffle(allBoardSpaces);
 
+        CircularLinkedList<ISpace> board = new CircularLinkedList<ISpace>();
         Start start = new Start();
-        CircularLinkedList<ISpace> board = new CircularLinkedList<ISpace>(new Node<ISpace>(start));
 
-        for (ISpace space : allSpaces) {
+        board.insertAtStart(start);
+        for (ISpace space : allBoardSpaces) {
             board.insertAtEnd(space);
         }
+
+        listProperties(properties);
 
         return board;
     }
 
-    public static CircularLinkedList<Player> definePlayers() {
-        Player player1 = new Player("Jogador 1");
-        Player player2 = new Player("Jogador 2");
-        Player player3 = new Player("Jogador 3");
+    public static void listProperties(ArrayList<Property> properties) {
+        System.out.println("\nPROPRIEDADES DISPONÍVEIS NO JOGO:");
+        for (Property property : properties) {
+            System.out.println(property.getName());
+        }
+    }
 
-        CircularLinkedList<Player> players = new CircularLinkedList<Player>(new Node<Player>(player1));
-        players.insertAtEnd(player2);
-        players.insertAtEnd(player3);
+    public static CircularLinkedList<Player> definePlayers(Node<ISpace> boardStart, double salary) {
+        System.out.println();
+
+        Scanner scanner = new Scanner(System.in);
+        CircularLinkedList<Player> players = new CircularLinkedList<Player>();
+
+        final int PLAYERS_AMOUNT = 3;
+        for (int i = 0; i < PLAYERS_AMOUNT; i++) {
+            System.out.println(String.format("Nome do %dº jogador: ", i + 1));
+            String playerName = scanner.nextLine();
+
+            if (i == 0)
+                players.insertAtStart(new Player(playerName, boardStart, salary));
+            else {
+                players.insertAtEnd(new Player(playerName, boardStart, salary));
+            }
+        }
+
+        listPlayers(players);
 
         return players;
+    }
+
+    public static void listPlayers(CircularLinkedList<Player> players) {
+        System.out.println("\nJOGADORES DO JOGO:");
+
+        Node<Player> current = players.getStart();
+
+        do {
+            System.out.println(current.getData().getName());
+            current = current.getNext();
+        } while (current != players.getStart());
     }
 
     public static void addBalanceToPlayers(CircularLinkedList<Player> players, double initialBalance) {

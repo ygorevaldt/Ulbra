@@ -1,3 +1,4 @@
+import java.util.Scanner;
 import java.util.UUID;
 
 public class Property implements ISpace {
@@ -17,16 +18,36 @@ public class Property implements ISpace {
 
     @Override
     public void action(Player player) {
+        Scanner scanner = new Scanner(System.in);
+
         if (this.isPurchased) {
-            // Verifica se a propriedade é do jogador
-            // Caso seja, não faz nada
-            // Caso não seja, cobra aluguel
+            Property playerProperty = player.getProperty(this.id);
+            if (playerProperty != null)
+                return;
+
+            player.setBankBalance(player.getBankBalance() - this.rental);
+            System.out.println(String.format("VOCÊ PRECISOU PAGAR %.2f DE ALUGUEL", this.rental));
             return;
         }
 
-        // Verifica se jogador tem saldo suficiente para comprar imóvel
-        // Caso tenha, oferece propriedade ao jogador
-        // Caso não tenha, não faz nada.
+        String playerResponse;
+        do {
+            System.out.println(String.format("COMPRAR %s POR R$ %.2f?", this.name, this.price));
+            System.out.println("[S/N]?");
+            playerResponse = scanner.nextLine();
+
+        } while (playerResponse != "N" || playerResponse != "S");
+
+        if (playerResponse == "N")
+            return;
+
+        if (this.price > player.getBankBalance()) {
+            System.out.println("SALDO INSUFICIENTE PARA REALIZAR A COMPRA DO IMÓVEL");
+            return;
+        }
+
+        player.setBankBalance(player.getBankBalance() - this.price);
+        System.out.println("PARABÉNS PELA COMPRA DO IMÓVEL " + this.name);
     }
 
     public UUID getId() {

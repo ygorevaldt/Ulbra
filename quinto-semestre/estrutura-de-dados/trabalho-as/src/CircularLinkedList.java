@@ -1,7 +1,8 @@
 public class CircularLinkedList<T> {
     private Node<T> start;
+    private int nodesTotal = 0;
 
-    public CircularLinkedList(Node<T> start) {
+    public CircularLinkedList() {
         this.start = null;
     }
 
@@ -27,6 +28,8 @@ public class CircularLinkedList<T> {
 
         last.setNext(newNode);
         this.start = newNode;
+
+        this.nodesTotal++;
     }
 
     public void insertAtEnd(T data) {
@@ -45,6 +48,8 @@ public class CircularLinkedList<T> {
 
         current.setNext(newNode);
         newNode.setNext(this.start);
+
+        this.nodesTotal++;
     }
 
     public void removeAtStart() {
@@ -66,6 +71,8 @@ public class CircularLinkedList<T> {
 
         this.start = this.start.getNext();
         current.setNext(this.start);
+
+        this.nodesTotal--;
     }
 
     public void removeAtEnd() {
@@ -88,6 +95,8 @@ public class CircularLinkedList<T> {
         }
 
         previous.setNext(this.start);
+
+        this.nodesTotal--;
     }
 
     public void print() {
@@ -103,5 +112,9 @@ public class CircularLinkedList<T> {
             current = current.getNext();
         } while (current != this.start);
         System.out.println();
+    }
+
+    public int getNodesTotal() {
+        return this.nodesTotal;
     }
 }

@@ -4,7 +4,8 @@ public class Start implements ISpace {
         double newPlayerBankBalance = player.getBankBalance() + player.getSalary();
 
         player.setBankBalance(newPlayerBankBalance);
-        System.out.println(String.format("VOCÊ RECEBEU %.2f DE SALARIO", player.getSalary()));
+        System.out.println(String.format("%s RECEBEU %.2f DE SALARIO", player.getName(), player.getSalary()));
+        System.out.println(String.format("SALDO BANCARIO ATUAL: %.2f", player.getBankBalance()));
     }
 
     @Override

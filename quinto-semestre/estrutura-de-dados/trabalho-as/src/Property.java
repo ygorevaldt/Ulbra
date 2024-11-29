@@ -36,9 +36,9 @@ public class Property implements ISpace {
             System.out.println("[S/N]?");
             playerResponse = scanner.nextLine();
 
-        } while (playerResponse != "N" || playerResponse != "S");
+        } while (!playerResponse.equalsIgnoreCase("N") && !playerResponse.equalsIgnoreCase("S"));
 
-        if (playerResponse == "N")
+        if (playerResponse.equalsIgnoreCase("N"))
             return;
 
         if (this.price > player.getBankBalance()) {

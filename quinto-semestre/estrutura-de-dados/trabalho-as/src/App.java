@@ -7,42 +7,67 @@ import javax.management.relation.RoleResult;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        final double PLAYERS_INITIAL_BANK_BALANCE = 5000;
-        final double PLAYERS_SALARY = 5000;
+        final int MAX_PLAYERS_AMOUNT = 3;
+        final double PLAYERS_INITIAL_BANK_BALANCE = 150000;
+        final double PLAYERS_SALARY = 50000;
         final int MAX_ROUNDS = 10;
 
         Dice dice = new Dice();
 
         System.out.println("=-=-=-=-=-= BANCO IMOBILIÁRIO NO TERMINAL =-=-=-=-=-=");
         CircularLinkedList<ISpace> board = buildBoard();
-        CircularLinkedList<Player> players = definePlayers(board.getStart(), PLAYERS_SALARY);
+        CircularLinkedList<Player> players = definePlayers(board.getStart(), PLAYERS_SALARY, MAX_PLAYERS_AMOUNT);
 
         addBalanceToPlayers(players, PLAYERS_INITIAL_BANK_BALANCE);
 
         int roundsAmount = 0;
         do {
-            int rollResult = dice.roll();
-            System.out.println("\nRESULTADO DO DADO: " + rollResult);
             Node<Player> currentPlayerNode = players.getStart();
+            boolean[] passedStart = new boolean[MAX_PLAYERS_AMOUNT];
 
             do {
                 Player player = currentPlayerNode.getData();
                 System.out.println("\nVez do jogador " + player.getName());
 
+                int rollResult = dice.roll();
+                System.out.println("\nRESULTADO DO DADO: " + rollResult);
+
                 Node<ISpace> currentPosition = player.getPositionOnBoard();
                 for (int i = 0; i < rollResult; i++) {
                     currentPosition = currentPosition.getNext();
+
+                    if (currentPosition.getData() instanceof Start) {
+                        currentPosition.getData().action(player);
+
+                        int playerIndex = 0;
+                        Node<Player> temp = players.getStart();
+                        while (temp != currentPlayerNode) {
+                            playerIndex++;
+                            temp = temp.getNext();
+                        }
+                        passedStart[playerIndex] = true;
+                    }
                 }
                 player.setPositionOnBoard(currentPosition);
 
-                System.out.println("Você caiu na casa: " + currentPosition.getData().getDescription());
+                System.out.println("VOCÊ CAIU EM UMA CASA DO TIPO: " + currentPosition.getData().getDescription());
 
                 currentPosition.getData().action(player);
 
                 currentPlayerNode = currentPlayerNode.getNext();
             } while (currentPlayerNode != players.getStart());
 
-            roundsAmount++;
+            boolean allPassed = true;
+            for (boolean passed : passedStart) {
+                if (!passed) {
+                    allPassed = false;
+                    break;
+                }
+            }
+
+            if (allPassed) {
+                roundsAmount++;
+            }
         } while (roundsAmount != MAX_ROUNDS);
     }
 
@@ -103,14 +128,13 @@ public class App {
         }
     }
 
-    public static CircularLinkedList<Player> definePlayers(Node<ISpace> boardStart, double salary) {
+    public static CircularLinkedList<Player> definePlayers(Node<ISpace> boardStart, double salary, int playersAmount) {
         System.out.println();
 
         Scanner scanner = new Scanner(System.in);
         CircularLinkedList<Player> players = new CircularLinkedList<Player>();
 
-        final int PLAYERS_AMOUNT = 3;
-        for (int i = 0; i < PLAYERS_AMOUNT; i++) {
+        for (int i = 0; i < playersAmount; i++) {
             System.out.println(String.format("Nome do %dº jogador: ", i + 1));
             String playerName = scanner.nextLine();
 

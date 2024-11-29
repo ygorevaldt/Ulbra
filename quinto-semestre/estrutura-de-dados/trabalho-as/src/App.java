@@ -21,6 +21,8 @@ public class App {
         addBalanceToPlayers(players, PLAYERS_INITIAL_BANK_BALANCE);
 
         int roundsAmount = 0;
+        printCurrentRound(roundsAmount);
+
         do {
             Node<Player> currentPlayerNode = players.getStart();
             boolean[] passedStart = new boolean[MAX_PLAYERS_AMOUNT];
@@ -67,6 +69,7 @@ public class App {
 
             if (allPassed) {
                 roundsAmount++;
+                printCurrentRound(roundsAmount);
             }
         } while (roundsAmount != MAX_ROUNDS);
     }
@@ -168,5 +171,9 @@ public class App {
             current.getData().setBankBalance(initialBalance);
             current = current.getNext();
         } while (current != players.getStart());
+    }
+
+    public static void printCurrentRound(int round) {
+        System.out.println(String.format("\n=-=-=-=-=-=-= %sº RODADA =-=-=-=-=-=-=", round + 1));
     }
 }

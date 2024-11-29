@@ -27,12 +27,14 @@ public class Property implements ISpace {
 
             player.setBankBalance(player.getBankBalance() - this.rental);
             System.out.println(String.format("VOCÊ PRECISOU PAGAR %.2f DE ALUGUEL", this.rental));
+            System.out.println(String.format("SALDO BANCARIO ATUAL: %.2f", player.getBankBalance()));
             return;
         }
 
         String playerResponse;
         do {
-            System.out.println(String.format("COMPRAR %s POR R$ %.2f?", this.name, this.price));
+            System.out.println(String.format("SEU SALDO BANCÁRIO É R$%.2f", player.getBankBalance()));
+            System.out.println(String.format("COMPRAR %s POR R$%.2f?", this.name, this.price));
             System.out.println("[S/N]?");
             playerResponse = scanner.nextLine();
 
@@ -47,6 +49,7 @@ public class Property implements ISpace {
         }
 
         player.setBankBalance(player.getBankBalance() - this.price);
+        this.isPurchased = true;
         System.out.println("PARABÉNS PELA COMPRA DO IMÓVEL " + this.name);
     }
 
@@ -68,6 +71,10 @@ public class Property implements ISpace {
 
     public double getRental() {
         return rental;
+    }
+
+    public double getPrice() {
+        return this.price;
     }
 
     @Override

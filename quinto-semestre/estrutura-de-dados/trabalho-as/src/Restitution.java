@@ -7,7 +7,9 @@ public class Restitution implements ISpace {
 
         System.out.println(String.format(
                 "VOCÊ RECEBEU %.2f DE RESTITUIÇÃO FINANCEIRA",
-                player.getSalary() + playerSalaryPlus10percent));
+                playerSalaryPlus10percent));
+
+        System.out.println(String.format("SALDO BANCARIO ATUAL: %.2f", player.getBankBalance()));
     }
 
     @Override

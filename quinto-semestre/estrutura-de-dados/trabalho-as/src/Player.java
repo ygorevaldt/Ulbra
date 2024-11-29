@@ -7,6 +7,7 @@ public class Player {
     private double salary = 0.0;
     private Node<ISpace> positionOnBoard;
     private ArrayList<Property> properties = new ArrayList<Property>();
+    private boolean eliminated = false;
 
     public Player(String name, Node<ISpace> boardStart, double salary) {
         this.name = name;
@@ -42,6 +43,14 @@ public class Player {
         this.positionOnBoard = positionOnBoard;
     }
 
+    public boolean isEliminated() {
+        return this.eliminated;
+    }
+
+    public void eliminate() {
+        this.eliminated = true;
+    }
+
     public ArrayList<Property> getProperties() {
         return this.properties;
     }
@@ -61,5 +70,13 @@ public class Player {
         }
 
         return myProperty;
+    }
+
+    public double getTotalPropertyValues() {
+        double totalValue = 0;
+        for (Property property : this.properties) {
+            totalValue += property.getPrice();
+        }
+        return totalValue;
     }
 }

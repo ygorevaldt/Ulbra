@@ -8,9 +8,13 @@ import javax.management.relation.RoleResult;
 public class App {
     public static void main(String[] args) throws Exception {
         final int MAX_PLAYERS_AMOUNT = 3;
-        final double PLAYERS_INITIAL_BANK_BALANCE = 150000;
+        final double PLAYERS_INITIAL_BANK_BALANCE = 300000;
         final double PLAYERS_SALARY = 50000;
         final int MAX_ROUNDS = 10;
+
+        int amountPlayersEliminated = 0;
+
+        Player winner = null;
 
         Dice dice = new Dice();
 
@@ -23,12 +27,37 @@ public class App {
         int roundsAmount = 0;
         printCurrentRound(roundsAmount);
 
+        boolean[] passedStart = new boolean[MAX_PLAYERS_AMOUNT];
         do {
             Node<Player> currentPlayerNode = players.getStart();
-            boolean[] passedStart = new boolean[MAX_PLAYERS_AMOUNT];
 
             do {
                 Player player = currentPlayerNode.getData();
+
+                boolean playerWithNegativeBankBalance = player.getBankBalance() < 0;
+                if (playerWithNegativeBankBalance) {
+                    player.eliminate();
+                    amountPlayersEliminated++;
+                    currentPlayerNode = currentPlayerNode.getNext();
+
+                    if (amountPlayersEliminated == (MAX_PLAYERS_AMOUNT - 1)) {
+                        do {
+                            if (currentPlayerNode.getData().isEliminated()) {
+                                currentPlayerNode = currentPlayerNode.getNext();
+                            }
+                        } while (!currentPlayerNode.getData().isEliminated());
+
+                        winner = currentPlayerNode.getData();
+                    }
+
+                    continue;
+                }
+
+                if (player.isEliminated()) {
+                    currentPlayerNode = currentPlayerNode.getNext();
+                    continue;
+                }
+
                 System.out.println("\nVez do jogador " + player.getName());
 
                 int rollResult = dice.roll();
@@ -70,8 +99,37 @@ public class App {
             if (allPassed) {
                 roundsAmount++;
                 printCurrentRound(roundsAmount);
+                passedStart = new boolean[MAX_PLAYERS_AMOUNT];
             }
-        } while (roundsAmount != MAX_ROUNDS);
+        } while ((roundsAmount != MAX_ROUNDS || winner == null));
+
+        if (winner != null) {
+            System.out.println(String.format("O JOGADOR %s GANHOU O JOGO", winner.getName()));
+        }
+
+        do {
+            Node<Player> currentPlayerNode = players.getStart();
+
+            Player playerWithBiggestBankBalance = currentPlayerNode.getData();
+            double playerWithBiggestBankBalanceFinanceAssets = playerWithBiggestBankBalance.getBankBalance()
+                    + playerWithBiggestBankBalance.getTotalPropertyValues();
+
+            do {
+                Player player = currentPlayerNode.getData();
+                double playerFinanceAssets = player.getBankBalance() + player.getTotalPropertyValues();
+
+                if (playerFinanceAssets > playerWithBiggestBankBalanceFinanceAssets) {
+                    playerWithBiggestBankBalance = player;
+                }
+
+            } while (currentPlayerNode != players.getStart());
+
+            winner = playerWithBiggestBankBalance;
+
+        } while (winner == null);
+
+        System.out.println(String.format("O JOGADOR %s GANHOU O JOGO", winner.getName()));
+
     }
 
     public static CircularLinkedList<ISpace> buildBoard() {

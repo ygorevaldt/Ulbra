@@ -3,14 +3,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
-import javax.management.relation.RoleResult;
-
 public class App {
     public static void main(String[] args) throws Exception {
         final int MAX_PLAYERS_AMOUNT = 3;
         final double PLAYERS_INITIAL_BANK_BALANCE = 300000;
         final double PLAYERS_SALARY = 50000;
-        final int MAX_ROUNDS = 10;
+        final int MAX_ROUNDS = 2;
 
         int amountPlayersEliminated = 0;
 
@@ -101,7 +99,7 @@ public class App {
                 printCurrentRound(roundsAmount);
                 passedStart = new boolean[MAX_PLAYERS_AMOUNT];
             }
-        } while ((roundsAmount != MAX_ROUNDS || winner == null));
+        } while ((roundsAmount <= MAX_ROUNDS || winner == null));
 
         if (winner != null) {
             System.out.println(String.format("O JOGADOR %s GANHOU O JOGO", winner.getName()));

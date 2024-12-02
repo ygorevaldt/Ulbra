@@ -33,7 +33,7 @@ export function ProductForm({ product, isEditMode }: ProductFormProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
-  const { register, handleSubmit, reset, formState } =
+  const { register, handleSubmit, reset, formState, watch } =
     useForm<NewProductFormData>({
       resolver: zodResolver(newProductFormValidationSchema),
       defaultValues: {
@@ -43,6 +43,8 @@ export function ProductForm({ product, isEditMode }: ProductFormProps) {
         image: product?.image ?? "",
       },
     });
+
+  const productImage = watch("image");
 
   async function handleSubmitProduct(data: NewProductFormData) {
     setIsLoading(true);
@@ -82,60 +84,76 @@ export function ProductForm({ product, isEditMode }: ProductFormProps) {
       onSubmit={handleSubmit(handleSubmitProduct)}
       className={styles.formContainer}
     >
-      <div className={styles.formGroup}>
-        <label htmlFor="name">Nome:</label>
-        <input
-          type="text"
-          id="name"
-          placeholder="Dígite o nome do produto"
-          {...register("name")}
-        />
-        <span className={styles.errorMessage}>
-          {formState.errors.name && <p>{formState.errors.name.message}</p>}
-        </span>
-      </div>
-      <div className={styles.formGroup}>
-        <label htmlFor="description">Descrição:</label>
-        <input
-          type="text"
-          id="description"
-          placeholder="Digíte a descrição do produto"
-          {...register("description")}
-        />
-      </div>
-      <div className={styles.priceAndUrlImageContainer}>
+      <fieldset>
+        <legend className={!productImage ? styles.legendMarginBottom : ""}>
+          <h1>{isEditMode ? "Editar Produto" : "Cadastrar Produto"}</h1>
+          {productImage && (
+            <img
+              className={styles.productImage}
+              src={productImage}
+              alt="imagem do produto"
+            />
+          )}
+        </legend>
         <div className={styles.formGroup}>
-          <label htmlFor="price">Preço:</label>
+          <label htmlFor="name">Nome:</label>
           <input
             type="text"
-            id="price"
-            placeholder="Defina o preço do produto"
-            {...register("price", { valueAsNumber: true })}
+            id="name"
+            placeholder="Dígite o nome do produto"
+            {...register("name")}
           />
           <span className={styles.errorMessage}>
-            {formState.errors.price && <p>{formState.errors.price.message}</p>}
+            {formState.errors.name && <p>{formState.errors.name.message}</p>}
           </span>
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="image">URL imagem: </label>
+          <label htmlFor="description">Descrição:</label>
           <input
-            type="url"
-            id="image"
-            placeholder="URL da imagem do produto"
-            {...register("image")}
+            type="text"
+            id="description"
+            placeholder="Digíte a descrição do produto"
+            {...register("description")}
           />
-          <span className={styles.errorMessage}>
-            {formState.errors.image && <p>{formState.errors.image.message}</p>}
-          </span>
         </div>
-      </div>
-      <div className={styles.actionButtonsContainer}>
-        <NavLink to={"/products"}>Cancelar</NavLink>
-        <button type="submit">
-          Salvar
-          {isLoading && <LoadingSpinner />}
-        </button>
-      </div>
+        <div className={styles.priceAndUrlImageContainer}>
+          <div className={styles.formGroup}>
+            <label htmlFor="price">Preço:</label>
+            <input
+              type="text"
+              id="price"
+              placeholder="Defina o preço do produto"
+              {...register("price", { valueAsNumber: true })}
+            />
+            <span className={styles.errorMessage}>
+              {formState.errors.price && (
+                <p>{formState.errors.price.message}</p>
+              )}
+            </span>
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="image">URL imagem: </label>
+            <input
+              type="url"
+              id="image"
+              placeholder="URL da imagem do produto"
+              {...register("image")}
+            />
+            <span className={styles.errorMessage}>
+              {formState.errors.image && (
+                <p>{formState.errors.image.message}</p>
+              )}
+            </span>
+          </div>
+        </div>
+        <div className={styles.actionButtonsContainer}>
+          <NavLink to={"/products"}>Cancelar</NavLink>
+          <button type="submit">
+            Salvar
+            {isLoading && <LoadingSpinner />}
+          </button>
+        </div>
+      </fieldset>
     </form>
   );
 }

@@ -1,8 +1,27 @@
-.formContainer {
+.formContainer fieldset {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   width: 100%;
+  border: none;
+}
+
+.formContainer fieldset legend {
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.legendMarginBottom {
+  margin-bottom: 2rem;
+}
+
+.productImage {
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
 }
 
 .formGroup {

@@ -18,14 +18,6 @@ export function ProductsEdit() {
 
   return (
     <div className={styles.productsEditContainer}>
-      <header className={styles.headerContainer}>
-        <h2>Edição de Produto</h2>
-        <img
-          className={styles.productImage}
-          src={product?.image}
-          alt="imagem do produto"
-        />
-      </header>
       <main>
         {product !== null ? (
           <ProductForm product={product} isEditMode={true} />

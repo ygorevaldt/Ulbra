@@ -14,6 +14,7 @@ export function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/products/register" element={<ProductsRegister />} />
           <Route path="/products/edit" element={<ProductsEdit />} />
+          <Route path="*" element={<h1>404</h1>}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

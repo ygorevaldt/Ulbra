@@ -141,6 +141,65 @@ const model = {
         row >= this.rows || row < 0 || column >= this.columns || column < 0
       );
     },
+
+    moveBlackPieces() {
+      setTimeout(() => {
+        for (let row = this.rows - 1; row >= 0; row--) {
+          for (let column = this.columns - 1; column >= 0; column--) {
+            const piece = this.positions[row][column];
+            if (piece.color === "black" && !piece.isEmpty()) {
+              const captures = [
+                [row - 2, column - 2, row - 1, column - 1],
+                [row - 2, column + 2, row - 1, column + 1],
+              ];
+              for (const [
+                newRow,
+                newColumn,
+                middleRow,
+                middleColumn,
+              ] of captures) {
+                if (
+                  !this.isOutOfBounds(newRow, newColumn) &&
+                  this.positions[newRow][newColumn].isEmpty() &&
+                  this.positions[middleRow][middleColumn].color === "white"
+                ) {
+                  piece.changePosition(newRow, newColumn);
+                  this.positions[middleRow][middleColumn] = new Piece(
+                    middleRow,
+                    middleColumn
+                  );
+                  model.whiteLeft--;
+                  this.drawBoard();
+                  return;
+                }
+              }
+            }
+          }
+        }
+
+        for (let row = this.rows - 1; row >= 0; row--) {
+          for (let column = this.columns - 1; column >= 0; column--) {
+            const piece = this.positions[row][column];
+            if (piece.color === "black" && !piece.isEmpty()) {
+              const moves = [
+                [row - 1, column - 1],
+                [row - 1, column + 1],
+              ];
+              for (const [newRow, newColumn] of moves) {
+                if (
+                  !this.isOutOfBounds(newRow, newColumn) &&
+                  this.positions[newRow][newColumn].isEmpty()
+                ) {
+                  piece.changePosition(newRow, newColumn);
+                  this.drawBoard();
+                  return;
+                }
+              }
+            }
+          }
+        }
+      }, 500);
+    },
   },
 };
 
@@ -180,6 +239,11 @@ class Piece {
           ? new WhiteDama(this.row, this.column)
           : new BlackDama(this.row, this.column);
     }
+
+    // Trigger AI move
+    if (model.turn === "black") {
+      model.board.moveBlackPieces();
+    }
   }
 
   highlightMove(row, column) {
@@ -202,7 +266,7 @@ class Piece {
 class BlackPiece extends Piece {
   constructor(row, column) {
     super(row, column);
-    this.src = "img/black.png";
+    this.src = "./assets/img/black.png";
     this.color = "black";
   }
 
@@ -227,7 +291,7 @@ class BlackPiece extends Piece {
 class WhitePiece extends Piece {
   constructor(row, column) {
     super(row, column);
-    this.src = "img/white.png";
+    this.src = "./assets/img/white.png";
     this.color = "white";
   }
 
@@ -252,7 +316,7 @@ class WhitePiece extends Piece {
 class BlackDama extends BlackPiece {
   constructor(row, column) {
     super(row, column);
-    this.src = "img/blackdama.png";
+    this.src = "./assets/img/blackdama.png";
   }
 
   highlightMoves(row, column) {
@@ -266,7 +330,7 @@ class BlackDama extends BlackPiece {
 class WhiteDama extends WhitePiece {
   constructor(row, column) {
     super(row, column);
-    this.src = "img/whitedama.png";
+    this.src = "./assets/img/whitedama.png";
   }
 
   highlightMoves(row, column) {
@@ -276,11 +340,6 @@ class WhiteDama extends WhitePiece {
     this.highlightMove(row + 1, column - 1);
   }
 }
-
-const init = function () {
-  model.board.initBoard(8, 8, 12);
-  model.board.drawBoard();
-};
 
 const modelProxy = new Proxy(model, {
   set(target, property, value) {
@@ -303,5 +362,10 @@ const modelProxy = new Proxy(model, {
     return true;
   },
 });
+
+function init() {
+  model.board.initBoard(8, 8, 12);
+  model.board.drawBoard();
+}
 
 init();

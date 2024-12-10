@@ -53,7 +53,7 @@ const model = {
       }
     },
 
-    initBoard(rows, columns, piecesPerSide) {
+    initBoard({ rows, columns, piecesPerSide } = {}) {
       this.rows = rows;
       this.columns = columns;
       this.positions = Array.from({ length: rows }, () =>
@@ -91,6 +91,7 @@ const model = {
             cell.classList.add("highlight");
             cell.addEventListener("click", () => {
               this.selected.changePosition(i, j);
+              this.handleCaptureMove(this.selected, i, j);
               this.unselectCell();
               this.drawBoard();
             });
@@ -142,16 +143,44 @@ const model = {
       );
     },
 
+    handleCaptureMove(piece, newRow, newColumn) {
+      const middleRow = (piece.row + newRow) / 2;
+      const middleColumn = (piece.column + newColumn) / 2;
+      const middlePiece = this.positions[middleRow][middleColumn];
+
+      if (!middlePiece.isEmpty() && middlePiece.color !== piece.color) {
+        this.positions[middleRow][middleColumn] = new Piece(
+          middleRow,
+          middleColumn
+        );
+        piece.changePosition(newRow, newColumn);
+        if (piece instanceof BlackPiece) {
+          model.whiteLeft--;
+        } else if (piece instanceof WhitePiece) {
+          model.blackLeft--;
+        }
+      }
+    },
+
     moveBlackPieces() {
       setTimeout(() => {
+        // Captura disponível
         for (let row = this.rows - 1; row >= 0; row--) {
           for (let column = this.columns - 1; column >= 0; column--) {
             const piece = this.positions[row][column];
             if (piece.color === "black" && !piece.isEmpty()) {
-              const captures = [
-                [row - 2, column - 2, row - 1, column - 1],
-                [row - 2, column + 2, row - 1, column + 1],
-              ];
+              const captures =
+                piece instanceof BlackDama
+                  ? [
+                      [row - 2, column - 2, row - 1, column - 1],
+                      [row - 2, column + 2, row - 1, column + 1],
+                      [row + 2, column - 2, row + 1, column - 1],
+                      [row + 2, column + 2, row + 1, column + 1],
+                    ]
+                  : [
+                      [row - 2, column - 2, row - 1, column - 1],
+                      [row - 2, column + 2, row - 1, column + 1],
+                    ];
               for (const [
                 newRow,
                 newColumn,
@@ -177,14 +206,23 @@ const model = {
           }
         }
 
+        // Movimentos disponíveis
         for (let row = this.rows - 1; row >= 0; row--) {
           for (let column = this.columns - 1; column >= 0; column--) {
             const piece = this.positions[row][column];
             if (piece.color === "black" && !piece.isEmpty()) {
-              const moves = [
-                [row - 1, column - 1],
-                [row - 1, column + 1],
-              ];
+              const moves =
+                piece instanceof BlackDama
+                  ? [
+                      [row - 1, column - 1],
+                      [row - 1, column + 1],
+                      [row + 1, column - 1],
+                      [row + 1, column + 1],
+                    ]
+                  : [
+                      [row - 1, column - 1],
+                      [row - 1, column + 1],
+                    ];
               for (const [newRow, newColumn] of moves) {
                 if (
                   !this.isOutOfBounds(newRow, newColumn) &&
@@ -217,9 +255,14 @@ class Piece {
       this.row,
       this.column
     );
-    if (Math.abs(this.row - newRow) > 1) {
-      const eatenRowPos = (this.row + newRow) / 2;
-      const eatenColumnPos = (this.column + newColumn) / 2;
+
+    const rowDiff = newRow - this.row;
+    const colDiff = newColumn - this.column;
+
+    if (Math.abs(rowDiff) > 1 && Math.abs(colDiff) > 1) {
+      const eatenRowPos = this.row + rowDiff / 2;
+      const eatenColumnPos = this.column + colDiff / 2;
+
       model.board.positions[eatenRowPos][eatenColumnPos] = new Piece(
         eatenRowPos,
         eatenColumnPos
@@ -320,10 +363,21 @@ class BlackDama extends BlackPiece {
   }
 
   highlightMoves(row, column) {
-    this.highlightMove(row + 1, column + 1);
-    this.highlightMove(row - 1, column - 1);
-    this.highlightMove(row - 1, column + 1);
-    this.highlightMove(row + 1, column - 1);
+    let directions = [
+      [1, 1],
+      [-1, -1],
+      [-1, 1],
+      [1, -1],
+    ];
+    for (let direction of directions) {
+      let i = row + direction[0],
+        j = column + direction[1];
+      while (!model.board.isOutOfBounds(i, j)) {
+        if (this.highlightMove(i, j)) break;
+        i += direction[0];
+        j += direction[1];
+      }
+    }
   }
 }
 
@@ -334,10 +388,59 @@ class WhiteDama extends WhitePiece {
   }
 
   highlightMoves(row, column) {
-    this.highlightMove(row + 1, column + 1);
-    this.highlightMove(row - 1, column - 1);
-    this.highlightMove(row - 1, column + 1);
-    this.highlightMove(row + 1, column - 1);
+    const directions = [
+      [1, 1],
+      [-1, -1],
+      [-1, 1],
+      [1, -1],
+    ];
+    for (let direction of directions) {
+      let i = row + direction[0],
+        j = column + direction[1];
+      while (!model.board.isOutOfBounds(i, j)) {
+        if (this.highlightMove(i, j)) break;
+        i += direction[0];
+        j += direction[1];
+      }
+    }
+
+    for (let direction of directions) {
+      let i = row + direction[0],
+        j = column + direction[1];
+      while (!model.board.isOutOfBounds(i, j)) {
+        if (this.highlightCaptureMove(i, j, i + direction[0], j + direction[1]))
+          break;
+        i += direction[0];
+        j += direction[1];
+      }
+    }
+  }
+
+  highlightCaptureMove(row, column, captureRow, captureColumn) {
+    if (!model.board.isOutOfBounds(captureRow, captureColumn)) {
+      const cellToCapture = model.board.positions[row][column];
+      const cellToMove = model.board.positions[captureRow][captureColumn];
+      if (
+        !cellToCapture.isEmpty() &&
+        cellToCapture.color === "black" &&
+        cellToMove.isEmpty()
+      ) {
+        cellToMove.highlighted = true;
+        return true;
+      }
+    }
+    return false;
+  }
+
+  highlightMove(row, column) {
+    if (!model.board.isOutOfBounds(row, column)) {
+      const cellToMove = model.board.positions[row][column];
+      if (cellToMove.isEmpty()) {
+        cellToMove.highlighted = true;
+        return true;
+      }
+    }
+    return false;
   }
 }
 
@@ -364,7 +467,11 @@ const modelProxy = new Proxy(model, {
 });
 
 function init() {
-  model.board.initBoard(8, 8, 12);
+  model.board.initBoard({
+    rows: 8,
+    columns: 8,
+    piecesPerSide: 12,
+  });
   model.board.drawBoard();
 }
 
